@@ -1,0 +1,26 @@
+{
+  "name": "output-target-angular",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/output-target-angular/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/output-target-angular",
+        "main": "libs/output-target-angular/src/index.ts",
+        "tsConfig": "libs/output-target-angular/tsconfig.lib.json",
+        "assets": []
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/libs/output-target-angular"
+      }
+    }
+  },
+  "tags": []
+}

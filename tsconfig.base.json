@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@baloise/ds-output-target-angular": ["libs/output-target-angular/src/index.ts"],
+      "@baloise/output-target-react": ["libs/output-target-react/src/index.ts"],
+      "@baloise/output-target-vue": ["libs/output-target-vue/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
