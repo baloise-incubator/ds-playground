@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "homepage": "https://design.baloise.dev",
   "license": "Apache-2.0",
-  "scripts": {},
+  "scripts": {
+    "format": "nx format:write"
+  },
   "private": true,
   "devDependencies": {
     "@angular/cli": "~15.0.0",

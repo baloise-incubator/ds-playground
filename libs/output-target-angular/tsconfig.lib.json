@@ -5,6 +5,11 @@
     "declaration": true,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "src/generate-angular-component.spec.ts", "src/output-angular.spec.ts", "src/plugin.spec.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/generate-angular-component.spec.ts",
+    "src/output-angular.spec.ts",
+    "src/plugin.spec.ts"
+  ],
   "exclude": ["vite.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }
