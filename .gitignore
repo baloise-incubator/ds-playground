@@ -39,3 +39,6 @@ testem.log
 Thumbs.db
 
 .nx/cache
+
+packages/components/src/utils/constants/icons.constant.ts
+packages/icons/src/icons.json

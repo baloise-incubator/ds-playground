@@ -1,2 +1,4 @@
 tsconfig.base.json
 packages/icons/src/index.ts
+packages/components/src/utils/constants/icons.constant.ts
+packages/icons/src/icons.json
