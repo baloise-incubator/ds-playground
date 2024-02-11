@@ -10,27 +10,16 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@baloise/ds-output-target-angular": [
-        "libs/output-target-angular/src/index.ts"
-      ],
-      "@baloise/output-target-react": [
-        "libs/output-target-react/src/index.ts"
-      ],
-      "@baloise/output-target-vue": [
-        "libs/output-target-vue/src/index.ts"
-      ]
+      "@baloise/ds-icons": ["packages/icons/src/index.ts"],
+      "@baloise/ds-output-target-angular": ["libs/output-target-angular/src/index.ts"],
+      "@baloise/output-target-react": ["libs/output-target-react/src/index.ts"],
+      "@baloise/output-target-vue": ["libs/output-target-vue/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

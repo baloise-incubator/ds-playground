@@ -1,0 +1,11 @@
+{
+  "name": "@baloise/ds-icons",
+  "version": "0.0.1",
+  "dependencies": {},
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "files": [
+    "svg"
+  ]
+}

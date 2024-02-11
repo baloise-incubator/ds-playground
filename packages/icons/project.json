@@ -1,0 +1,28 @@
+{
+  "name": "icons",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/icons/src",
+  "projectType": "library",
+  "targets": {
+    "prepare": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node packages/icons/scripts/prepare.mjs"
+      }
+    },
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/icons",
+        "main": "packages/icons/src/index.ts",
+        "tsConfig": "packages/icons/tsconfig.lib.json",
+        "assets": [],
+        "project": "packages/icons/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    }
+  },
+  "tags": []
+}

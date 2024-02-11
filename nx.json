@@ -16,6 +16,11 @@
     "@nx/vite:test": {
       "cache": true,
       "inputs": ["default", "^default"]
+    },
+    "@nx/rollup:rollup": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"]
     }
   },
   "plugins": [
