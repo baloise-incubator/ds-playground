@@ -1,1 +1,2 @@
-export * from './lib/output-target-react'
+export { reactOutputTarget } from './lib/plugin'
+export type { OutputTargetReact } from './lib/types'

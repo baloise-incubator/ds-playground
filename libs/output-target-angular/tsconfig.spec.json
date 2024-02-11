@@ -16,8 +16,8 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts",
-    "src/generate-angular-component.spec.ts",
-    "src/output-angular.spec.ts",
-    "src/plugin.spec.ts"
+    "src/lib/generate-angular-component.spec.ts",
+    "src/lib/output-angular.spec.ts",
+    "src/lib/plugin.spec.ts"
   ]
 }
