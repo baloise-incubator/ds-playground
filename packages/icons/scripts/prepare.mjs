@@ -43,7 +43,7 @@ async function optimizeSvg() {
   }
 
   // Generate JS output
-  const lines = ['/* eslint-disable prettier/prettier */', '// generated file', '']
+  const lines = ['// generated file', '']
   const regex = /[\r\n]+/g // remove all line breaks
   contents.forEach((value, key) => {
     lines.push(`export const balIcon${upperFirst(camelCase(key))} = /*#__PURE__*/ '${value.replace(regex, '')}';`)
