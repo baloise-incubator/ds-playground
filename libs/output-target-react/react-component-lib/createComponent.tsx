@@ -58,10 +58,10 @@ export const createReactComponent = <
         if (name.indexOf('on') === 0 && name[2] === name[2].toUpperCase()) {
           const eventName = name.substring(2).toLowerCase()
           if (typeof document !== 'undefined' && isCoveredByReact(eventName)) {
-            (acc as any)[name] = (cProps as any)[name]
+            ;(acc as any)[name] = (cProps as any)[name]
           }
         } else {
-          (acc as any)[name] = (cProps as any)[name]
+          ;(acc as any)[name] = (cProps as any)[name]
         }
         return acc
       }, {})
