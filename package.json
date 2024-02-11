@@ -6,7 +6,7 @@
   "scripts": {
     "format": "nx format:write",
     "registry": "bash scripts/registry"
-   },
+  },
   "private": true,
   "devDependencies": {
     "@angular/cli": "~15.0.0",

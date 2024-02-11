@@ -20,17 +20,24 @@ jobs:
     env:
       HUSKY: 0
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout project
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - name: Stetup Node.JS
+        uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'npm'
-      - run: npm run registry
-      - run: npm ci
-      - uses: nrwl/nx-set-shas@v4
+      - name: Update NPM registry path
+        run: npm run registry
+      - name: Clean install
+        run: npm ci
+      - name: Define NX cache
+        uses: nrwl/nx-set-shas@v4
 
-      - run: npx nx-cloud record -- nx format:check
-      - run: npx nx affected -t lint test build
+      - name: Check Format
+        run: npx nx-cloud record -- nx format:check
+      - name: Lint, test & build
+        run: npx nx affected -t lint test build
