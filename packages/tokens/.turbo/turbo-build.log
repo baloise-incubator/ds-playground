@@ -1,6 +1,0 @@
-
-> @baloise/design-system-tokens@15.2.2 build
-> node ./scripts/build.mjs
-
-⏳  token generating [90mstarted ...[0m 
-✅  [32mtoken generating [90mfinished in 0.96sec[0m 

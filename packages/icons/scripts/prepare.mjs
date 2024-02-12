@@ -25,7 +25,7 @@ const run = async () => {
 
 async function optimizeSvg() {
   // Search for all svg file paths
-  const filePaths = await scan(path.join(__dirname, 'svg/*.svg'))
+  const filePaths = await scan(path.join(__dirname, 'src/assets/*.svg'))
 
   // Read the svg file and optimize it
   const contents = new Map()
@@ -36,7 +36,7 @@ async function optimizeSvg() {
       const svgContent = await readFile(filePath)
       const optimizedSvgContent = await optimizeIcon(svgContent)
       contents.set(fileName, optimizedSvgContent)
-      await writeFile(path.join(__dirname, 'svg', `${fileName}.svg`), optimizedSvgContent)
+      await writeFile(path.join(__dirname, 'src/assets', `${fileName}.svg`), optimizedSvgContent)
     } catch (error) {
       reject(error.message)
     }
@@ -51,7 +51,7 @@ async function optimizeSvg() {
   })
 
   await writeFile(path.join(__dirname, 'src/index.ts'), lines.join(NEWLINE))
-  await writeFile(path.join(__dirname, 'src/icons.json'), JSON.stringify([...contents.keys()]))
+  await writeFile(path.join(__dirname, 'src/assets/icons.json'), JSON.stringify([...contents.keys()]))
 
   // Generate DS min-set of icons output
   const dsLines = ['/* eslint-disable prettier/prettier */', '// generated file', '']

@@ -11,16 +11,8 @@
   },
   "homepage": "https://design.baloise.dev",
   "license": "Apache-2.0",
-  "scripts": {
-    "build": "node ./scripts/build.mjs",
-    "generate": "node ./scripts/generate.mjs"
-  },
-  "main": "dist/tokens.js",
-  "module": "dist/tokens.esm.js",
-  "types": "dist/types/tokens.d.ts",
-  "style": "dist/tokens.css",
-  "files": [
-    "dist/",
-    "src/"
-  ]
+  "main": "tokens.js",
+  "module": "tokens.esm.js",
+  "types": "types/tokens.d.ts",
+  "style": "tokens.css"
 }

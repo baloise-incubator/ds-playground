@@ -17,7 +17,9 @@
         "outputPath": "dist/packages/icons",
         "main": "packages/icons/src/index.ts",
         "tsConfig": "packages/icons/tsconfig.lib.json",
-        "assets": [],
+        "assets": [
+          "packages/icons/src/assets"
+        ],
         "project": "packages/icons/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"]

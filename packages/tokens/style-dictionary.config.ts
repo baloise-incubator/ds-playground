@@ -1,21 +1,24 @@
-module.exports = {
+import { Config } from 'style-dictionary'
+
+// If you need to add multiple configutations Config[] is supported
+const config: Config | Config[] = {
   source: ['src/**/*.json'],
   platforms: {
     web: {
       transformGroup: 'web',
       transforms: ['attribute/cti', 'color/hex', 'size/remToPx', 'bal/css/name'],
       prefix: 'bal',
-      buildPath: 'dist/figma/',
+      buildPath: 'figma/',
       files: [
         {
-          format: 'bal/figma',
+          format: 'figma',
           destination: 'color.json',
-          filter: 'bal/figma/color',
+          filter: 'figmaColor',
         },
         {
-          format: 'bal/figma',
+          format: 'figma',
           destination: 'size.json',
-          filter: 'bal/figma/size',
+          filter: 'figmaSize',
         },
       ],
     },
@@ -31,13 +34,13 @@ module.exports = {
         'bal/css/name',
         'bal/size/rem',
       ],
-      buildPath: 'dist/',
+      buildPath: '/',
       prefix: 'bal',
       files: [
         {
           format: 'css/variables',
           destination: 'tokens.css',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
           options: {
             outputReferences: true,
           },
@@ -45,7 +48,7 @@ module.exports = {
         {
           format: 'css/variables',
           destination: 'tokens.css.scss',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
           options: {
             outputReferences: true,
           },
@@ -53,7 +56,7 @@ module.exports = {
         {
           format: 'css/variables',
           destination: 'deprecated/tokens.css',
-          filter: 'bal/only-deprecated',
+          filter: 'onlyDeprecated',
           options: {
             outputReferences: false,
           },
@@ -61,7 +64,7 @@ module.exports = {
         {
           format: 'css/variables',
           destination: 'deprecated/tokens.css.scss',
-          filter: 'bal/only-deprecated',
+          filter: 'onlyDeprecated',
           options: {
             outputReferences: false,
           },
@@ -69,7 +72,7 @@ module.exports = {
         {
           format: 'json',
           destination: 'tokens.docs.json',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
           options: {
             outputReferences: true,
           },
@@ -77,7 +80,7 @@ module.exports = {
         {
           format: 'json',
           destination: 'deprecated/tokens.docs.json',
-          filter: 'bal/only-deprecated',
+          filter: 'onlyDeprecated',
           options: {
             outputReferences: false,
           },
@@ -96,13 +99,13 @@ module.exports = {
         'bal/css/name',
         'bal/size/rem',
       ],
-      buildPath: 'dist/',
+      buildPath: '/',
       prefix: 'bal',
       files: [
         {
           format: 'scss/variables',
           destination: 'tokens.scss',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
           options: {
             outputReferences: true,
           },
@@ -110,7 +113,7 @@ module.exports = {
         {
           format: 'scss/variables',
           destination: 'deprecated/tokens.scss',
-          filter: 'bal/only-deprecated',
+          filter: 'onlyDeprecated',
         },
       ],
     },
@@ -126,13 +129,13 @@ module.exports = {
         'bal/css/name',
         'bal/size/rem',
       ],
-      buildPath: 'dist/',
+      buildPath: '/',
       prefix: 'bal',
       files: [
         {
           format: 'less/variables',
           destination: 'tokens.less',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
           options: {
             outputReferences: true,
           },
@@ -140,42 +143,44 @@ module.exports = {
         {
           format: 'less/variables',
           destination: 'deprecated/tokens.less',
-          filter: 'bal/only-deprecated',
+          filter: 'onlyDeprecated',
         },
       ],
     },
     js: {
       transformGroup: 'js',
       transforms: ['attribute/cti', 'name/cti/camel', 'size/rem', 'color/hex', 'bal/css/name', 'bal/size/rem'],
-      buildPath: 'dist/',
+      buildPath: '/',
       prefix: 'bal',
       files: [
         {
           format: 'javascript/es6',
           destination: 'tokens.esm.js',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
         },
         {
           format: 'typescript/es6-declarations',
           destination: 'types/tokens.d.ts',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
         },
         {
           format: 'javascript/module-flat',
           destination: 'tokens.js',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
         },
         {
           format: 'json/flat',
           destination: 'tokens.json',
-          filter: 'bal/without-deprecated',
+          filter: 'withoutDeprecated',
         },
         {
           format: 'json/flat',
           destination: 'deprecated/tokens.json',
-          filter: 'bal/only-deprecated',
+          filter: 'onlyDeprecated',
         },
       ],
     },
   },
 }
+
+export default config
