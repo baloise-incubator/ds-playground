@@ -12,12 +12,12 @@
       "executor": "@nxkit/style-dictionary:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "packages/tokens/dist",
-        "styleDictionaryConfig": "packages/tokens/style-dictionary.config.ts",
-        "tsConfig": "packages/tokens/tsconfig.json",
-        "customFormats": "packages/tokens/src/extensions/formats/index.ts",
-        "customFilters": "packages/tokens/src/extensions/filters/index.ts",
-        "customTransforms": "packages/tokens/src/extensions/transforms/index.ts"
+        "outputPath": "{projectRoot}/dist",
+        "styleDictionaryConfig": "{projectRoot}/style-dictionary.config.ts",
+        "tsConfig": "{projectRoot}/tsconfig.json",
+        "customFormats": "{projectRoot}/src/extensions/formats/index.ts",
+        "customFilters": "{projectRoot}/src/extensions/filters/index.ts",
+        "customTransforms": "{projectRoot}/src/extensions/transforms/index.ts"
       }
     }
   },
