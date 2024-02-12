@@ -73,7 +73,7 @@ jobs:
 
       - name: Releae dry-run
         if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
-        run: npx nx release --dry-run
+        run: npx nx release publish -d
 
       # - name: Update lock file
       #   if: steps.changesets.outputs.published == 'true'

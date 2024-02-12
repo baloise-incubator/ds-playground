@@ -36,5 +36,8 @@
         "targetName": "test"
       }
     }
-  ]
+  ],
+  "release": {
+    "projects": ["*", "!output-target-*"]
+  }
 }
