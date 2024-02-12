@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Echo changeset output
+      - name: Changeset outputs
         shell: bash
         run: |
           echo "Changeset published - ${{ steps.changesets.outputs.published }}"

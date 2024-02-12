@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "declaration": true,
+    "types": ["node", "vitest/globals"]
+  },
+  "include": ["scripts/**/*.js"],
+  "exclude": ["scripts/**/*.spec.js", "scripts/**/*.test.js"]
+}

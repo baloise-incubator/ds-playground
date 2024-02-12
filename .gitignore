@@ -42,6 +42,8 @@ Thumbs.db
 
 packages/components/src/utils/constants/icons.constant.ts
 packages/icons/src/icons.json
+packages/styles/css
+packages/styles/docs
 
 packages/favicons/CHANGELOG.md
 packages/fonts/CHANGELOG.md
