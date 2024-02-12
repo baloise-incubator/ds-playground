@@ -1,15 +1,9 @@
 {
-  "name": "icons",
+  "name": "maps",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/icons/src",
+  "sourceRoot": "packages/maps/src",
   "projectType": "library",
   "targets": {
-    "nx-release-publish": {
-      "executor": "@nx/js:release-publish",
-      "options": {
-        "packageRoot": "{projectRoot}/dist"
-      }
-    },
     "prepare": {
       "executor": "nx:run-commands",
       "options": {

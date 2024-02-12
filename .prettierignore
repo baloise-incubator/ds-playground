@@ -1,5 +1,8 @@
 tsconfig.base.json
+
 packages/icons/src/index.ts
 packages/components/src/utils/constants/icons.constant.ts
 packages/icons/src/assets/icons.json
+packages/maps/src/lib/markers.ts
+
 resources/data/tags.json
