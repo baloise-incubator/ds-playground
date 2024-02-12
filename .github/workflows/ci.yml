@@ -45,14 +45,15 @@ jobs:
         run: npx nx-cloud record -- nx format:check
 
       - name: Lint & test
-        run: npx nx affected -t lint test
+        run: npx nx run-many -t lint test
+        # run: npx nx affected -t lint test
 
       - name: Changeset
         if: github.ref == 'refs/heads/main'
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npx nx affected -t build
+          publish: npx nx run-many -t build
         env:
           HUSKY_DISABLED: 1
           BAL_DS_RELEASE: true

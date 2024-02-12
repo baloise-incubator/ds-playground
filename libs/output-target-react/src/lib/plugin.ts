@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Config, OutputTargetCustom } from '@stencil/core/internal'
 import { normalizePath } from './utils'
 import type { OutputTargetReact } from './types'

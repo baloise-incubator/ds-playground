@@ -10,6 +10,10 @@
         "command": "node {projectRoot}/scripts/prepare.mjs"
       }
     },
+    "lint": {
+      "command": "eslint --no-eslintrc",
+      "outputs": ["{options.outputFile}"]
+    },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-extra-semi */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentCompilerMeta, Config } from '@stencil/core/internal'
 import { createComponentDefinition, generateProxies, getPathToCorePackageLoader } from './output-react'
 import { PackageJSON, OutputTargetReact } from './types'
