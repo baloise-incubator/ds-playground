@@ -1,5 +1,5 @@
 import { toCssVar } from '../utils.mjs'
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 
 describe('toCssVar', () => {
   test('should parse the value', () => {

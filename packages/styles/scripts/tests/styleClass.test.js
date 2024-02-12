@@ -1,5 +1,5 @@
 import { styleClass } from '../utils.mjs'
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 
 describe('styleClass', () => {
   test('should return an empty rules array', () => {

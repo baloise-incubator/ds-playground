@@ -1,5 +1,5 @@
 import { styleClassDeprecated } from '../utils.mjs'
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 
 describe('styleClassDeprecated', () => {
   test('should return an empty rules array', () => {

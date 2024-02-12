@@ -375,7 +375,7 @@ export const save = async (fileName, { json, rules, deprecated, visualTest }) =>
   await writeFile(path.join(__dirname, 'docs', `${fileName}.json`), json)
   await writeFile(path.join(__dirname, 'src/generated', `${fileName}.sass`), rules)
   // await writeFile(path.join(__dirname, 'src/generated/deprecated', `${fileName}.sass`), deprecated)
-  await writeFile(path.join(__visual_tests, `${fileName}.html`), visualTest)
+  // await writeFile(path.join(__visual_tests, `${fileName}.html`), visualTest)
 }
 
 export const staticClass = ({

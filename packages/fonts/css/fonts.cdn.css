@@ -6,8 +6,7 @@
   src:
     local('BaloiseCreateHeadline'),
     local('BaloiseCreateHeadline-bold'),
-    url('https://cdn.jsdelivr.net/npm/@baloise/ds-fonts/lib/BaloiseCreateHeadline-bold.woff2')
-      format('woff2'),
+    url('https://cdn.jsdelivr.net/npm/@baloise/ds-fonts/lib/BaloiseCreateHeadline-bold.woff2') format('woff2'),
     url('https://cdn.jsdelivr.net/npm/@baloise/ds-fonts/lib/BaloiseCreateHeadline-bold.woff') format('woff');
 }
 
@@ -19,8 +18,7 @@
   src:
     local('BaloiseCreateHeadline'),
     local('BaloiseCreateHeadline-light'),
-    url('https://cdn.jsdelivr.net/npm/@baloise/ds-fonts/lib/BaloiseCreateHeadline-light.woff2')
-      format('woff2'),
+    url('https://cdn.jsdelivr.net/npm/@baloise/ds-fonts/lib/BaloiseCreateHeadline-light.woff2') format('woff2'),
     url('https://cdn.jsdelivr.net/npm/@baloise/ds-fonts/lib/BaloiseCreateHeadline-light.woff') format('woff');
 }
 
