@@ -10,10 +10,6 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  actions: read
-  contents: read
-
 jobs:
   main:
     name: 👷 CI
