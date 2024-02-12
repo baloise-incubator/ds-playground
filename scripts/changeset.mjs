@@ -90,7 +90,7 @@ const run = async () => {
     }
 
     const content = `---
-'@baloise/design-system-components': ${response.bumpLevel}
+'@baloise/ds-tokens': ${response.bumpLevel}
 ---
 
 **${response.scope}**: ${response.summary}
