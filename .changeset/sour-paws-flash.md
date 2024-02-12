@@ -1,5 +1,5 @@
 ---
-'@baloise/design-system-components': patch
+'@baloise/ds-tokens': patch
 ---
 
 **cli**: first release test
