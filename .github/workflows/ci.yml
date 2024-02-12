@@ -72,7 +72,7 @@ jobs:
         run: npx nx affected -t build
 
       - name: Releae dry-run
-        if: github.ref == 'refs/heads/changeset-release/main'
+        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
         run: npx nx release --dry-run
 
       # - name: Update lock file
