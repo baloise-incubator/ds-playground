@@ -1,0 +1,13 @@
+{
+  "name": "css",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/css/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "command": "eslint --no-eslintrc",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

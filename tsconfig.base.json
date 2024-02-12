@@ -18,7 +18,6 @@
       "@baloise/ds-icons": ["packages/icons/src/index.ts"],
       "@baloise/ds-maps": ["packages/maps/src/index.ts"],
       "@baloise/ds-output-target-angular": ["libs/output-target-angular/src/index.ts"],
-      "@baloise/ds-styles": ["packages/styles/src/index.ts"],
       "@baloise/output-target-react": ["libs/output-target-react/src/index.ts"],
       "@baloise/output-target-vue": ["libs/output-target-vue/src/index.ts"]
     }

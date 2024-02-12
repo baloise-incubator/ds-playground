@@ -42,6 +42,7 @@ Thumbs.db
 
 packages/components/src/utils/constants/icons.constant.ts
 packages/icons/src/icons.json
+packages/css/css
 packages/styles/css
 packages/styles/docs
 
