@@ -68,7 +68,7 @@
   },
   "workspaces": [
     "packages/*",
-    "packages/output-targets/*"
+    "libs/*"
   ],
   "dependencies": {
     "tslib": "^2.3.0"

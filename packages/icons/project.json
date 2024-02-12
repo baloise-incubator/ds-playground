@@ -14,7 +14,7 @@
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/icons",
+        "outputPath": "packages/icons/dist",
         "main": "packages/icons/src/index.ts",
         "tsConfig": "packages/icons/tsconfig.lib.json",
         "assets": ["packages/icons/src/assets"],

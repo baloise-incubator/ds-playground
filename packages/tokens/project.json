@@ -12,7 +12,7 @@
       "executor": "@nxkit/style-dictionary:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/tokens",
+        "outputPath": "packages/tokens/dist",
         "styleDictionaryConfig": "packages/tokens/style-dictionary.config.ts",
         "tsConfig": "packages/tokens/tsconfig.json",
         "customFormats": "packages/tokens/src/extensions/formats/index.ts",
