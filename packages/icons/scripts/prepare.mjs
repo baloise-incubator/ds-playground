@@ -54,7 +54,7 @@ async function optimizeSvg() {
   await writeFile(path.join(__dirname, 'src/assets/icons.json'), JSON.stringify([...contents.keys()]))
 
   // Generate DS min-set of icons output
-  const dsLines = ['/* eslint-disable prettier/prettier */', '// generated file', '']
+  const dsLines = ['// generated file', '']
   const dsIcons = [
     'balIconClose',
     'balIconInfoCircle',

@@ -10,7 +10,13 @@
       "options": {
         "reportsDirectory": "../../coverage/packages/styles"
       }
-    }
+    },
+    // "build": {
+    //   "executor": "bal-plugin:build-styles",
+    //   "options": {
+    //     "textToEcho": "Hello World"
+    //   }
+    // }
   },
   "tags": []
 }
