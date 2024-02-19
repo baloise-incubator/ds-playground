@@ -39,8 +39,13 @@ testem.log
 Thumbs.db
 
 .nx/cache
+.stencil
 
 packages/components/src/utils/constants/icons.constant.ts
+packages/components/icons
+packages/components/components
+packages/components/loader
+packages/components/wwww
 packages/icons/src/icons.json
 packages/css/css
 packages/styles/css

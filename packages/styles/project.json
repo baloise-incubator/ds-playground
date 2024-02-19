@@ -4,19 +4,14 @@
   "sourceRoot": "packages/styles/src",
   "projectType": "library",
   "targets": {
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+    "build": {
+      "executor": "@baloise/ds-nx:build-styles",
       "options": {
-        "reportsDirectory": "../../coverage/packages/styles"
+        "projectRoot": "{projectRoot}",
+        "workspaceRoot": "{workspaceRoot}",
+        "tokensRoot": "{workspaceRoot}/packages/tokens"
       }
-    },
-    // "build": {
-    //   "executor": "bal-plugin:build-styles",
-    //   "options": {
-    //     "textToEcho": "Hello World"
-    //   }
-    // }
+    }
   },
   "tags": []
 }

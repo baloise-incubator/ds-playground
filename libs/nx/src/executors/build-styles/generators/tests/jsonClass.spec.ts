@@ -1,5 +1,4 @@
-import { jsonClass } from '../utils.mjs'
-import { describe, test, expect } from 'vitest'
+import { jsonClass } from '../utils'
 
 describe('jsonClass', () => {
   test('should generate a json output for the docs', () => {

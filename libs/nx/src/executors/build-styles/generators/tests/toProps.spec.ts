@@ -1,5 +1,4 @@
-import { toProps } from '../utils.mjs'
-import { describe, test, expect } from 'vitest'
+import { toProps } from '../utils'
 
 describe('toProps', () => {
   test('should return only key and value', () => {

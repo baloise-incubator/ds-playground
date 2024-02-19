@@ -4,7 +4,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/packages/styles',
+  cacheDir: '../../node_modules/.vite/libs/nx',
 
   plugins: [nxViteTsPaths()],
 
@@ -12,8 +12,8 @@ export default defineConfig({
     globals: true,
     cache: { dir: '../../node_modules/.vitest' },
     environment: 'jsdom',
-    include: ['scripts/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
-    coverage: { reportsDirectory: '../../coverage/packages/styles', provider: 'v8' },
+    coverage: { reportsDirectory: '../../coverage/libs/nx', provider: 'v8' },
   },
 })

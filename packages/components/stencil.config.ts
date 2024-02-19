@@ -49,10 +49,10 @@ export const config: Config = {
     initializeNextTick: true,
   },
   outputTargets: [
-    {
-      type: 'docs-json',
-      file: './.tmp/components.json',
-    },
+    // {
+    //   type: 'docs-json',
+    //   file: './.tmp/components.json',
+    // },
     {
       type: 'dist',
       esmLoaderPath: '../loader',
@@ -67,31 +67,31 @@ export const config: Config = {
           },
         ]
       : []),
-    {
-      type: 'www',
-      dir: 'www',
-      serviceWorker: false,
-      empty: true,
-      copy: [
-        {
-          src: '**/*.html',
-        },
-        {
-          src: 'components.d.ts',
-        },
-        {
-          src: '../../styles/css/themes/compact.css',
-          dest: 'assets/theme-compact.css',
-        },
-        { src: '../../css/css/baloise-design-system.css', dest: 'assets/baloise-design-system-old.css', warn: true },
-        { src: '../../styles/css/baloise-design-system.css', dest: 'assets/baloise-design-system.css', warn: true },
-        {
-          src: '../../maps/dist/index.cjs.js',
-          dest: 'assets/maps.js',
-        },
-        { src: '../../fonts/assets', dest: 'assets/fonts', warn: true },
-      ],
-    },
+    // {
+    //   type: 'www',
+    //   dir: 'www',
+    //   serviceWorker: false,
+    //   empty: true,
+    //   copy: [
+    //     {
+    //       src: '**/*.html',
+    //     },
+    //     {
+    //       src: 'components.d.ts',
+    //     },
+    //     {
+    //       src: '../../styles/css/themes/compact.css',
+    //       dest: 'assets/theme-compact.css',
+    //     },
+    //     { src: '../../css/css/baloise-design-system.css', dest: 'assets/baloise-design-system-old.css', warn: true },
+    //     { src: '../../styles/css/baloise-design-system.css', dest: 'assets/baloise-design-system.css', warn: true },
+    //     {
+    //       src: '../../maps/dist/index.cjs.js',
+    //       dest: 'assets/maps.js',
+    //     },
+    //     { src: '../../fonts/assets', dest: 'assets/fonts', warn: true },
+    //   ],
+    // },
     /**
      * Skip those outputs for documentation releases on vercel
      */

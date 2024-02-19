@@ -1,6 +1,7 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateFlex = async () => {
+export const generateFlex = async (options: BuildStylesExecutorSchema) => {
   const alignContent = utils.staticClass({
     property: 'align-content',
     values: {
@@ -77,7 +78,7 @@ export const generateFlex = async () => {
     },
   })
 
-  const tokens = await utils.getTokens({ token: 'size.space' })
+  const tokens = await utils.getTokens({ token: 'size.space', ...options })
   const keys = utils.filterTokenKeys({ tokens, ignore: ['tablet', 'desktop', 'none'] })
   const valuesGap = {
     'gap-none': '0',
@@ -160,6 +161,7 @@ export const generateFlex = async () => {
 
   return utils.save(
     'flex',
+    options.projectRoot,
     utils.merge({
       docs: [
         alignContent.docs,

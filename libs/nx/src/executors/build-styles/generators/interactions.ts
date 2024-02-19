@@ -1,6 +1,7 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateInteractions = async () => {
+export const generateInteractions = async (options: BuildStylesExecutorSchema) => {
   const userSelect = utils.staticClass({
     property: 'user-select',
     responsive: false,
@@ -26,6 +27,7 @@ export const generateInteractions = async () => {
 
   return utils.save(
     'interaction',
+    options.projectRoot,
     utils.merge({
       docs: [userSelect.docs, cursor.docs],
       rules: [userSelect.rules, cursor.rules],

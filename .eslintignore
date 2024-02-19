@@ -1,3 +1,4 @@
 node_modules
 
 packages/icons/src/index.ts
+packages/components/icons

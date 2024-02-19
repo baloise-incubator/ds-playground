@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "build-styles": {
+      "implementation": "./src/executors/build-styles/executor",
+      "schema": "./src/executors/build-styles/schema.json",
+      "description": "build-styles executor"
+    }
+  }
+}

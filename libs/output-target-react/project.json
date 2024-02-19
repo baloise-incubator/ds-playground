@@ -8,7 +8,7 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/output-target-react",
+        "outputPath": "{projectRoot}/dist",
         "main": "libs/output-target-react/src/index.ts",
         "tsConfig": "libs/output-target-react/tsconfig.lib.json",
         "assets": []

@@ -1,7 +1,8 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateSpacing = async () => {
-  const tokens = await utils.getTokens({ token: 'size.space' })
+export const generateSpacing = async (options: BuildStylesExecutorSchema) => {
+  const tokens = await utils.getTokens({ token: 'size.space', ...options })
   const keys = utils.filterTokenKeys({ tokens, ignore: ['tablet', 'desktop', 'none'] })
 
   const margin = generateResponsiveSpace({ keys, property: 'margin', prefix: 'm' })
@@ -22,6 +23,7 @@ export const generateSpacing = async () => {
 
   return utils.save(
     'spacing',
+    options.projectRoot,
     utils.merge({
       docs: [],
       rules: [

@@ -1,12 +1,12 @@
-import { fileURLToPath } from 'url'
-import path from 'path'
-import get from 'lodash.get'
-import { writeFile, readFile } from '../../../scripts/utils.mjs'
+// import { fileURLToPath } from 'url'
+// import { join, dirname } from 'path'
+import { mkdir, readFile, writeFile } from 'fs/promises'
+import { join, dirname } from 'path'
+import * as get from 'lodash.get'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.join(path.dirname(__filename), '..')
-const __tokens = path.join(__dirname, '..', 'tokens/dist')
-const __visual_tests = path.join(__dirname, '..', 'components/src/test/utils')
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = join(dirname(__filename), '..')
+// const __tokens = join(__dirname, '..', 'tokens/dist')
 
 export const NEWLINE = '\n'
 export const DASH_SEPARATOR = '-'
@@ -28,7 +28,15 @@ export const allBreakpoints = [
   'fullhd',
 ]
 
-class RuleValue {
+interface BaseRule {
+  toString(indent: string): string
+}
+
+class RuleValue implements BaseRule {
+  prop: string
+  value: string
+  important: boolean
+
   constructor({ prop, value, important = false }) {
     this.prop = prop
     this.value = value
@@ -40,8 +48,9 @@ class RuleValue {
   }
 }
 
-class Rule {
-  values = []
+class Rule implements BaseRule {
+  selectors: string[] = []
+  values: RuleValue[] = []
 
   constructor({ selectors }) {
     function onlyUnique(value, index, array) {
@@ -64,14 +73,15 @@ class Rule {
   }
 }
 
-class BreakpointRule {
-  rules = []
+class BreakpointRule implements BaseRule {
+  rules: BaseRule[] = []
+  breakpoint = []
 
   constructor({ breakpoint }) {
     this.breakpoint = breakpoint
   }
 
-  append(rule) {
+  append(rule: BaseRule) {
     this.rules.push(rule)
   }
 
@@ -83,10 +93,10 @@ class BreakpointRule {
   }
 }
 
-class RuleGroup {
-  rules = []
+class RuleGroup implements BaseRule {
+  rules: BaseRule[] = []
 
-  append(rule) {
+  append(rule: BaseRule) {
     this.rules.push(rule)
   }
 
@@ -107,12 +117,6 @@ export const jsonClass = ({ property = '', values = {} }) => {
       }
     }),
   }
-}
-
-export const getTokens = async ({ token, deprecated }) => {
-  const content = await readFile(path.join(__tokens, `${deprecated ? 'deprecated/' : ''}tokens.docs.json`))
-  const json = JSON.parse(content)
-  return get(json, token)
 }
 
 export const filterTokenKeys = ({ tokens, ignore = [] }) => {
@@ -142,26 +146,19 @@ export const toCssVarName = (tokenName, token) => {
   if (endsWithMobile) {
     tokenName = tokenName.replace('-mobile', '')
   }
-  if (endsWithDefault && !isFigma) {
+  if (endsWithDefault) {
     tokenName = tokenName.replace('-default', '')
   }
   return tokenName
 }
 
 export const toCssVar = token => {
-  // const originalValue = token.original.value
-
-  // if (originalValue.startsWith('{')) {
-  //   const formattedOriginalValue = originalValue.slice(1, -1)
-  //   return `var(--${toCssVarName(`bal-${formattedOriginalValue.split('.').join('-')}`, token)})`
-  // }
-
   return `var(--${toCssVarName(token.name, token)})`
 }
 
 const removeLeadingTrailingDashes = inputString => {
   // Remove leading dashes
-  let stringWithoutLeadingDashes = inputString.replace(/^[-]+/, '')
+  const stringWithoutLeadingDashes = inputString.replace(/^[-]+/, '')
   // Remove trailing dashes
   return stringWithoutLeadingDashes.replace(/[-]+$/, '')
 }
@@ -177,7 +174,7 @@ export const toProp = ({ property, prefix, replace, replace2 }) => {
   }
 }
 
-export const toProps = ({ tokens, prefix, replace, replace2 }) => {
+export const toProps = ({ tokens, prefix = undefined, replace = undefined, replace2 = undefined }) => {
   let props = {}
   for (const key in tokens) {
     const property = tokens[key]
@@ -211,9 +208,9 @@ export const styleClass = ({
   const rules = new RuleGroup()
 
   if (breakpoint) {
-    let breakpointRule = new BreakpointRule({ breakpoint })
+    const breakpointRule = new BreakpointRule({ breakpoint })
     for (const className in values) {
-      let rule = new Rule({
+      const rule = new Rule({
         selectors: [`.${className}`],
       })
       propNames.forEach(prop => {
@@ -230,7 +227,7 @@ export const styleClass = ({
     return breakpointRule
   } else {
     for (const className in values) {
-      let rule = new Rule({
+      const rule = new Rule({
         selectors: [`.${className}`],
       })
       propNames.forEach(prop => {
@@ -247,7 +244,7 @@ export const styleClass = ({
     if (states) {
       for (const className in values) {
         for (const pseudo_state of pseudoStates) {
-          let rule = new Rule({
+          const rule = new Rule({
             selectors: [`.${pseudo_state}${COLON_SEPARATOR}${className}:${pseudo_state}`],
           })
           propNames.forEach(prop => {
@@ -265,9 +262,9 @@ export const styleClass = ({
 
     if (responsive) {
       for (const breakpoint of breakpoints) {
-        let breakpointRule = new BreakpointRule({ breakpoint })
+        const breakpointRule = new BreakpointRule({ breakpoint })
         for (const className in values) {
-          let rule = new Rule({
+          const rule = new Rule({
             selectors: [`.${breakpoint}${COLON_SEPARATOR}${className}`],
           })
           propNames.forEach(prop => {
@@ -284,7 +281,7 @@ export const styleClass = ({
         if (states) {
           for (const className in values) {
             for (const pseudo_state of pseudoStates) {
-              let rule = new Rule({
+              const rule = new Rule({
                 selectors: [
                   `.${breakpoint}${COLON_SEPARATOR}${pseudo_state}${COLON_SEPARATOR}${className}:${pseudo_state}`,
                 ],
@@ -323,17 +320,17 @@ export const styleClassDeprecated = ({
 
   for (const className in values) {
     const selectors = [prefix !== '' ? `.${[prefix, className].join(DASH_SEPARATOR)}` : className]
-    let rule = new Rule({ selectors })
+    const rule = new Rule({ selectors })
     propNames.forEach(prop => rule.append({ prop, value: values[className], important }))
     rules.append(rule)
   }
 
   if (responsive) {
     for (const breakpoint of breakpoints) {
-      let breakpointRule = new BreakpointRule({ breakpoint })
+      const breakpointRule = new BreakpointRule({ breakpoint })
       for (const className in values) {
         const selectors = [prefix !== '' ? `.${[prefix, className, breakpoint].join(DASH_SEPARATOR)}` : className]
-        let rule = new Rule({ selectors })
+        const rule = new Rule({ selectors })
         propNames.forEach(prop => rule.append({ prop, value: values[className], important }))
         breakpointRule.append(rule)
       }
@@ -371,13 +368,6 @@ ${visualTest.join(NEWLINE)}
   }
 }
 
-export const save = async (fileName, { json, rules, deprecated, visualTest }) => {
-  await writeFile(path.join(__dirname, 'docs', `${fileName}.json`), json)
-  await writeFile(path.join(__dirname, 'src/generated', `${fileName}.sass`), rules)
-  // await writeFile(path.join(__dirname, 'src/generated/deprecated', `${fileName}.sass`), deprecated)
-  // await writeFile(path.join(__visual_tests, `${fileName}.html`), visualTest)
-}
-
 export const staticClass = ({
   property,
   values,
@@ -394,16 +384,34 @@ export const staticClass = ({
 export const staticClassByToken = async ({
   token,
   property,
+  values = {},
+  tokensRoot,
   important = true,
   responsive = true,
   states = false,
-  replace,
-  prefix,
-  values,
+  replace = undefined,
+  replace2 = undefined,
+  prefix = undefined,
 }) => {
-  const tokens = await getTokens({ token })
-  const props = toProps({ tokens, replace, prefix })
+  const tokens = await getTokens({ token, tokensRoot })
+  const props = toProps({ tokens, replace, prefix, replace2 })
   const docs = jsonClass({ property, values: { ...values, ...props } })
   const rules = styleClass({ property, values: { ...values, ...props }, important, responsive, states })
   return { rules, docs }
+}
+
+export const save = async (fileName, projectRoot, { json, rules }) => {
+  await writeFileRecursive(join(projectRoot, 'docs', `${fileName}.json`), json)
+  await writeFileRecursive(join(projectRoot, 'src/generated', `${fileName}.sass`), rules)
+}
+
+export const getTokens = async ({ token, tokensRoot }) => {
+  const content = await readFile(join(tokensRoot, `dist/tokens.docs.json`), 'utf8')
+  const json = JSON.parse(content)
+  return get(json, token)
+}
+
+export const writeFileRecursive = async (filePath, data) => {
+  await mkdir(dirname(filePath), { recursive: true })
+  await writeFile(filePath, data)
 }

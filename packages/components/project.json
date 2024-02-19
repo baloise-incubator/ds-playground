@@ -5,8 +5,15 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "inputs": ["production", "^production"],
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/loader", "{projectRoot}/components", "{projectRoot}/www"],
+      "outputs": [
+        "{projectRoot}/.stencil",
+        "{projectRoot}/.tmp",
+        "{projectRoot}/components",
+        "{projectRoot}/dist",
+        "{projectRoot}/loader",
+        "{projectRoot}/www",
+        "{projectRoot}/icons"
+      ],
       "dependsOn": ["^build"]
     }
   },

@@ -1,12 +1,14 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateElevation = async () => {
-  const { rules: rulesOpacity, docs: docsOpacity } = await generateOpacity()
-  const { rules: rulesShadow, docs: docsShadow } = await generateShadow()
-  const { rules: rulesTextShadow, docs: docsTextShadow } = await generateTextShadow()
+export const generateElevation = async (options: BuildStylesExecutorSchema) => {
+  const { rules: rulesOpacity, docs: docsOpacity } = await generateOpacity(options)
+  const { rules: rulesShadow, docs: docsShadow } = await generateShadow(options)
+  const { rules: rulesTextShadow, docs: docsTextShadow } = await generateTextShadow(options)
 
   return utils.save(
     'elevation',
+    options.projectRoot,
     utils.merge({
       docs: [docsOpacity, docsShadow, docsTextShadow],
       rules: [rulesOpacity, rulesShadow, rulesTextShadow],
@@ -14,8 +16,8 @@ export const generateElevation = async () => {
   )
 }
 
-const generateOpacity = async () => {
-  const tokens = await utils.getTokens({ token: 'opacity' })
+const generateOpacity = async (options: BuildStylesExecutorSchema) => {
+  const tokens = await utils.getTokens({ token: 'opacity', ...options })
   const values = utils.toProps({ tokens })
   const property = 'opacity'
 
@@ -25,8 +27,8 @@ const generateOpacity = async () => {
   return { docs, rules }
 }
 
-const generateShadow = async () => {
-  const tokens = await utils.getTokens({ token: 'shadow' })
+const generateShadow = async (options: BuildStylesExecutorSchema) => {
+  const tokens = await utils.getTokens({ token: 'shadow', ...options })
   const values = utils.toProps({ tokens })
   const property = 'box-shadow'
   const docs = utils.jsonClass({ property, values })
@@ -45,8 +47,8 @@ const generateShadow = async () => {
   return { docs, rules }
 }
 
-const generateTextShadow = async () => {
-  const tokens = await utils.getTokens({ token: 'text.shadow' })
+const generateTextShadow = async (options: BuildStylesExecutorSchema) => {
+  const tokens = await utils.getTokens({ token: 'text.shadow', ...options })
   const values = utils.toProps({ tokens })
   const property = 'text-shadow'
 

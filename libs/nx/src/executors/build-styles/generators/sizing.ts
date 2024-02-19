@@ -1,6 +1,7 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateSizing = async () => {
+export const generateSizing = async (options: BuildStylesExecutorSchema) => {
   const height = utils.staticClass({
     property: 'height',
     values: {
@@ -151,6 +152,7 @@ export const generateSizing = async () => {
 
   return utils.save(
     'sizing',
+    options.projectRoot,
     utils.merge({
       docs: [height.docs, width.docs, minHeight.docs, minWidth.docs, maxHeight.docs, maxWidth.docs],
       rules: [height.rules, width.rules, minHeight.rules, minWidth.rules, maxHeight.rules, maxWidth.rules],

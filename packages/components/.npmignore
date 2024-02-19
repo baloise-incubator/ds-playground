@@ -3,3 +3,4 @@ tsconfig.json
 tsconfig.lib.json
 vite.config.ts
 scripts
+packages/components/icons

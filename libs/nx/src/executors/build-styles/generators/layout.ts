@@ -1,6 +1,7 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateLayout = async () => {
+export const generateLayout = async (options: BuildStylesExecutorSchema) => {
   const display = utils.staticClass({
     property: 'display',
     values: {
@@ -86,6 +87,7 @@ export const generateLayout = async () => {
   const zIndex = await utils.staticClassByToken({
     token: 'size.z-index',
     property: 'z-index',
+    ...options,
   })
 
   const verticalAlign = utils.staticClass({
@@ -97,16 +99,9 @@ export const generateLayout = async () => {
     },
   })
 
-  // const visibility = utils.staticClass({
-  //   property: 'visibility',
-  //   values: {
-  //     'visibility-hidden': 'hidden',
-  //   },
-  //   breakpoints: utils.allBreakpoints,
-  // })
-
   return utils.save(
     'layout',
+    options.projectRoot,
     utils.merge({
       docs: [
         display.docs,

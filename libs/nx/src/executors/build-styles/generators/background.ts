@@ -1,13 +1,14 @@
-import * as utils from './utils.mjs'
+import { BuildStylesExecutorSchema } from '../schema'
+import * as utils from './utils'
 
-export const generateBackgroundColors = async () => {
-  const tokens = await utils.getTokens({ token: 'color.background' })
+export const generateBackgroundColors = async (options: BuildStylesExecutorSchema) => {
+  const tokens = await utils.getTokens({ token: 'color.background', ...options })
   const props = utils.toProps({ tokens, prefix: 'bg', replace: 'color-background-' })
 
-  const tokensAlias = await utils.getTokens({ token: 'color.alias' })
+  const tokensAlias = await utils.getTokens({ token: 'color.alias', ...options })
   const propsAlias = utils.toProps({ tokens: tokensAlias, prefix: 'bg', replace: 'color' })
 
-  const tokensBase = await utils.getTokens({ token: 'color.base' })
+  const tokensBase = await utils.getTokens({ token: 'color.base', ...options })
   const propsBase = utils.toProps({ tokens: tokensBase, prefix: 'bg', replace: 'color' })
 
   // merge colors
@@ -60,14 +61,6 @@ export const generateBackgroundColors = async () => {
     breakpoints: utils.minBreakpoints,
   })
 
-  // const visualTest = utils.visualTest({
-  //   values: {
-  //     ...props,
-  //     ...propsBase,
-  //   },
-  //   template: className => `<div class="${className} p-normal mb-small">${className}</div>`,
-  // })
-
   /**
    * EXPORT
    * ------------------------------------------------------------------------------------------
@@ -75,10 +68,10 @@ export const generateBackgroundColors = async () => {
 
   return utils.save(
     'background',
+    options.projectRoot,
     utils.merge({
       docs: [docs],
       rules: [rules, rulesPrimary],
-      // visualTest: [visualTest],
     }),
   )
 }
