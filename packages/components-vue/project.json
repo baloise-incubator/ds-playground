@@ -1,0 +1,10 @@
+{
+  "name": "vue",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/components-vue/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+
+  }
+}

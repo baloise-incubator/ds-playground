@@ -1,5 +1,5 @@
 {
-  "name": "@baloise/design-system-components/components",
+  "name": "@baloise/ds-components/components",
   "version": "0.0.0",
   "description": "Baloise Design System Components exported as custom elements, extending HTMLElement.",
   "main": "./index.js",

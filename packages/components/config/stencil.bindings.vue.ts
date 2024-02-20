@@ -31,7 +31,7 @@ export const VueGenerator = (): any =>
     includeDefineCustomElements: false,
     includeInternalComponents: false,
     proxiesFile: '../components-vue/src/generated/proxies.ts',
-    componentCorePackage: '@baloise/design-system-components',
+    componentCorePackage: '@baloise/ds-components',
     componentModels: vueComponentModels,
     customElementsDir: 'components',
   })
