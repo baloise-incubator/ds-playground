@@ -5,6 +5,9 @@
   "files": [
     "dist/"
   ],
+  "dependencies": {
+    "@baloise/ds-components": "0.0.0"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

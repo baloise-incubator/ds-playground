@@ -105,9 +105,9 @@ export const config: Config = {
           VueGenerator(),
           VueTestGenerator(),
           ReactGenerator(),
-          AngularGenerator(),
-          AngularStandaloneGenerator(),
-          AngularLegacyGenerator(),
+          // AngularGenerator(),
+          // AngularStandaloneGenerator(),
+          // AngularLegacyGenerator(),
         ]
       : []),
   ],

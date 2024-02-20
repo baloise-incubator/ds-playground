@@ -9,3 +9,4 @@ packages/components/icons
 resources/data/tags.json
 
 /.nx/cache
+.angular

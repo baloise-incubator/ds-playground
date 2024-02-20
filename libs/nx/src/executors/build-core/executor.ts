@@ -1,9 +1,8 @@
 import { execSync } from 'child_process'
-import { promisify } from 'util'
 import { BuildCoreExecutorSchema } from './schema'
 import { dirname, join } from 'path'
 import replace from 'replace-in-file'
-import { mkdir, readFile, rm, rmdir, writeFile } from 'fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'fs/promises'
 import { copy } from 'fs-extra'
 
 export default async function runExecutor(options: BuildCoreExecutorSchema) {
@@ -12,10 +11,11 @@ export default async function runExecutor(options: BuildCoreExecutorSchema) {
     await compile(options)
 
     // post build tasks
+    await addPackageJsonAndTypesToCustomElements(options)
     await adjustInterfacesReference(options)
     await adjustGlobalVar(options)
     await setVersion(options)
-    await createTagList(options)
+    await createTagList()
     await copyToDocs(options)
     await cleanUp(options)
   } catch (error) {
@@ -87,7 +87,7 @@ async function setVersion(options: BuildCoreExecutorSchema) {
 }
 
 // This script creates a list with all the main component tags.
-export async function createTagList(options: BuildCoreExecutorSchema) {
+export async function createTagList() {
   const content = await readFile(join('resources/data/components.json'), 'utf-8')
   const json = JSON.parse(content)
   const componentTags = json.components
@@ -112,4 +112,15 @@ async function copyToDocs(options: BuildCoreExecutorSchema) {
 
 async function cleanUp(options: BuildCoreExecutorSchema) {
   await rm(join(options.projectRoot, 'icons'), { recursive: true, force: true })
+}
+
+async function addPackageJsonAndTypesToCustomElements(options: BuildCoreExecutorSchema) {
+  await copy(
+    join(options.projectRoot, 'config', 'custom-elements', 'custom-elements.d.ts'),
+    join(options.projectRoot, 'components', 'custom-elements.d.ts'),
+  )
+  await copy(
+    join(options.projectRoot, 'config', 'custom-elements', 'package.json.tmp'),
+    join(options.projectRoot, 'components', 'package.json'),
+  )
 }
