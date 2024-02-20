@@ -65,5 +65,12 @@
   ],
   "release": {
     "projects": ["*", "!output-target-*"]
+  },
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
   }
 }
