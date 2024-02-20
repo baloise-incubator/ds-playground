@@ -47,6 +47,7 @@ packages/components/components
 packages/components/loader
 packages/components/wwww
 packages/icons/src/icons.json
+packages/maps/src/markers.json
 packages/css/css
 packages/styles/css
 packages/styles/docs

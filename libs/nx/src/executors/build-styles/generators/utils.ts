@@ -2,7 +2,7 @@
 // import { join, dirname } from 'path'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import { join, dirname } from 'path'
-import * as get from 'lodash.get'
+import get from 'lodash.get'
 
 // const __filename = fileURLToPath(import.meta.url)
 // const __dirname = join(dirname(__filename), '..')

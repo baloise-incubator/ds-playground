@@ -7,3 +7,5 @@ packages/maps/src/lib/markers.ts
 packages/components/icons
 
 resources/data/tags.json
+
+/.nx/cache

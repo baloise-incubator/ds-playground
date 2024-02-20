@@ -1,4 +1,5 @@
 node_modules
+dist
 
 packages/icons/src/index.ts
 packages/components/icons

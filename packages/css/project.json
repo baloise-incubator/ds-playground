@@ -7,6 +7,13 @@
     "lint": {
       "command": "eslint --no-eslintrc",
       "outputs": ["{options.outputFile}"]
+    },
+    "build": {
+      "executor": "@baloise/ds-nx:build-css",
+      "outputs": ["{projectRoot}/css"],
+      "options": {
+        "projectRoot": "{projectRoot}"
+      }
     }
   },
   "tags": []

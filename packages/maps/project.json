@@ -4,19 +4,34 @@
   "sourceRoot": "packages/maps/src",
   "projectType": "library",
   "targets": {
-    "prepare": {
-      "executor": "nx:run-commands",
+    "nx-release-publish": {
+      "executor": "@nx/js:release-publish",
       "options": {
-        "command": "node {projectRoot}/scripts/prepare.mjs"
+        "packageRoot": "{projectRoot}/dist"
       }
     },
     "lint": {
       "command": "eslint --no-eslintrc",
       "outputs": ["{options.outputFile}"]
     },
+    "prepare": {
+      "executor": "@baloise/ds-nx:build-svg",
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/src/lib/markers.ts", "{projectRoot}/src/markers.json"],
+      "options": {
+        "projectName": "{projectName}",
+        "projectRoot": "{projectRoot}",
+        "svgOptimize": true,
+        "jsInlineData": true,
+        "jsOutput": true,
+        "jsOutputName": "balMapMarker",
+        "jsOutputPath": "src/lib/markers.ts",
+        "jsonPath": "src/markers.json"
+      }
+    },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["prepare"],
       "options": {
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/index.ts",

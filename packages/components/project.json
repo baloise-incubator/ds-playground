@@ -5,6 +5,7 @@
   "projectType": "library",
   "targets": {
     "build": {
+      "executor": "@baloise/ds-nx:build-core",
       "outputs": [
         "{projectRoot}/.stencil",
         "{projectRoot}/.tmp",
@@ -14,7 +15,10 @@
         "{projectRoot}/www",
         "{projectRoot}/icons"
       ],
-      "dependsOn": ["^build"]
+      "options": {
+        "projectRoot": "{projectRoot}",
+        "tokensRoot": "packages/tokens"
+      }
     }
   },
   "tags": []

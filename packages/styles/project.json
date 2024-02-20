@@ -6,9 +6,9 @@
   "targets": {
     "build": {
       "executor": "@baloise/ds-nx:build-styles",
+      "outputs": ["{projectRoot}/css"],
       "options": {
         "projectRoot": "{projectRoot}",
-        "workspaceRoot": "{workspaceRoot}",
         "tokensRoot": "{workspaceRoot}/packages/tokens"
       }
     }

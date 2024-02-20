@@ -11,14 +11,84 @@
       }
     },
     "prepare": {
-      "executor": "nx:run-commands",
+      "executor": "@baloise/ds-nx:build-svg",
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/src/index.ts", "{projectRoot}/src/icons.json"],
       "options": {
-        "command": "node {projectRoot}/scripts/prepare.mjs"
+        "projectName": "{projectName}",
+        "projectRoot": "{projectRoot}",
+        "svgOptimize": true,
+        "svgPlugins": [
+          {
+            "name": "removeAttrs",
+            "params": {
+              "attrs": "(stroke|fill)"
+            }
+          },
+          {
+            "name": "removeStyleElement"
+          },
+          {
+            "name": "removeDimensions",
+            "params": {
+              "removeDimensions": true
+            }
+          },
+          {
+            "name": "addAttributesToSVGElement",
+            "params": {
+              "attributes": [
+                {
+                  "focusable": false
+                },
+                {
+                  "aria-hidden": "true"
+                }
+              ]
+            }
+          }
+        ],
+        "jsInlineData": false,
+        "jsOutput": true,
+        "jsOutputName": "balIcon",
+        "jsOutputPath": "src/index.ts",
+        "jsonPath": "src/icons.json",
+        "svgReplaceBlack": true,
+        "dsMinSetPath": "../components/src/utils/constants/icons.constant.ts",
+        "dsMinSet": [
+          "balIconClose",
+          "balIconInfoCircle",
+          "balIconPlus",
+          "balIconMinus",
+          "balIconNavGoLeft",
+          "balIconNavGoRight",
+          "balIconNavGoDown",
+          "balIconNavGoUp",
+          "balIconCaretUp",
+          "balIconCaretRight",
+          "balIconCaretDown",
+          "balIconCaretLeft",
+          "balIconCheck",
+          "balIconDate",
+          "balIconDocument",
+          "balIconEdit",
+          "balIconTrash",
+          "balIconUpload",
+          "balIconMenuBars",
+          "balIconFacebook",
+          "balIconInstagram",
+          "balIconXing",
+          "balIconLinkedin",
+          "balIconTwitter",
+          "balIconX",
+          "balIconYoutube",
+          "balIconWeb"
+        ]
       }
     },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["prepare"],
       "options": {
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/index.ts",

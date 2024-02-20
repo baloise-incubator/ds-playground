@@ -27,7 +27,7 @@
   "scripts": {
     "serve": "BAL_DEVELOPMENT=true stencil build --dev --serve --watch",
     "dev": "BAL_DOCUMENTATION=true stencil build --watch",
-    "build": "stencil build"
+    "build3": "stencil build"
   },
   "dependencies": {
     "@baloise/ds-styles": "0.0.0",
