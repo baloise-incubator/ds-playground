@@ -50,7 +50,7 @@ export default async function generateValueAccessors(
       const valueAccessorType = type as ValueAccessorTypes // Object.keys converts to string
       const targetFileName = `${type}-value-accessor.ts`
       const targetFilePath = join(targetDir, targetFileName)
-      const srcFilePath = join(__dirname, '../resources/control-value-accessors/', targetFileName)
+      const srcFilePath = join(__dirname, '../../../resources/control-value-accessors/', targetFileName)
       const srcFileContents = await compilerCtx.fs.readFile(srcFilePath)
 
       const finalText = createValueAccessor(srcFileContents, normalizedValueAccessors[valueAccessorType])
@@ -80,7 +80,7 @@ function copyResources(config: Config, resourcesFilesToCopy: string[], directory
   }
   const copyTasks = resourcesFilesToCopy.map(rf => {
     return {
-      src: join(__dirname, '../resources/control-value-accessors/', rf),
+      src: join(__dirname, '../../../resources/control-value-accessors/', rf),
       dest: join(directory, rf),
       keepDirStructure: false,
       warn: false,

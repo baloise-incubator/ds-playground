@@ -3,7 +3,10 @@
 # compiled output
 dist
 tmp
+.tmp
 /out-tsc
+www
+generated
 
 # dependencies
 node_modules

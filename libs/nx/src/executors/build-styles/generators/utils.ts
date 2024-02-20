@@ -1,12 +1,6 @@
-// import { fileURLToPath } from 'url'
-// import { join, dirname } from 'path'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import { join, dirname } from 'path'
 import get from 'lodash.get'
-
-// const __filename = fileURLToPath(import.meta.url)
-// const __dirname = join(dirname(__filename), '..')
-// const __tokens = join(__dirname, '..', 'tokens/dist')
 
 export const NEWLINE = '\n'
 export const DASH_SEPARATOR = '-'

@@ -1,1 +1,3 @@
-export interface BuildCoreExecutorSchema {} // eslint-disable-line
+export interface BuildCoreExecutorSchema {
+  projectRoot: string
+} // eslint-disable-line

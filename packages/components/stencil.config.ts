@@ -3,10 +3,10 @@ import { sass } from '@stencil/sass'
 import fg from 'fast-glob'
 import { resolve } from 'path'
 
-// import { AngularGenerator, AngularLegacyGenerator, AngularStandaloneGenerator } from './config/stencil.bindings.angular'
-// import { VueGenerator, VueTestGenerator } from './config/stencil.bindings.vue'
-// import { ReactGenerator } from './config/stencil.bindings.react'
-// import { CustomDocumentationGenerator } from './config/doc-output-target'
+import { AngularGenerator, AngularLegacyGenerator, AngularStandaloneGenerator } from './config/stencil.bindings.angular'
+import { VueGenerator, VueTestGenerator } from './config/stencil.bindings.vue'
+import { ReactGenerator } from './config/stencil.bindings.react'
+import { CustomDocumentationGenerator } from './config/doc-output-target'
 
 const IS_BAL_DS_RELEASE = process.env.BAL_DS_RELEASE === 'true'
 const IS_BAL_DOCUMENTATION = process.env.BAL_DOCUMENTATION === 'true'
@@ -49,10 +49,10 @@ export const config: Config = {
     initializeNextTick: true,
   },
   outputTargets: [
-    // {
-    //   type: 'docs-json',
-    //   file: './.tmp/components.json',
-    // },
+    {
+      type: 'docs-json',
+      file: '../../resources/data/components.json',
+    },
     {
       type: 'dist',
       esmLoaderPath: '../loader',
@@ -67,49 +67,49 @@ export const config: Config = {
           },
         ]
       : []),
-    // {
-    //   type: 'www',
-    //   dir: 'www',
-    //   serviceWorker: false,
-    //   empty: true,
-    //   copy: [
-    //     {
-    //       src: '**/*.html',
-    //     },
-    //     {
-    //       src: 'components.d.ts',
-    //     },
-    //     {
-    //       src: '../../styles/css/themes/compact.css',
-    //       dest: 'assets/theme-compact.css',
-    //     },
-    //     { src: '../../css/css/baloise-design-system.css', dest: 'assets/baloise-design-system-old.css', warn: true },
-    //     { src: '../../styles/css/baloise-design-system.css', dest: 'assets/baloise-design-system.css', warn: true },
-    //     {
-    //       src: '../../maps/dist/index.cjs.js',
-    //       dest: 'assets/maps.js',
-    //     },
-    //     { src: '../../fonts/assets', dest: 'assets/fonts', warn: true },
-    //   ],
-    // },
+    {
+      type: 'www',
+      dir: 'www',
+      serviceWorker: false,
+      empty: true,
+      copy: [
+        {
+          src: '**/*.html',
+        },
+        {
+          src: 'components.d.ts',
+        },
+        {
+          src: '../../styles/css/themes/compact.css',
+          dest: 'assets/theme-compact.css',
+        },
+        { src: '../../css/css/baloise-design-system.css', dest: 'assets/baloise-design-system-old.css', warn: true },
+        { src: '../../styles/css/baloise-design-system.css', dest: 'assets/baloise-design-system.css', warn: true },
+        {
+          src: '../../maps/dist/index.cjs.js',
+          dest: 'assets/maps.js',
+        },
+        { src: '../../fonts/assets', dest: 'assets/fonts', warn: true },
+      ],
+    },
     /**
      * Skip those outputs for documentation releases on vercel
      */
-    // ...(!IS_BAL_DOCUMENTATION
-    //   ? [
-    //       {
-    //         type: 'docs-vscode',
-    //         file: 'dist/html.html-data.json',
-    //         sourceCodeBaseUrl: 'https://github.com/baloise/design-system',
-    //       },
-    //       VueGenerator(),
-    //       VueTestGenerator(),
-    //       AngularGenerator(),
-    //       AngularStandaloneGenerator(),
-    //       AngularLegacyGenerator(),
-    //       ReactGenerator(),
-    //     ]
-    //   : []),
+    ...(!IS_BAL_DOCUMENTATION
+      ? [
+          {
+            type: 'docs-vscode',
+            file: 'dist/html.html-data.json',
+            sourceCodeBaseUrl: 'https://github.com/baloise/design-system',
+          },
+          // VueGenerator(),
+          // VueTestGenerator(),
+          // ReactGenerator(),
+          AngularGenerator(),
+          // AngularStandaloneGenerator(),
+          // AngularLegacyGenerator(),
+        ]
+      : []),
   ],
   // bundles: [
   //   { components: ['bal-accordion', 'bal-accordion-summary', 'bal-accordion-trigger', 'bal-accordion-details'] },

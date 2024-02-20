@@ -99,7 +99,7 @@ async function copyResources(config: Config, outputTarget: OutputTargetVue) {
   if (!config.sys || !config.sys.copy || !config.sys.glob) {
     throw new Error('stencil is not properly initialized at this step. Notify the developer')
   }
-  const srcDirectory = join(__dirname, '..', 'vue-component-lib')
+  const srcDirectory = join(__dirname, '../../../', 'vue-component-lib')
   const destDirectory = join(dirname(outputTarget.proxiesFile), 'vue-component-lib')
 
   return config.sys.copy(

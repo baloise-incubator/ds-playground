@@ -1,6 +1,6 @@
 {
-  "name": "@baloise/ds-output-target-angular",
-  "version": "0.0.1",
+  "name": "@baloise/output-target-angular",
+  "version": "0.0.0",
   "dependencies": {
     "@stencil/core": "~4.11.0",
     "tslib": "^2.3.0"

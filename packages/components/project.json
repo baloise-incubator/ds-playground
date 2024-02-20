@@ -8,7 +8,6 @@
       "executor": "@baloise/ds-nx:build-core",
       "outputs": [
         "{projectRoot}/.stencil",
-        "{projectRoot}/.tmp",
         "{projectRoot}/components",
         "{projectRoot}/dist",
         "{projectRoot}/loader",
@@ -16,8 +15,7 @@
         "{projectRoot}/icons"
       ],
       "options": {
-        "projectRoot": "{projectRoot}",
-        "tokensRoot": "packages/tokens"
+        "projectRoot": "{projectRoot}"
       }
     }
   },
