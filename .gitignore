@@ -65,5 +65,6 @@ libs/output-targets-react/CHANGELOG.md
 libs/output-targets-vue/CHANGELOG.md
 
 test/generated
+resources/data/components.json
 
 .angular
