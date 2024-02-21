@@ -52,6 +52,7 @@ packages/components/loader
 packages/components/wwww
 packages/icons/src/icons.json
 packages/maps/src/markers.json
+packages/brand-icons/src/icons.json
 packages/css/css
 packages/styles/css
 packages/styles/docs
