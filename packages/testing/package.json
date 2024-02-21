@@ -1,0 +1,11 @@
+{
+  "name": "@baloise/ds-testing",
+  "version": "0.0.1",
+  "dependencies": {
+    "@swc/helpers": "~0.5.2",
+    "cypress-file-upload": "~5.0.8"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts"
+}

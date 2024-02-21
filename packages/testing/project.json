@@ -1,0 +1,25 @@
+{
+  "name": "testing",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/testing/src",
+  "projectType": "library",
+  "targets": {
+    "nx-release-publish": {
+      "executor": "@nx/js:release-publish",
+      "options": {
+        "packageRoot": "{projectRoot}/dist"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "{projectRoot}/dist",
+        "main": "packages/testing/src/index.ts",
+        "tsConfig": "packages/testing/tsconfig.lib.json",
+        "assets": ["packages/testing/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
