@@ -1,0 +1,26 @@
+{
+  "name": "@baloise/ds-grid",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "styles": "./css/design-system-table.css",
+  "files": [
+    "dist/",
+    "css/",
+    "scss/"
+  ],
+  "directories": {
+    "dist": "dist",
+    "css": "css",
+    "scss": "scss"
+  },
+  "peerDependencies": {
+    "ag-grid-community": ">=29.3.0"
+  },
+  "dependencies": {
+    "@baloise/ds-components": "0.0.0",
+    "@baloise/ds-css": "0.0.0",
+    "@baloise/ds-styles": "0.0.0"
+  }
+}
