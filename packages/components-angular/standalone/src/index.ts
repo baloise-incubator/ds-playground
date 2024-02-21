@@ -23,12 +23,10 @@ export {
 } from '@baloise/ds-angular/common'
 
 export * from './generated/proxies'
-export { BooleanValueAccessor } from './generated/boolean-value-accessor'
-export { NumericValueAccessor } from './generated/number-value-accessor'
-export { SelectValueAccessor } from './generated/select-value-accessor'
-export { TextValueAccessor } from './generated/text-value-accessor'
+export * from './components'
+export * from './bundles'
 
 export { BalNgErrorComponent } from './directives/error.component'
 export { BalAutoFocus } from './directives/focus.directive'
 
-export { BaloiseDesignSystemModule } from './module'
+export { provideBaloiseDesignSystem } from './provide'

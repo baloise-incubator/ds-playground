@@ -17,8 +17,9 @@
     "baseUrl": ".",
     "paths": {
       "@baloise/ds-angular/common": ["packages/components-angular/common/src/index.ts"],
+      "@baloise/ds-angular/legacy": ["packages/components-angular/legacy/src/index.ts"],
+      "@baloise/ds-angular/standalone": ["packages/components-angular/standalone/src/index.ts"],
       "@baloise/ds-angular": ["packages/components-angular/src/index.ts"],
-      "@baloise/ds-components/components": ["packages/components/components/index.js"],
       "@baloise/ds-components": ["packages/components/src/index.ts"],
       "@baloise/ds-icons": ["packages/icons/src/index.ts"],
       "@baloise/ds-maps": ["packages/maps/src/index.ts"],

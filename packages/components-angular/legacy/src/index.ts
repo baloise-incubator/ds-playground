@@ -1,4 +1,4 @@
-export type { ProxyComponent, BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular/common'
+export type { BaloiseDesignSystemAngularConfig, ProxyComponent } from '@baloise/ds-angular/common'
 
 export {
   AngularDelegate,

@@ -4,6 +4,7 @@ import { dirname, join } from 'path'
 import replace from 'replace-in-file'
 import { mkdir, readFile, rm, writeFile } from 'fs/promises'
 import { copy } from 'fs-extra'
+import { NEWLINE } from '../utils'
 
 export default async function runExecutor(options: BuildCoreExecutorSchema) {
   try {
@@ -115,10 +116,13 @@ async function cleanUp(options: BuildCoreExecutorSchema) {
 }
 
 async function addPackageJsonAndTypesToCustomElements(options: BuildCoreExecutorSchema) {
-  await copy(
+  const contentIndex = await readFile(join(options.projectRoot, 'components', 'index.d.ts'), 'utf-8')
+  const contentCustom = await readFile(
     join(options.projectRoot, 'config', 'custom-elements', 'custom-elements.d.ts'),
-    join(options.projectRoot, 'components', 'custom-elements.d.ts'),
+    'utf-8',
   )
+
+  await writeFile(join(options.projectRoot, 'components', 'index.d.ts'), [contentIndex, contentCustom].join(NEWLINE))
   await copy(
     join(options.projectRoot, 'config', 'custom-elements', 'package.json.tmp'),
     join(options.projectRoot, 'components', 'package.json'),
