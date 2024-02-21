@@ -17,7 +17,7 @@ export const BalApp = /*@__PURE__*/ defineComponent((_, { attrs, slots }) => {
   }
 })
 
-// @ts-ignore:next-line
+// @ts-expect-error:next-line
 BalApp.name = 'BalApp'
 
 /**

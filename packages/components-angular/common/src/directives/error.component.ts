@@ -20,6 +20,7 @@ import { BalTokenConfig } from '../utils/token'
 // })
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'bal-ng-error',
 })
 export class BalNgErrorComponent implements AfterViewInit {

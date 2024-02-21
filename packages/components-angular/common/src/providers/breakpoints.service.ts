@@ -1,4 +1,4 @@
-import { ApplicationRef, Inject, Injectable } from '@angular/core'
+import { ApplicationRef, Inject, Injectable, OnDestroy } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
@@ -14,7 +14,7 @@ import { BalTokenBreakpointSubject, BalTokenBreakpoints } from '../utils/token'
 @Injectable({
   providedIn: 'root',
 })
-export class BalBreakpointsService implements BalBreakpointObserver {
+export class BalBreakpointsService implements BalBreakpointObserver, OnDestroy {
   private _breakpoints$!: BehaviorSubject<BalBreakpoints>
 
   state$: Observable<BalBreakpoints>

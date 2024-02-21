@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "peerDependencies": {
     "@angular/common": ">=15.0.0",
-    "@angular/core": ">=15.0.0"
+    "@angular/core": ">=15.0.0",
+    "@angular/forms": ">=15.0.0",
+    "rxjs": ">=7.0.0"
   },
   "dependencies": {
     "@baloise/ds-components": "0.0.0",

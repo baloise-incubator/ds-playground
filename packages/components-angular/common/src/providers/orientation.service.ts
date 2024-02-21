@@ -1,4 +1,4 @@
-import { ApplicationRef, Inject, Injectable } from '@angular/core'
+import { ApplicationRef, Inject, Injectable, OnDestroy } from '@angular/core'
 import { BehaviorSubject, Observable, map } from 'rxjs'
 
 import type {
@@ -13,7 +13,7 @@ import { BalTokenDevice, BalTokenOrientationSubject } from '../utils/token'
 @Injectable({
   providedIn: 'root',
 })
-export class BalOrientationService implements BalOrientationObserver {
+export class BalOrientationService implements BalOrientationObserver, OnDestroy {
   private _orientation$!: BehaviorSubject<BalOrientationInfo>
 
   state$: Observable<BalOrientationInfo>
