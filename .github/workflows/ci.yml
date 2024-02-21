@@ -38,8 +38,8 @@ jobs:
       - name: Define Nx cache
         uses: nrwl/nx-set-shas@v4
 
-      # - name: Prepare build
-      #   run: npx nx run-many -t prepare
+      - name: Prepare build
+        run: npx nx run-many -t prepare
 
       - name: Check format
         run: npx nx format:check
