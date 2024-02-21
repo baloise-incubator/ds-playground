@@ -102,7 +102,6 @@ async function writeDSMinSet(files: Map<string, string>, options: BuildSvgExecut
       )
       lines.push(``)
     }
-
   })
 
   await mkdir(dirname(join(options.projectRoot, options.dsMinSetPath)), { recursive: true })

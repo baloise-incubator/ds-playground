@@ -29,7 +29,7 @@ export function BalTableTagRenderer(options: BalTableTagRendererOptions): ICellR
   Renderer.prototype.update = function () {
     this.element.innerHTML = parseValue(this.params.value)
 
-    const color = typeof options.color === 'function' ? options.color(this.params): ''
+    const color = typeof options.color === 'function' ? options.color(this.params) : ''
     this.element.setAttribute('color', color)
   }
 

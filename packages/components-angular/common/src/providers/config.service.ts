@@ -2,13 +2,7 @@
 import { Inject, Injectable, OnDestroy } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 
-import type {
-  BalConfigObserver,
-  BalConfigState,
-  BalIcons,
-  BalLanguage,
-  BalRegion,
-} from '@baloise/ds-components'
+import type { BalConfigObserver, BalConfigState, BalIcons, BalLanguage, BalRegion } from '@baloise/ds-components'
 
 import { BalTokenConfig } from '../utils/token'
 

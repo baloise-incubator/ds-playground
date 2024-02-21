@@ -1,8 +1,4 @@
 {
-  "eslint.validate": [
-    "json"
-  ],
-  "cSpell.words": [
-    "cleancss"
-  ]
+  "eslint.validate": ["json"],
+  "cSpell.words": ["cleancss"]
 }

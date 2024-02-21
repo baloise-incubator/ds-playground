@@ -110,13 +110,13 @@
   **app.config.ts**
 
   ```ts
-  import { ApplicationConfig, importProvidersFrom } from "@angular/core";
+  import { ApplicationConfig, importProvidersFrom } from '@angular/core'
 
-  import { provideBaloiseDesignSystem } from "@baloise/design-system-components-angular/standalone";
+  import { provideBaloiseDesignSystem } from '@baloise/design-system-components-angular/standalone'
 
   export const appConfig: ApplicationConfig = {
     providers: [provideBaloiseDesignSystem()],
-  };
+  }
   ```
 
   In each app component, import the necessary Baloise Design System components or a bundled set.
@@ -124,20 +124,17 @@
   **app.component.ts**
 
   ```ts
-  import { CUSTOM_ELEMENTS_SCHEMA, Component } from "@angular/core";
-  import { CommonModule } from "@angular/common";
-  import {
-    BalApp,
-    BalButton,
-  } from "@baloise/design-system-components-angular/standalone";
+  import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core'
+  import { CommonModule } from '@angular/common'
+  import { BalApp, BalButton } from '@baloise/design-system-components-angular/standalone'
 
   export interface UpdateControl {
-    name: string;
-    value: any;
+    name: string
+    value: any
   }
 
   @Component({
-    selector: "app-root",
+    selector: 'app-root',
     standalone: true,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [CommonModule, BalApp, BalButton],

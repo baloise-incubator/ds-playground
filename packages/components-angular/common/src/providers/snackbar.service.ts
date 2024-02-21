@@ -1,10 +1,6 @@
 import { Inject, Injectable } from '@angular/core'
 
-import type {
-  BalSnackbarController,
-  BalSnackbarOptions,
-  Components,
-} from '@baloise/ds-components'
+import type { BalSnackbarController, BalSnackbarOptions, Components } from '@baloise/ds-components'
 import { BalTokenSnackbar } from '../utils/token'
 
 @Injectable({
