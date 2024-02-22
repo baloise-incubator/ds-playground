@@ -6,8 +6,8 @@ packages/icons/src/index.ts
 packages/icons/src/assets/icons.json
 packages/maps/src/lib/markers.ts
 packages/maps/src/markers.json
-packages/components/icons
-packages/components/src/utils/constants/icons.constant.ts
+packages/core/icons
+packages/core/src/utils/constants/icons.constant.ts
 
 resources/data/tags.json
 

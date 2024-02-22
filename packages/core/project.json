@@ -1,0 +1,23 @@
+{
+  "name": "core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/core/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@baloise/ds-nx:build-core",
+      "outputs": [
+        "{projectRoot}/.stencil",
+        "{projectRoot}/components",
+        "{projectRoot}/dist",
+        "{projectRoot}/loader",
+        "{projectRoot}/www",
+        "{projectRoot}/icons"
+      ],
+      "options": {
+        "projectRoot": "{projectRoot}"
+      }
+    }
+  },
+  "tags": []
+}

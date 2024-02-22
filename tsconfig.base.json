@@ -20,22 +20,22 @@
     "baseUrl": ".",
     "paths": {
       "@baloise/ds-angular": [
-        "packages/components-angular/src/index.ts"
+        "packages/angular/src/index.ts"
       ],
       "@baloise/ds-angular/common": [
-        "packages/components-angular/common/src/index.ts"
+        "packages/angular/common/src/index.ts"
       ],
       "@baloise/ds-angular/legacy": [
-        "packages/components-angular/legacy/src/index.ts"
+        "packages/angular/legacy/src/index.ts"
       ],
       "@baloise/ds-angular/standalone": [
-        "packages/components-angular/standalone/src/index.ts"
+        "packages/angular/standalone/src/index.ts"
       ],
-      "@baloise/ds-components": [
-        "packages/components/src/index.ts"
+      "@baloise/ds-core": [
+        "packages/core/src/index.ts"
       ],
       "@baloise/ds-grid": [
-        "packages/components-table/src/index.ts"
+        "packages/grid/src/index.ts"
       ],
       "@baloise/ds-icons": [
         "packages/icons/src/index.ts"
@@ -50,13 +50,13 @@
         "libs/output-target-angular/src/index.ts"
       ],
       "@baloise/ds-react": [
-        "packages/components-react/src/index.ts"
+        "packages/react/src/index.ts"
       ],
       "@baloise/ds-testing": [
         "packages/testing/src/index.ts"
       ],
       "@baloise/ds-vue": [
-        "packages/components-vue/src/index.ts"
+        "packages/vue/src/index.ts"
       ],
       "@baloise/output-target-react": [
         "libs/output-target-react/src/index.ts"

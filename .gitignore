@@ -45,11 +45,11 @@ Thumbs.db
 .nx/cache
 .stencil
 
-packages/components/src/utils/constants/icons.constant.ts
-packages/components/icons
-packages/components/components
-packages/components/loader
-packages/components/wwww
+packages/core/src/utils/constants/icons.constant.ts
+packages/core/icons
+packages/core/components
+packages/core/loader
+packages/core/wwww
 packages/icons/src/icons.json
 packages/maps/src/markers.json
 packages/brand-icons/src/icons.json

@@ -53,7 +53,7 @@
         "jsOutputPath": "src/index.ts",
         "jsonPath": "src/icons.json",
         "svgReplaceBlack": true,
-        "dsMinSetPath": "../components/src/utils/constants/icons.constant.ts",
+        "dsMinSetPath": "../core/src/utils/constants/icons.constant.ts",
         "dsMinSet": [
           "balIconClose",
           "balIconInfoCircle",
