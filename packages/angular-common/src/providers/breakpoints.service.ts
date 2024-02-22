@@ -2,12 +2,7 @@ import { ApplicationRef, Inject, Injectable, OnDestroy } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import type {
-  BalBreakpointObserver,
-  BalBreakpoints,
-  BalBreakpointSubject,
-  BalBreakpointsUtil,
-} from '@baloise/ds-core'
+import type { BalBreakpointObserver, BalBreakpoints, BalBreakpointSubject, BalBreakpointsUtil } from '@baloise/ds-core'
 
 import { BalTokenBreakpointSubject, BalTokenBreakpoints } from '../utils/token'
 

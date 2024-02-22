@@ -50,6 +50,9 @@ packages/core/icons
 packages/core/components
 packages/core/loader
 packages/core/wwww
+packages/core/**/theming.md
+packages/core/**/testing.md
+packages/core/**/api.md
 packages/icons/src/icons.json
 packages/maps/src/markers.json
 packages/brand-icons/src/icons.json
@@ -66,6 +69,10 @@ libs/output-targets-react/CHANGELOG.md
 libs/output-targets-vue/CHANGELOG.md
 
 test/generated
-resources/data/components.json
+resources/data
+!resources/data/tags.json
+
+docs/stories/contributors.md
+docs/stories/development/00-guides/theming/theming.md
 
 .angular

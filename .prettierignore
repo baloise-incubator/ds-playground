@@ -8,8 +8,10 @@ packages/maps/src/lib/markers.ts
 packages/maps/src/markers.json
 packages/core/icons
 packages/core/src/utils/constants/icons.constant.ts
+packages/core/src/components.d.ts
 
 resources/data/tags.json
 
 /.nx/cache
 .angular
+

@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import path from 'path'
 import { globSync } from 'glob'
 import { JsonDocs, JsonDocsStyle, OutputTargetDocsCustom } from '@stencil/core/internal'
@@ -7,7 +8,7 @@ import { eventsToMarkdown } from './markdown-events'
 import { methodsToMarkdown } from './markdown-methods'
 import { slotsToMarkdown } from './markdown-slots'
 import { NEWLINE, SPACE } from './constants'
-// import contributors from '../../.tmp/contributors.json'
+import contributors from '../../../../resources/data/contributors.json'
 import { createTestingMarkdown } from './markdown-testing'
 import { createThemingMarkdown } from './markdown-theming'
 import { parseStyleDocs } from './markdonw-styles'
@@ -117,6 +118,7 @@ export const CustomDocumentationGenerator: OutputTargetDocsCustom = {
       ...themingLines,
       '',
     ]
+    mkdirSync(path.join(DOC_PATH, 'stories/development/00-guides/theming'), { recursive: true })
     writeFileSync(path.join(DOC_PATH, 'stories/development/00-guides/theming/theming.md'), contentTheming.join(NEWLINE))
 
     /**

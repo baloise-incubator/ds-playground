@@ -1,12 +1,7 @@
 import { ApplicationRef, Inject, Injectable, OnDestroy } from '@angular/core'
 import { BehaviorSubject, Observable, map } from 'rxjs'
 
-import type {
-  BalDevice,
-  BalOrientationInfo,
-  BalOrientationObserver,
-  BalOrientationSubject,
-} from '@baloise/ds-core'
+import type { BalDevice, BalOrientationInfo, BalOrientationObserver, BalOrientationSubject } from '@baloise/ds-core'
 
 import { BalTokenDevice, BalTokenOrientationSubject } from '../utils/token'
 

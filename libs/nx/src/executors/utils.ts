@@ -5,6 +5,7 @@ import { basename, dirname, join } from 'path'
 import postcss from 'postcss'
 import { compileAsync } from 'sass'
 import CleanCSS from 'clean-css'
+import ts from 'typescript'
 
 export const NEWLINE = '\n'
 
@@ -45,4 +46,35 @@ export async function compileSass(file: string, options: { projectRoot: string }
   await writeFile(join(options.projectRoot, outputPath, `${fileName}.css`), cssContent)
   await writeFile(join(options.projectRoot, outputPath, `${fileName}.css.map`), JSON.stringify(sassResult.sourceMap))
   await writeFile(join(options.projectRoot, outputPath, `${fileName}.min.css`), cleanResult.styles)
+}
+
+export const createSourceFile = content => ts.createSourceFile('x.ts', content, ts.ScriptTarget.Latest)
+
+const filterByKind = kind => list => list.filter(item => item.kind === kind)
+const firstByKind = kind => list => filterByKind(kind)(list)[0]
+
+export const filterModuleDeclaration = firstByKind(ts.SyntaxKind.ModuleDeclaration)
+export const filterInterfaceDeclaration = firstByKind(ts.SyntaxKind.InterfaceDeclaration)
+export const filterVariableStatement = filterByKind(ts.SyntaxKind.VariableStatement)
+
+export const parseFunctionComment = (node, sourceFile) =>
+  node
+    .getFullText(sourceFile)
+    .replace(node.getText(sourceFile), '')
+    .split('\n')
+    .map(l => l.trim())
+    .filter(l => l)
+    .filter(l => l !== '/**' && l !== '*/')
+    .map(l => (l.startsWith('*') ? l.substring(2) : l))
+
+export const parseSelectorComment = (node, sourceFile) => {
+  const pattern = /[a-zA-Z]/
+  return node
+    .getFullText(sourceFile)
+    .split('\n')
+    .map(l => l.trim())
+    .filter(l => l)
+    .filter(l => pattern.test(l))
+    .map(l => (l.startsWith('*') ? l.substring(2) : l))
+    .map(l => l.split(':')[0])
 }
