@@ -1,4 +1,4 @@
-export type { ProxyComponent, BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular/common'
+export type { ProxyComponent, BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular-common'
 
 export {
   AngularDelegate,
@@ -20,13 +20,15 @@ export {
   BalTokenBreakpointSubject,
   BalTokenDevice,
   BalTokenOrientationSubject,
-} from '@baloise/ds-angular/common'
+} from '@baloise/ds-angular-common'
 
 export * from './generated/proxies'
-export * from './components'
-export * from './bundles'
+export { BooleanValueAccessor } from './generated/boolean-value-accessor'
+export { NumericValueAccessor } from './generated/number-value-accessor'
+export { SelectValueAccessor } from './generated/select-value-accessor'
+export { TextValueAccessor } from './generated/text-value-accessor'
 
 export { BalNgErrorComponent } from './directives/error.component'
 export { BalAutoFocus } from './directives/focus.directive'
 
-export { provideBaloiseDesignSystem } from './provide'
+export { BaloiseDesignSystemModule } from './module'

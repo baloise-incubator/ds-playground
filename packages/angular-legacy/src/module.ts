@@ -1,7 +1,7 @@
 import { NgModule, APP_INITIALIZER, ModuleWithProviders, NgZone } from '@angular/core'
 import { CommonModule, DOCUMENT } from '@angular/common'
 
-import type { BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular/common'
+import type { BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular-common'
 import {
   AngularDelegate,
   BalBreakpointsService,
@@ -19,7 +19,7 @@ import {
   BalTokenUserConfig,
   BalTokenDevice,
   BalTokenOrientationSubject,
-} from '@baloise/ds-angular/common'
+} from '@baloise/ds-angular-common'
 
 import {
   balBreakpointSubject,

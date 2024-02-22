@@ -1,6 +1,6 @@
 {
   "name": "@baloise/ds-testing",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "dependencies": {
     "@swc/helpers": "~0.5.2",
     "cypress-file-upload": "~5.0.8"

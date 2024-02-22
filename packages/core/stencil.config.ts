@@ -3,7 +3,7 @@ import { sass } from '@stencil/sass'
 import fg from 'fast-glob'
 import { resolve } from 'path'
 
-import { AngularGenerator, AngularLegacyGenerator, AngularStandaloneGenerator } from './config/stencil.bindings.angular'
+import { AngularGenerator, AngularLegacyGenerator, AngularModuleGenerator } from './config/stencil.bindings.angular'
 import { VueGenerator, VueTestGenerator } from './config/stencil.bindings.vue'
 import { ReactGenerator } from './config/stencil.bindings.react'
 import { CustomDocumentationGenerator } from './config/doc-output-target'
@@ -106,7 +106,7 @@ export const config: Config = {
           VueTestGenerator(),
           ReactGenerator(),
           AngularGenerator(),
-          AngularStandaloneGenerator(),
+          AngularModuleGenerator(),
           AngularLegacyGenerator(),
         ]
       : []),

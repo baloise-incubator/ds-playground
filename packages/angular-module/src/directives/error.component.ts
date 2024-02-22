@@ -1,6 +1,6 @@
-import { Component, Injector, Inject, ChangeDetectorRef } from '@angular/core'
+import { ChangeDetectorRef, Component, Inject, Injector } from '@angular/core'
 
-import { BalNgErrorComponent as BalNgErrorComponentBase } from '@baloise/ds-angular/common'
+import { BalNgErrorComponent as BalNgErrorComponentBase } from '@baloise/ds-angular-common'
 
 @Component({
   selector: 'bal-ng-error',

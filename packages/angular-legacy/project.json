@@ -1,24 +1,23 @@
 {
-  "name": "angular",
+  "name": "angular-legacy",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/angular/src",
-  "prefix": "lib",
+  "sourceRoot": "packages/angular-legacy/src",
+  "prefix": "bal",
   "tags": [],
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{projectRoot}/dist"],
-      "dependsOn": ["prepare"],
       "options": {
-        "project": "packages/angular/ng-package.json"
+        "project": "packages/angular-legacy/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "packages/angular/tsconfig.lib.prod.json"
+          "tsConfig": "packages/angular-legacy/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "packages/angular/tsconfig.lib.json"
+          "tsConfig": "packages/angular-legacy/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"

@@ -43,17 +43,6 @@ export const AngularGenerator = () =>
     directivesProxyFile: '../angular/src/generated/proxies.ts',
     directivesArrayFile: '../angular/src/generated/proxies-list.ts',
     valueAccessorConfigs: angularValueAccessorBindings,
-    excludeComponents: [...docComponents],
-    outputType: 'module',
-  })
-
-export const AngularStandaloneGenerator = () =>
-  angularOutputTarget({
-    componentCorePackage: '@baloise/ds-core',
-    directivesMetaFile: '../angular/standalone/src/generated/meta.ts',
-    directivesProxyFile: '../angular/standalone/src/generated/proxies.ts',
-    directivesArrayFile: '../angular/standalone/src/generated/proxies-list.ts',
-    valueAccessorConfigs: angularValueAccessorBindings,
     excludeComponents: [
       ...docComponents,
       'bal-checkbox-group',
@@ -74,12 +63,23 @@ export const AngularStandaloneGenerator = () =>
     outputType: 'standalone',
   })
 
+export const AngularModuleGenerator = () =>
+  angularOutputTarget({
+    componentCorePackage: '@baloise/ds-core',
+    directivesMetaFile: '../angular-module/src/generated/meta.ts',
+    directivesProxyFile: '../angular-module/src/generated/proxies.ts',
+    directivesArrayFile: '../angular-module/src/generated/proxies-list.ts',
+    valueAccessorConfigs: angularValueAccessorBindings,
+    excludeComponents: [...docComponents],
+    outputType: 'module',
+  })
+
 export const AngularLegacyGenerator = () =>
   angularOutputTarget({
     componentCorePackage: '@baloise/ds-core',
-    directivesMetaFile: '../angular/legacy/src/generated/meta.ts',
-    directivesProxyFile: '../angular/legacy/src/generated/proxies.ts',
-    directivesArrayFile: '../angular/legacy/src/generated/proxies-list.ts',
+    directivesMetaFile: '../angular-legacy/src/generated/meta.ts',
+    directivesProxyFile: '../angular-legacy/src/generated/proxies.ts',
+    directivesArrayFile: '../angular-legacy/src/generated/proxies-list.ts',
     valueAccessorConfigs: angularValueAccessorBindings,
     excludeComponents: [...docComponents],
     outputType: 'legacy',

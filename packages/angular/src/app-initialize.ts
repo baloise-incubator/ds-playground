@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NgZone } from '@angular/core'
 
-import type { BalPlatformConfig } from '@baloise/ds-core'
+import type { BalPlatformConfig } from '@baloise/ds-core/components'
 import { initializeBaloiseDesignSystem } from '@baloise/ds-core/components'
 
-import { raf } from '@baloise/ds-angular/common'
-import type { BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular/common'
+import { raf } from '@baloise/ds-angular-common'
+import type { BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular-common'
 
 export const appInitialize = (config: BaloiseDesignSystemAngularConfig, doc: Document, zone: NgZone) => {
   return async (): Promise<void> => {

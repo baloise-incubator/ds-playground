@@ -1,4 +1,4 @@
-export type { BaloiseDesignSystemAngularConfig, ProxyComponent } from '@baloise/ds-angular/common'
+export type { BaloiseDesignSystemAngularConfig, ProxyComponent } from '@baloise/ds-angular-common'
 
 export {
   AngularDelegate,
@@ -20,7 +20,7 @@ export {
   BalTokenBreakpointSubject,
   BalTokenDevice,
   BalTokenOrientationSubject,
-} from '@baloise/ds-angular/common'
+} from '@baloise/ds-angular-common'
 
 export * from './generated/proxies'
 export { BooleanValueAccessor } from './generated/boolean-value-accessor'

@@ -2,9 +2,9 @@
 import { NgZone } from '@angular/core'
 import { initializeBaloiseDesignSystem } from '@baloise/ds-core'
 import { defineCustomElements } from '@baloise/ds-core/loader'
-import { raf } from '@baloise/ds-angular/common'
+import { raf } from '@baloise/ds-angular-common'
 
-import type { BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular/common'
+import type { BaloiseDesignSystemAngularConfig } from '@baloise/ds-angular-common'
 
 export const appInitialize = (config: BaloiseDesignSystemAngularConfig, doc: Document, zone: NgZone) => {
   return (): any => {

@@ -11,7 +11,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "libs/*"
+    "libs/*",
+    "apps/*"
   ],
   "nx": {
     "includedScripts": []
@@ -20,9 +21,9 @@
     "@angular-devkit/build-angular": "~15.0.0",
     "@angular-devkit/core": "~15.0.0",
     "@angular-devkit/schematics": "~15.0.0",
-    "@angular-eslint/eslint-plugin": "~15.0.0",
-    "@angular-eslint/eslint-plugin-template": "~15.0.0",
-    "@angular-eslint/template-parser": "~15.0.0",
+    "@angular-eslint/eslint-plugin": "~17.0.0",
+    "@angular-eslint/eslint-plugin-template": "~17.0.0",
+    "@angular-eslint/template-parser": "~17.0.0",
     "@angular/animations": "~15.0.0",
     "@angular/cli": "~15.0.0",
     "@angular/common": "~15.0.0",
@@ -124,5 +125,6 @@
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.8",
     "zone.js": "~0.11.4"
-  }
+  },
+  "dependencies": {}
 }
