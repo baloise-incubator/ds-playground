@@ -21,7 +21,7 @@
   visibility: visible;
 }
 
-.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)){
+.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
   font-family: 'BaloiseCreateText' !important;
   color: var(--bal-color-primary) !important;
   font-size: 1rem;
@@ -101,14 +101,14 @@
 @media screen and (min-width: 769px) {
   .sbdocs-content > h4,
   .sbdocs-content > div:not(.sb-unstyled) > h4 {
-    font-size: var(--bal-text-size-large:desktop);
+    font-size: var(--bal-text-size-large: desktop);
     margin-top: 2rem !important;
   }
 }
 
 .sbdocs-content > h5,
 .sbdocs-content > div:not(.sb-unstyled) > h5 {
-  font-size: var(--bal-text-size-medium:desktop);
+  font-size: var(--bal-text-size-medium: desktop);
   line-height: 1.5;
 }
 
@@ -141,7 +141,6 @@ a.sbdocs-a:not(.button) {
   line-height: var(--bal-line-height-large-desktop);
 }
 
-
 /***************************************
  * LIST
  ***************************************/
@@ -155,7 +154,7 @@ a.sbdocs-a:not(.button) {
 
 .sbdocs-content > ul > li:not(:first-child),
 .sbdocs-content > ol > li:not(:first-child) {
-  margin-top: var(--bal-space-small)
+  margin-top: var(--bal-space-small);
 }
 
 .sbdocs-content > ul li::marker {
@@ -170,7 +169,7 @@ a.sbdocs-a:not(.button) {
 
 .sbdocs-content > ol,
 .sbdocs-content > ul {
-  margin-bottom: var(--bal-space-x-large)
+  margin-bottom: var(--bal-space-x-large);
 }
 
 /***************************************
@@ -200,14 +199,14 @@ blockquote > p {
  ***************************************/
 
 code:not(.language-diff, .language-scss) {
-  background-color: var(--bal-color-primary-1)  !important;
-  border: 1px solid var(--bal-color-primary-1)  !important;
+  background-color: var(--bal-color-primary-1) !important;
+  border: 1px solid var(--bal-color-primary-1) !important;
   color: var(--bal-color-primary) !important;
 }
 
 a > code {
-  background-color: var(--bal-color-primary-1)  !important;
-  border: 1px solid var(--bal-color-primary-1)  !important;
+  background-color: var(--bal-color-primary-1) !important;
+  border: 1px solid var(--bal-color-primary-1) !important;
   color: var(--bal-color-primary) !important;
 
   font-weight: var(--bal-link-font-weight) !important;
@@ -220,11 +219,10 @@ a > code {
  * TABLE
  ***************************************/
 
- .sbdocs-content table thead tr th,
- .sbdocs-content table tbody tr td {
+.sbdocs-content table thead tr th,
+.sbdocs-content table tbody tr td {
   color: var(--bal-color-primary);
- }
-
+}
 
 /***************************************
  * TABLE OF CONTENT
@@ -269,7 +267,6 @@ a > code {
     padding: 2rem 4rem 5rem 3rem;
   }
 }
-
 
 .my-welcome-state-shape {
   position: relative;
@@ -437,7 +434,7 @@ a.sbdocs-a.text-decoration-none {
   }
 }
 
-div.has-visible-overflow div[scale="1"] {
+div.has-visible-overflow div[scale='1'] {
   transform: none;
 }
 
@@ -445,7 +442,7 @@ div.has-visible-overflow div[scale="1"] {
  * SUPPORT
  ***************************************/
 
-div.has-visible-overflow div[scale="1"] {
+div.has-visible-overflow div[scale='1'] {
   transform: none;
 }
 
@@ -507,10 +504,10 @@ div.has-visible-overflow > .docs-story > div:nth-child(2) {
 /***************************************
  * HOME
  ***************************************/
- .home-stage {
+.home-stage {
   display: block;
   margin-top: 2rem;
- }
+}
 
 .home-stage .bal-logo > div {
   height: 48px !important;
@@ -525,7 +522,7 @@ div.has-visible-overflow > .docs-story > div:nth-child(2) {
   display: none !important;
 }
 
-.doc-css-util-table button.is-light{
+.doc-css-util-table button.is-light {
   background: var(--bal-color-primary-1);
 }
 
@@ -552,7 +549,7 @@ div.has-visible-overflow > .docs-story > div:nth-child(2) {
 }
 
 .clipboard-button:hover::after {
-  content: "Copy to Clipboard";
+  content: 'Copy to Clipboard';
 }
 
 .clipboard-button > pre > code {

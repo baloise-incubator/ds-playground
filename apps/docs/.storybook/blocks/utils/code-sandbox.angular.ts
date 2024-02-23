@@ -92,8 +92,8 @@ export const buildAngularParameters = async (project: AngularProject): Promise<s
         content: isTryOnlineProject
           ? src_app_app_component_project_html
           : project.fullscreen
-          ? src_app_app_component_fullscreen_html
-          : src_app_app_component_html,
+            ? src_app_app_component_fullscreen_html
+            : src_app_app_component_html,
       },
       'src/app/app.component.ts': {
         isBinary: false,

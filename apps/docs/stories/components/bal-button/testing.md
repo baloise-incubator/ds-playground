@@ -19,11 +19,9 @@ describe('Button', () => {
 
 <!-- END: human documentation -->
 
-
 ### Selectors
 
 | Selector        | Element                |
 | --------------- | ---------------------- |
 | `button.native` | Native button element. |
 | `button.label`  | Button label.          |
-

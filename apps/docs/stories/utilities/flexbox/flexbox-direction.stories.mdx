@@ -1,5 +1,14 @@
 import { Meta, Source, Canvas } from '@storybook/addon-docs'
-import { Banner, Lead, Code, CssFlexboxDirection, CssResponsiveTable, Footer, LinkCard, LinkCards } from '../../../.storybook/blocks'
+import {
+  Banner,
+  Lead,
+  Code,
+  CssFlexboxDirection,
+  CssResponsiveTable,
+  Footer,
+  LinkCard,
+  LinkCards,
+} from '../../../.storybook/blocks'
 
 <Meta
   title="CSS Utilities/Flexbox/Flex Direction"
@@ -22,49 +31,61 @@ import { Banner, Lead, Code, CssFlexboxDirection, CssResponsiveTable, Footer, Li
 
 Elements are arranged in a horizontal display.
 
-<Code language="html" code={`
+<Code
+  language="html"
+  code={`
 <div class="flex flex-direction-row gap-normal">
     <div class="bg-green text-align-center radius-normal p-normal">1</div>
     <div class="bg-green text-align-center radius-normal p-normal">2</div>
     <div class="bg-green text-align-center radius-normal p-normal">3</div>
 </div>
-`} />
+`}
+/>
 
 ## Row Reverse
 
 Elements are arranged horizontally, but in the reverse order.
 
-<Code language="html" code={`
+<Code
+  language="html"
+  code={`
 <div class="flex flex-direction-row-reverse gap-normal">
     <div class="bg-green text-align-center radius-normal p-normal">1</div>
     <div class="bg-green text-align-center radius-normal p-normal">2</div>
     <div class="bg-green text-align-center radius-normal p-normal">3</div>
 </div>
-`} />
+`}
+/>
 
 ## Column
 
 Elements are arranged in a vertical display.
 
-<Code language="html" code={`
+<Code
+  language="html"
+  code={`
 <div class="flex flex-direction-column gap-normal">
     <div class="bg-green text-align-center radius-normal p-normal">1</div>
     <div class="bg-green text-align-center radius-normal p-normal">2</div>
     <div class="bg-green text-align-center radius-normal p-normal">3</div>
 </div>
-`} />
+`}
+/>
 
 ## Column Reverse
 
 Elements are arranged vertically, but in the reverse order.
 
-<Code language="html" code={`
+<Code
+  language="html"
+  code={`
 <div class="flex flex-direction-column-reverse gap-normal">
     <div class="bg-green text-align-center radius-normal p-normal">1</div>
     <div class="bg-green text-align-center radius-normal p-normal">2</div>
     <div class="bg-green text-align-center radius-normal p-normal">3</div>
 </div>
-`} />
+`}
+/>
 
 ## Responsive
 

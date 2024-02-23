@@ -14,11 +14,6 @@ export const CssFlexboxGap = () => (
   <CssUtilitiesTable
     list={json}
     search="gap"
-    example={item => (
-      <div
-        className={`bg-red`}
-        style={{ height: item.value, width: item.value }}
-      ></div>
-    )}
+    example={item => <div className={`bg-red`} style={{ height: item.value, width: item.value }}></div>}
   />
 )

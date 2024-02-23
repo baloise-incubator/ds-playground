@@ -322,7 +322,7 @@ After that create a `index.html` file and add the following 2 references to your
 Add the `bal-app` to your root element.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -370,7 +370,10 @@ Like => `https://cdn.jsdelivr.net/npm/@baloise/design-system-styles@16/css/baloi
 Add the following 4 references to your `<head></head>`
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@baloise/design-system-styles/css/baloise-design-system.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@baloise/design-system-styles/css/baloise-design-system.css"
+/>
 <script
   type="module"
   src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/design-system-components/design-system-components.esm.js"
@@ -384,7 +387,7 @@ Add the following 4 references to your `<head></head>`
 Here is how you can integrate it into your project.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -422,9 +425,7 @@ Here is how you can integrate it into your project.
           The Baloise Design System consists of UI components and a clearly defined visual style, released as both code
           implementations and design artifacts to build any number of web applications.
         </p>
-        <bal-button href="https://design.baloise.dev" target="_blank">
-          Check out the Documentation</bal-button
-        >
+        <bal-button href="https://design.baloise.dev" target="_blank"> Check out the Documentation</bal-button>
       </main>
       <bal-footer>
         <!-- Footer content -->

@@ -22,7 +22,7 @@ export const TokensColorsBackgrounds = ({ overview }) => {
             <tbody key={key}>
               <tr>
                 <td style={{ verticalAlign: 'top' }} className="border-none">
-                <Clipboard label={item.name} value={`var(--${item.name})`} />
+                  <Clipboard label={item.name} value={`var(--${item.name})`} />
                 </td>
                 <td style={{ verticalAlign: 'top' }} className="border-none">
                   <p className={`mt-none mb-x-small text-small font-weight-bold py-xx-small`}>{item.value}</p>

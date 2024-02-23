@@ -34,9 +34,6 @@
       "@baloise/ds-core": [
         "packages/core/src/index.ts"
       ],
-      "@baloise/ds-table": [
-        "packages/table/src/index.ts"
-      ],
       "@baloise/ds-icons": [
         "packages/icons/src/index.ts"
       ],
@@ -48,6 +45,9 @@
       ],
       "@baloise/ds-react": [
         "packages/react/src/index.ts"
+      ],
+      "@baloise/ds-table": [
+        "packages/table/src/index.ts"
       ],
       "@baloise/ds-testing": [
         "packages/testing/src/index.ts"

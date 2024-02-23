@@ -4,7 +4,8 @@
   "homepage": "https://design.baloise.dev",
   "license": "Apache-2.0",
   "scripts": {
-    "format": "nx format:write --all",
+    "docs": "npx nx run docs:start",
+    "format": "npx nx format:write --all",
     "registry": "bash scripts/registry",
     "changeset": "node scripts/changeset.mjs"
   },

@@ -10,12 +10,12 @@ const icons = [
     color: name.endsWith('purple')
       ? 'purple'
       : name.endsWith('red')
-      ? 'red'
-      : name.endsWith('green')
-      ? 'green'
-      : name.endsWith('tangerine')
-      ? 'yellow'
-      : 'primary',
+        ? 'red'
+        : name.endsWith('green')
+          ? 'green'
+          : name.endsWith('tangerine')
+            ? 'yellow'
+            : 'primary',
   })),
 ].sort((a, b) => a.name.localeCompare(b.name))
 

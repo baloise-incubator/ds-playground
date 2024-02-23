@@ -107,8 +107,8 @@ export const GridComponent = ({
     position === 'top'
       ? 'justify-content-center align-items-start'
       : position === 'bottom-end'
-      ? 'justify-content-flex-end align-items-flex-end'
-      : 'justify-content-center align-items-center'
+        ? 'justify-content-flex-end align-items-flex-end'
+        : 'justify-content-center align-items-center'
 
   return (
     <div className="col is-6">

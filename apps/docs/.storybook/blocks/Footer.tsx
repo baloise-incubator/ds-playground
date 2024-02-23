@@ -28,11 +28,7 @@ export const Footer = ({ children }) => {
           <a className="link" href="https://www.baloise.ch/en/about-us/information/site-notice.html" target="_blank">
             Site notice
           </a>
-          <a
-            className="link"
-            href="https://www.baloise.ch/en/about-us/information/legal-notice.html"
-            target="_blank"
-          >
+          <a className="link" href="https://www.baloise.ch/en/about-us/information/legal-notice.html" target="_blank">
             Legal notice
           </a>
           <a className="link" href="https://www.baloise.ch/en/about-us/information/privacy-policy.html" target="_blank">
