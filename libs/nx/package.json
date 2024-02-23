@@ -14,7 +14,8 @@
     "replace-in-file": "~7.1.0",
     "fs-extra": "11.2.0",
     "sass": "~1.70.0",
-    "clean-css": "^5.3.3"
+    "clean-css": "^5.3.3",
+    "archiver": "~6.0.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",

@@ -34,8 +34,8 @@
       "@baloise/ds-core": [
         "packages/core/src/index.ts"
       ],
-      "@baloise/ds-grid": [
-        "packages/grid/src/index.ts"
+      "@baloise/ds-table": [
+        "packages/table/src/index.ts"
       ],
       "@baloise/ds-icons": [
         "packages/icons/src/index.ts"

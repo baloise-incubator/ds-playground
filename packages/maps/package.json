@@ -9,6 +9,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "homepage": "https://design.baloise.dev",
   "license": "Apache-2.0"
 }

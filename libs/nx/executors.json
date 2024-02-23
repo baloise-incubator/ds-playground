@@ -19,6 +19,11 @@
       "implementation": "./src/executors/build-svg/executor",
       "schema": "./src/executors/build-svg/schema.json",
       "description": "build-svg executor"
+    },
+    "build-docs": {
+      "implementation": "./src/executors/build-docs/executor",
+      "schema": "./src/executors/build-docs/schema.json",
+      "description": "build-docs executor"
     }
   }
 }

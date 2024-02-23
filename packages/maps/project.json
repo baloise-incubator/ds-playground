@@ -39,7 +39,7 @@
         "assets": ["{projectRoot}/src/assets"],
         "project": "{projectRoot}/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"]
+        "format": ["esm"]
       }
     }
   },

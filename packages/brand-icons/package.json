@@ -10,5 +10,9 @@
     "access": "public"
   },
   "homepage": "https://design.baloise.dev",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "type": "module",
+  "types": "dist/index.esm.d.ts",
+  "module": "dist/index.esm.js",
+  "main": "dist/index.esm.js"
 }
