@@ -8,16 +8,21 @@ import { execSync } from 'child_process'
 
 export default async function runExecutor(options: BuildDocsExecutorSchema) {
   try {
-    const downloadPath = join(options.projectRoot, 'public', 'assets', 'download')
-    await mkdir(downloadPath, { recursive: true })
-    await archive(options.fontsAssetPath, downloadPath, 'fonts.zip')
-    await archive(options.iconsAssetPath, downloadPath, 'icons.zip')
-    await archive(options.brandIconsAssetPath, downloadPath, 'brand-icons.zip')
-    await archive(options.mapMarkersAssetPath, downloadPath, 'map-markers.zip')
-    await archive(options.faviconsAssetPath, downloadPath, 'favicons.zip')
-    await archive(options.figmaTokensAssetPath, downloadPath, 'figma-tokens.zip')
     await copyResources(options)
-    await compile(options)
+
+    if (options.serve !== true) {
+      const downloadPath = join(options.projectRoot, 'public', 'assets', 'download')
+      await mkdir(downloadPath, { recursive: true })
+
+      await archive(options.fontsAssetPath, downloadPath, 'fonts.zip')
+      await archive(options.iconsAssetPath, downloadPath, 'icons.zip')
+      await archive(options.brandIconsAssetPath, downloadPath, 'brand-icons.zip')
+      await archive(options.mapMarkersAssetPath, downloadPath, 'map-markers.zip')
+      await archive(options.faviconsAssetPath, downloadPath, 'favicons.zip')
+      await archive(options.figmaTokensAssetPath, downloadPath, 'figma-tokens.zip')
+
+      await compile(options)
+    }
   } catch (error) {
     console.error(error)
     return { success: false }

@@ -6,4 +6,5 @@ export interface BuildDocsExecutorSchema {
   mapMarkersAssetPath: string
   faviconsAssetPath: string
   figmaTokensAssetPath: string
+  serve: boolean
 } // eslint-disable-line

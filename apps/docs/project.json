@@ -4,10 +4,25 @@
   "targets": {
     "start": {
       "executor": "nx:run-commands",
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "pre-start"],
       "options": {
         "cwd": "{projectRoot}",
         "command": "npx storybook dev -p 6006"
+      }
+    },
+    "pre-start": {
+      "executor": "@baloise/ds-nx:build-docs",
+      "dependsOn": ["^build"],
+      "outputs": [
+        "{projectRoot}/public/build",
+        "{projectRoot}/public/assets/download",
+        "{projectRoot}/public/assets/fonts",
+        "{projectRoot}/stories/data",
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "projectRoot": "{projectRoot}",
+        "serve": true
       }
     },
     "build": {
