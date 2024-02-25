@@ -44,6 +44,9 @@ jobs:
       - name: Check format
         run: npx nx format:check
 
+      - name: Check spelling
+        run: npm run spell
+
       - name: Lint & test
         run: npx nx run-many -t lint test
         # run: npx nx affected -t lint test
