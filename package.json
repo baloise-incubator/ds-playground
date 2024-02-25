@@ -14,7 +14,7 @@
     "packages/*",
     "libs/*",
     "apps/*",
-    "test"
+    "e2e"
   ],
   "nx": {
     "includedScripts": []
