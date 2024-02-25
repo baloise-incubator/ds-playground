@@ -25,9 +25,7 @@
     "loader/"
   ],
   "scripts": {
-    "serve": "BAL_DEVELOPMENT=true stencil build --dev --serve --watch",
-    "dev": "BAL_DOCUMENTATION=true stencil build --watch",
-    "build3": "stencil build"
+    "dev": "BAL_DOCUMENTATION=true stencil build --watch"
   },
   "dependencies": {
     "@baloise/ds-styles": "0.0.0",

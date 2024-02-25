@@ -24,6 +24,11 @@
       "implementation": "./src/executors/build-docs/executor",
       "schema": "./src/executors/build-docs/schema.json",
       "description": "build-docs executor"
+    },
+    "build-e2e": {
+      "implementation": "./src/executors/build-e2e/executor",
+      "schema": "./src/executors/build-e2e/schema.json",
+      "description": "build-e2e executor"
     }
   }
 }

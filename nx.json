@@ -74,7 +74,7 @@
     }
   ],
   "release": {
-    "projects": ["*", "!output-target-*", "!ds-nx", "!docs"]
+    "projects": ["*", "!output-target-*", "!ds-nx", "!docs", "!e2e"]
   },
   "generators": {
     "@nx/react": {

@@ -1,6 +1,7 @@
 {
   "name": "@baloise/output-target-angular",
   "version": "0.0.0",
+  "private": true,
   "dependencies": {
     "@stencil/core": "~4.11.0",
     "tslib": "^2.3.0"

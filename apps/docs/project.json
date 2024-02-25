@@ -4,13 +4,13 @@
   "targets": {
     "start": {
       "executor": "nx:run-commands",
-      "dependsOn": ["^build", "pre-start"],
+      "dependsOn": ["^build", "prepare"],
       "options": {
         "cwd": "{projectRoot}",
         "command": "npx storybook dev -p 6006"
       }
     },
-    "pre-start": {
+    "prepare": {
       "executor": "@baloise/ds-nx:build-docs",
       "dependsOn": ["^build"],
       "outputs": [

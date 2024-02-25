@@ -1,6 +1,7 @@
 {
   "name": "docs",
   "version": "0.0.0",
+  "private": true,
   "dependencies": {
     "@baloise/ds-brand-icons": "0.0.0",
     "@baloise/ds-core": "0.0.0",

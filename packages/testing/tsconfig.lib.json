@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "dist/out-tsc",
     "declaration": true,
-    "types": ["cypress", "node"]
+    "types": ["node"],
+    "target": "ES5"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]

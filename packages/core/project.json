@@ -4,6 +4,21 @@
   "sourceRoot": "packages/core/src",
   "projectType": "library",
   "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build"],
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "BAL_DEVELOPMENT=true stencil build --dev --serve --watch --port=4000"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "{projectRoot}",
+        "command": "BAL_DEVELOPMENT=true stencil build --dev --serve --watch --port=3333"
+      }
+    },
     "build": {
       "executor": "@baloise/ds-nx:build-core",
       "outputs": [
