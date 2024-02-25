@@ -7,6 +7,7 @@
     "start": "npx nx run core:start",
     "docs": "npx nx run docs:start",
     "e2e": "npx nx run e2e:start",
+    "build": "npx nx run-many -t build",
     "lint": "npx nx run-many -t lint",
     "test": "npx nx run-many -t test",
     "format": "npx nx format:write --all",

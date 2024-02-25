@@ -24,6 +24,10 @@
       "options": {
         "projectRoot": "{projectRoot}"
       }
+    },
+    "test": {
+      "command": "echo done",
+      "outputs": ["{options.outputFile}"]
     }
   }
 }

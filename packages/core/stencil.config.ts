@@ -86,7 +86,7 @@ export const config: Config = {
         { src: '../../css/css/baloise-design-system.css', dest: 'assets/baloise-design-system-old.css', warn: true },
         { src: '../../styles/css/baloise-design-system.css', dest: 'assets/baloise-design-system.css', warn: true },
         {
-          src: '../../maps/dist/index.cjs.js',
+          src: '../../maps/dist/index.esm.js',
           dest: 'assets/maps.js',
         },
         { src: '../../fonts/assets', dest: 'assets/fonts', warn: true },
