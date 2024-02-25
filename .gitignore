@@ -74,20 +74,20 @@ e2e/downloads
 resources/data
 !resources/data/tags.json
 
-apps/docs/stories/contributors.md
-apps/docs/stories/development/00-guides/theming/theming.md
-apps/docs/public/assets/fonts/
-apps/docs/public/assets/data/
-apps/docs/public/assets/download/
-apps/docs/public/assets/css/baloise-design-system.min.css
-apps/docs/public/assets/css/design-system-table.css
-apps/docs/public/assets/css/baloise-design-system.min.css
-apps/docs/public/build/
-apps/docs/stories/components/**/api.md
-apps/docs/public/assets/images/map-markers
-apps/docs/public/assets/images/brand-icons
-apps/docs/public/assets/images/icons
-apps/docs/stories/assets/data
-apps/docs/dist
+docs/stories/contributors.md
+docs/stories/development/00-guides/theming/theming.md
+docs/public/assets/fonts/
+docs/public/assets/data/
+docs/public/assets/download/
+docs/public/assets/css/baloise-design-system.min.css
+docs/public/assets/css/design-system-table.css
+docs/public/assets/css/baloise-design-system.min.css
+docs/public/build/
+docs/stories/components/**/api.md
+docs/public/assets/images/map-markers
+docs/public/assets/images/brand-icons
+docs/public/assets/images/icons
+docs/stories/assets/data
+docs/dist
 
 .angular

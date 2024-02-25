@@ -14,7 +14,7 @@ import { createThemingMarkdown } from './markdown-theming'
 import { parseStyleDocs } from './markdonw-styles'
 import { MarkdownTable } from './docs-util'
 
-const DOC_PATH = path.join(__dirname, '../../../../apps/docs')
+const DOC_PATH = path.join(__dirname, '../../../../docs')
 
 export const CustomDocumentationGenerator: OutputTargetDocsCustom = {
   type: 'docs-custom',

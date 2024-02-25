@@ -54,13 +54,13 @@ async function copyResources(options: BuildDocsExecutorSchema) {
     await copy(from, join(options.projectRoot, 'public', to), { recursive: true, overwrite: true })
   }
 
-  const packageRoot = join(options.projectRoot, '..', '..', 'packages')
+  const packageRoot = join(options.projectRoot, '..', 'packages')
   await copyToAsset(join(packageRoot, 'maps/src/assets'), 'images/map-markers')
   await copyToAsset(join(packageRoot, 'icons/src/icons.json'), 'data/icons.json')
   await copyToAsset(join(packageRoot, 'brand-icons/src/icons.json'), 'data/brand-icons.json')
   await copyToAsset(join(packageRoot, 'styles/docs'), 'data/styles')
 
-  const resourceRoot = join(options.projectRoot, '..', '..', 'resources', 'data')
+  const resourceRoot = join(options.projectRoot, '..', 'resources', 'data')
   await copyToAsset(join(resourceRoot, 'commands.json'), 'data/commands.json')
   await copyToAsset(join(resourceRoot, 'components.json'), 'data/components.json')
   await copyToAsset(join(resourceRoot, 'components.d.ts'), 'data/components.d.ts')

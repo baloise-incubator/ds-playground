@@ -8,6 +8,7 @@
     "docs": "npx nx run docs:start",
     "e2e": "npx nx run e2e:start",
     "build": "npx nx run-many -t build",
+    "build:force": "npx nx reset && npx nx run-many -t build",
     "lint": "npx nx run-many -t lint",
     "test": "npx nx run-many -t test",
     "format": "npx nx format:write --all",
@@ -18,7 +19,7 @@
   "workspaces": [
     "packages/*",
     "libs/*",
-    "apps/*",
+    "docs",
     "e2e"
   ],
   "nx": {

@@ -220,7 +220,7 @@ export async function createTagList() {
 }
 
 async function copyToDocs(options: BuildCoreExecutorSchema) {
-  await copy(join(options.projectRoot, 'www'), join('test/generated/www'))
+  await copy(join(options.projectRoot, 'www'), join('e2e/generated/www'))
 }
 
 async function cleanUp(options: BuildCoreExecutorSchema) {
