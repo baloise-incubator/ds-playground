@@ -29,9 +29,9 @@ Check out the [documentation](https://design.baloise.dev)
 | [Components Vue](https://design.baloise.dev)     | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-vue)     | Vue component proxies based on the the core package.                    |
 | [Components React](https://design.baloise.dev)   | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-react)   | React component proxies based on the the core package.                  |
 | [Components Table](https://design.baloise.dev)   | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-table)   | Integration library for AG-Grid with styles and renderer functions      |
-| [CLI](https://design.baloise.dev)               | ![npm](https://img.shields.io/npm/v/@baloise/design-system-cli)                | CLI to scaffold an angular project or migration helpers.                |
+| [CLI](https://design.baloise.dev)                | ![npm](https://img.shields.io/npm/v/@baloise/design-system-cli)                | CLI to scaffold an angular project or migration helpers.                |
 | [Tokens](https://design.baloise.dev)             | ![npm](https://img.shields.io/npm/v/@baloise/design-system-tokens)             | Design Tokens like color and spacing.                                   |
-| [Styles](https://design.baloise.dev)            | ![npm](https://img.shields.io/npm/v/@baloise/design-system-styles)             | Basic CSS styles with utility classes.                                  |
+| [Styles](https://design.baloise.dev)             | ![npm](https://img.shields.io/npm/v/@baloise/design-system-styles)             | Basic CSS styles with utility classes.                                  |
 | [Icons](https://design.baloise.dev)              | ![npm](https://img.shields.io/npm/v/@baloise/design-system-icons)              | SVG icons of the design system.                                         |
 | [Favicons](https://design.baloise.dev)           | ![npm](https://img.shields.io/npm/v/@baloise/design-system-favicons)           | Favicons of the design system.                                          |
 | [Maps](https://design.baloise.dev)               | ![npm](https://img.shields.io/npm/v/@baloise/design-system-maps)               | Google Maps styles and icons.                                           |
