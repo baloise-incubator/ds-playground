@@ -14,4 +14,8 @@ resources/data/tags.json
 
 /.nx/cache
 .angular
+generated
 
+e2e/cypress/snapshots/actual
+e2e/cypress/snapshots/diff
+e2e/cypress/videos

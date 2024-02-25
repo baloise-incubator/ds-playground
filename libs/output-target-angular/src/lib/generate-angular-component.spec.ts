@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentCompilerTypeReferences } from '@stencil/core/internal'
 import { createComponentDefinition } from './generate-angular-component'
 

@@ -69,6 +69,8 @@ libs/output-targets-react/CHANGELOG.md
 libs/output-targets-vue/CHANGELOG.md
 
 e2e/generated
+e2e/downloads
+
 resources/data
 !resources/data/tags.json
 

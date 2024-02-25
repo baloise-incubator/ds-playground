@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApplicationRef, ComponentFactoryResolver, Injectable, Injector, NgZone, ViewContainerRef } from '@angular/core'
 import type { FrameworkDelegate } from '@baloise/ds-core'
 

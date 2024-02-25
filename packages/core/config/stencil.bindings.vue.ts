@@ -41,7 +41,7 @@ export const VueTestGenerator = (): any =>
     includeImportCustomElements: true,
     includeDefineCustomElements: false,
     includeInternalComponents: true,
-    proxiesFile: '../../test/generated/vue-components/index.ts',
+    proxiesFile: '../../e2e/generated/vue-components/index.ts',
     componentCorePackage: '../',
     componentModels: vueComponentModels,
     customElementsDir: 'components',

@@ -25,7 +25,8 @@
               "{projectRoot}/vite.config.{js,ts,mjs,mts}",
               "{projectRoot}/resources/**/*.ts",
               "{projectRoot}/angular-component-lib/**/*.ts"
-            ]
+            ],
+            "ignoredDependencies": ["util"]
           }
         ]
       }

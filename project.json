@@ -9,14 +9,6 @@
         "config": ".verdaccio/config.yml",
         "storage": "tmp/local-registry/storage"
       }
-    },
-    "e2e": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["testing:build"],
-      "options": {
-        "commands": ["npx nx run core:start", "npx nx run e2e:start"],
-        "parallel": true
-      }
     }
   }
 }

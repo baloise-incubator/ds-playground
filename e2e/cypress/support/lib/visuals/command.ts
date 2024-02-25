@@ -163,21 +163,18 @@ function takeScreenshot(
 ): Cypress.Chainable<string> {
   const objToOperateOn = subject !== undefined ? cy.get(subject) : cy
   let screenshotPath: string
-  return (
-    objToOperateOn
-      .waitAfterFramePaint()
-      .waitAfterIdleCallback()
-      .screenshot(name, {
-        ...screenshotOptions,
-        onAfterScreenshot(_el, props) {
-          screenshotPath = props.path
-        },
-      })
-      // @ts-ignore
-      .then(() => {
-        return screenshotPath
-      })
-  )
+  return objToOperateOn
+    .waitAfterFramePaint()
+    .waitAfterIdleCallback()
+    .screenshot(name, {
+      ...screenshotOptions,
+      onAfterScreenshot(_el, props) {
+        screenshotPath = props.path
+      },
+    })
+    .then(() => {
+      return screenshotPath
+    })
 }
 
 /** Call the plugin to compare snapshot images and generate a diff */
