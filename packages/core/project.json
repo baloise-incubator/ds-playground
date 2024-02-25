@@ -16,7 +16,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "{projectRoot}",
-        "command": "BAL_DEVELOPMENT=true stencil build --dev --serve --watch --port=3333"
+        "command": "BAL_DEVELOPMENT=true stencil build --serve --watch --port=3333"
       }
     },
     "build": {
