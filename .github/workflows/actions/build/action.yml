@@ -10,6 +10,8 @@ runs:
   using: 'composite'
   steps:
     - uses: ./.github/workflows/actions/setup
+      with:
+        token: ${{ inputs.token }}
 
     - name: Clean install
       shell: bash

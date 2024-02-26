@@ -1,9 +1,13 @@
 name: 'Setup'
 description: 'Setup'
+inputs:
+  token:
+    description: 'GitHub token'
 runs:
   using: 'composite'
   steps:
     - name: Git Identity
+      if: inputs.token != ''
       run: |
         git config --global user.name 'baopso'
         git config --global user.email 'Group.CH_Open-Source@baloise.ch'
