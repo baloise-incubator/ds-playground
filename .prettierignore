@@ -19,8 +19,7 @@ generated
 docs/public
 docs/stories/assets
 
-e2e/cypress/snapshots/actual
-e2e/cypress/snapshots/diff
+e2e/cypress/snapshots
 e2e/cypress/videos
 
 package-lock.json
