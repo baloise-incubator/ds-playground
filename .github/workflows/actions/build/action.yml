@@ -1,4 +1,5 @@
-name: '👷 Build Design System'
+name: 'Build'
+description: 'Build'
 inputs:
   build:
     description: 'Build packages'

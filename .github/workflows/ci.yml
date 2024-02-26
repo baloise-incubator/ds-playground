@@ -6,8 +6,6 @@ on:
       - main
       - changeset-release/main
   pull_request:
-    branches: ['**']
-    types: [opened, synchronize, reopened]
   merge_group:
   workflow_dispatch:
 
@@ -19,10 +17,10 @@ jobs:
   build:
     name: 👷 Build Design System
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       HUSKY: 0
     steps:
-      - name: 👷 Build Design System
-        uses: ./.github/workflows/actions/build
+      - uses: ./.github/workflows/actions/build
         with:
           build: true
