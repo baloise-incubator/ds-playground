@@ -20,6 +20,7 @@
     },
     "prepare": {
       "executor": "@baloise/ds-nx:build-e2e",
+      "dependsOn": ["^build"],
       "outputs": ["{projectRoot}/generated"],
       "options": {
         "projectRoot": "{projectRoot}"
