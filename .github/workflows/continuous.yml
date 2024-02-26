@@ -1,4 +1,4 @@
-name: CI
+name: Continuous
 
 on:
   push:
@@ -45,7 +45,7 @@ jobs:
       - uses: ./.github/workflows/actions/e2e-components
 
   e2e-visual:
-    name: 🧪 Visual Tests
+    name: 🧪 Visual, A11y & Behaviour Tests
     runs-on: ubuntu-22.04
     timeout-minutes: 30
     env:
