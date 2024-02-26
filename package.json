@@ -12,7 +12,7 @@
     "lint": "npx nx run-many -t lint",
     "test": "npx nx run-many -t test",
     "format": "npx nx format:write --all",
-    "spell": "cspell \"packages/components/src/**/*.{md,mdx,tsx}\" --no-progress",
+    "spell": "cspell --no-progress",
     "registry": "bash scripts/registry",
     "changeset": "node scripts/changeset.mjs"
   },
