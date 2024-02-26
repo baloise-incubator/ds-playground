@@ -4,6 +4,8 @@ inputs:
   build:
     description: 'Build packages'
     default: true
+  token:
+    description: 'GitHub token'
 runs:
   using: 'composite'
   steps:
@@ -13,7 +15,7 @@ runs:
         git config --global user.email 'Group.CH_Open-Source@baloise.ch'
         git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.token }}
 
     - name: Stetup Node.JS
       uses: actions/setup-node@v3
