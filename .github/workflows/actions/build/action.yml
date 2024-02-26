@@ -7,11 +7,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout project
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
     - name: Git Identity
       run: |
         git config --global user.name 'baopso'
