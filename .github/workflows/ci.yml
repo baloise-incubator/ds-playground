@@ -29,3 +29,18 @@ jobs:
         with:
           build: true
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  e2e-components:
+    name: 🧪 Component Tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      HUSKY: 0
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/setup
+      - uses: ./.github/workflows/actions/e2e-setup
+      - uses: ./.github/workflows/actions/e2e-components
