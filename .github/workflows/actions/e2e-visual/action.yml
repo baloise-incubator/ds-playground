@@ -11,7 +11,6 @@ runs:
         working-directory: e2e
         install: false
         browser: chrome
-        spec: e2e/cypress/e2e/visual/**/*.cy.ts
         env: type=regression
       env:
         SPLIT: ${{ strategy.job-total }}
