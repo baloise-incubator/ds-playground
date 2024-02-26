@@ -14,6 +14,7 @@ runs:
         git config --global user.name 'baopso'
         git config --global user.email 'Group.CH_Open-Source@baloise.ch'
         git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
 
@@ -24,30 +25,37 @@ runs:
         cache: 'npm'
 
     - name: Update NPM registry path
+      shell: bash
       run: npm run registry
 
     - name: Clean install
+      shell: bash
       run: npm ci
 
     - name: Define Nx cache
       uses: nrwl/nx-set-shas@v4
 
     - name: Check format
+      shell: bash
       run: npx nx format:check
 
     - name: Check spelling
+      shell: bash
       run: npm run spell
 
     - name: Lint & Test
       if: inputs.build == 'false'
+      shell: bash
       run: npx nx run-many -t lint test
 
     - name: Lint & Test & Build
       if: inputs.build == 'true'
+      shell: bash
       run: npx nx run-many -t lint test build
 
     - name: Releae dry-run
       if: inputs.build == 'true'
+      shell: bash
       run: npx nx release publish -d
 
     - name: Upload E2E artifacts
