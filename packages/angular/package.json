@@ -19,7 +19,7 @@
   "dependencies": {
     "@baloise/ds-core": "0.0.0",
     "@baloise/ds-angular-common": "0.0.0",
-    "tslib": "^2.3.0"
+    "tslib": "~2.3.0"
   },
   "sideEffects": false
 }

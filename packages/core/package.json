@@ -32,7 +32,7 @@
     "@baloise/ds-css": "0.0.0",
     "@baloise/ds-icons": "0.0.0",
     "@baloise/web-app-utils": "3.11.2",
-    "@floating-ui/dom": "~1.5.1",
+    "@floating-ui/dom": "~1.6.3",
     "@popperjs/core": "~2.11.4",
     "@stencil/core": "4.11.0",
     "big.js": "~6.2.1",

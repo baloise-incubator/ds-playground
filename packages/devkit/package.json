@@ -12,10 +12,10 @@
   "homepage": "https://design.baloise.dev",
   "license": "Apache-2.0",
   "dependencies": {
-    "@angular-devkit/core": "^15.0.5",
-    "@angular-devkit/schematics": "^15.0.5",
-    "@schematics/angular": "^15.0.5",
-    "tslib": "^2.3.0"
+    "@angular-devkit/core": "~15.0.5",
+    "@angular-devkit/schematics": "~15.0.5",
+    "@schematics/angular": "~15.0.5",
+    "tslib": "~2.3.0"
   },
   "schematics": "./src/collection.json"
 }
