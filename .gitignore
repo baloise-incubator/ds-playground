@@ -45,7 +45,6 @@ Thumbs.db
 .nx/cache
 .stencil
 
-packages/core/src/utils/constants/icons.constant.ts
 packages/core/icons
 packages/core/components
 packages/core/loader
