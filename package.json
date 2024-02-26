@@ -31,7 +31,7 @@
     "includedScripts": []
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~15.0.0",
+    "@angular-devkit/build-angular": "~17.2.1",
     "@angular-devkit/core": "~15.0.0",
     "@angular-devkit/schematics": "~15.0.0",
     "@angular-eslint/eslint-plugin": "~17.0.0",
