@@ -1,5 +1,5 @@
-export type { Platforms } from '@baloise/ds-testing'
-export { selectors, balViewport, testOnPlatforms } from '@baloise/ds-testing'
+export type { Platforms } from '../../../packages/testing/src'
+export { selectors, balViewport, testOnPlatforms } from '../../../packages/testing/src'
 
 export { i18nBalDate, newBalStepOption, newBalTabOption } from '@baloise/ds-core'
 

@@ -27,8 +27,8 @@
 
 import 'cypress-axe'
 
-import '@baloise/ds-testing/add-custom-commands'
-import '@baloise/ds-testing/add-override-commands'
+import '../../../packages/testing/src/add-custom-commands'
+import '../../../packages/testing/src/add-override-commands'
 
 import type { RunOptions } from 'axe-core'
 

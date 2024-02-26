@@ -4,7 +4,7 @@
   "targets": {
     "start": {
       "executor": "nx:run-commands",
-      "dependsOn": [{ "projects": ["core", "testing"], "target": "build" }],
+      "dependsOn": [{ "projects": ["core"], "target": "build" }],
       "options": {
         "commands": ["npx nx run core:serve", "npx nx run e2e:serve"],
         "parallel": true

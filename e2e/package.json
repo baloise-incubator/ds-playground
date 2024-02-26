@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@baloise/ds-core": "0.0.0",
-    "@baloise/ds-testing": "0.0.0"
+    "@baloise/ds-core": "0.0.0"
   },
   "scripts": {
     "postinstall": "cypress install"
