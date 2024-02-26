@@ -10,13 +10,13 @@ Closes #
   - Visual
   - Functional
   - Browser
-      - Desktop
-          - Chrome
-          - Edge
-          - Safari
-          - Firefox
-      - Tablet
-          - iPad (Landscape / Portrait)
-      - Mobile
-          - Safari iOS
-          - Chrome Preview
+    - Desktop
+      - Chrome
+      - Edge
+      - Safari
+      - Firefox
+    - Tablet
+      - iPad (Landscape / Portrait)
+    - Mobile
+      - Safari iOS
+      - Chrome Preview
