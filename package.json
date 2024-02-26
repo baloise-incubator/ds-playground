@@ -14,7 +14,11 @@
     "format": "npx nx format:write --all",
     "spell": "cspell --no-progress",
     "registry": "bash scripts/registry",
-    "changeset": "node scripts/changeset.mjs"
+    "changeset": "node scripts/changeset.mjs",
+    "ng:16": "cd test/angular && bash build.sh v16",
+    "ng:16:start": "npm --prefix test/angular/v16 run start",
+    "ng:17": "cd test/angular && bash build.sh v17",
+    "ng:17:start": "npm --prefix test/angular/v17 run start"
   },
   "private": true,
   "workspaces": [

@@ -2,17 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // Resets CSS for all browser
-import '@baloise/design-system-styles/css/normalize.css'
-import '@baloise/design-system-styles/css/structure.css'
+import '@baloise/ds-styles/css/normalize.css'
+import '@baloise/ds-styles/css/structure.css'
 
 // Custom font faces
-import '@baloise/design-system-styles/css/font.css'
+import '@baloise/ds-styles/css/font.css'
 
 // Core CSS, always required
-import '@baloise/design-system-styles/css/core.css'
+import '@baloise/ds-styles/css/core.css'
 
 // CSS utilities classes (optional)
-import '@baloise/design-system-styles/css/utilities/all.css'
+import '@baloise/ds-styles/css/utilities/all.css'
 
 import App from './App'
 
