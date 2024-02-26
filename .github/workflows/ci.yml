@@ -6,121 +6,23 @@ on:
       - main
       - changeset-release/main
   pull_request:
+    branches: ['**']
+    types: [opened, synchronize, reopened]
+  merge_group:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  main:
-    name: 👷 CI
+  build:
+    name: 👷 Build Design System
     runs-on: ubuntu-latest
     env:
       HUSKY: 0
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v4
+      - name: 👷 Build Design System
+        uses: ./.github/workflows/actions/build
         with:
-          fetch-depth: 0
-
-      - name: Stetup Node.JS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Update NPM registry path
-        run: npm run registry
-
-      - name: Clean install
-        run: npm ci
-
-      - name: Define Nx cache
-        uses: nrwl/nx-set-shas@v4
-
-      # - name: Prepare build
-      #   run: npx nx run-many -t prepare
-
-      - name: Check format
-        run: npx nx format:check
-
-      - name: Check spelling
-        run: npm run spell
-
-      - name: Lint & test
-        run: npx nx run-many -t lint test
-        # run: npx nx affected -t lint test
-
-      - name: Changeset
-        if: github.ref == 'refs/heads/main'
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: npx nx run-many -t build
-        env:
-          HUSKY_DISABLED: 1
-          BAL_DS_RELEASE: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      - name: Changeset outputs
-        shell: bash
-        run: |
-          echo "Changeset published - ${{ steps.changesets.outputs.published }}"
-          echo "Changeset publishedPackages - ${{ steps.changesets.outputs.publishedPackages }}"
-          echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
-          echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"
-
-      - name: Build
-        if: steps.changesets.outputs.published == 'false'
-        run: npx nx run-many -t build
-        # run: npx nx affected -t build
-
-      - name: Releae dry-run
-        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
-        run: npx nx release publish -d
-
-      # - name: Update lock file
-      #   if: steps.changesets.outputs.published == 'true'
-      #   run: npm install
-      #   shell: bash
-
-      # - name: Commit lock file
-      #   if: steps.changesets.outputs.published == 'true'
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     add: 'package-lock.json'
-      #     message: 'chore(): update lock file'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Tag release
-      #   if: steps.changesets.outputs.published == 'true'
-      #   uses: thejeff77/action-push-tag@v1.0.0
-      #   with:
-      #     tag: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-      #     message: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-
-      # - name: Update changelog file
-      #   if: steps.changesets.outputs.published == 'true'
-      #   run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/tokens/CHANGELOG.md > CHANGELOG.md
-      #   shell: bash
-
-      # - name: Commit changelog
-      #   if: steps.changesets.outputs.published == 'true'
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     add: 'CHANGELOG.md'
-      #     message: 'chore(): update changelog'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Merge main -> production
-      #   if: steps.changesets.outputs.published == 'true'
-      #   uses: devmasx/merge-branch@master
-      #   with:
-      #     type: now
-      #     from_branch: main
-      #     target_branch: production
-      #     message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+          build: true

@@ -1,0 +1,61 @@
+name: '👷 Build Design System'
+inputs:
+  build:
+    description: 'Build packages'
+    default: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout project
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Git Identity
+      run: |
+        git config --global user.name 'baopso'
+        git config --global user.email 'Group.CH_Open-Source@baloise.ch'
+        git remote set-url origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Stetup Node.JS
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Update NPM registry path
+      run: npm run registry
+
+    - name: Clean install
+      run: npm ci
+
+    - name: Define Nx cache
+      uses: nrwl/nx-set-shas@v4
+
+    - name: Check format
+      run: npx nx format:check
+
+    - name: Check spelling
+      run: npm run spell
+
+    - name: Lint & Test
+      if: inputs.build == 'false'
+      run: npx nx run-many -t lint test
+
+    - name: Lint & Test & Build
+      if: inputs.build == 'true'
+      run: npx nx run-many -t lint test build
+
+    - name: Releae dry-run
+      if: inputs.build == 'true'
+      run: npx nx release publish -d
+
+    - name: Upload E2E artifacts
+      if: inputs.build == 'true'
+      uses: ./.github/workflows/actions/upload-archive
+      with:
+        name: test-e2e
+        output: test/TestE2eBuild.zip
+        paths: test/generated
