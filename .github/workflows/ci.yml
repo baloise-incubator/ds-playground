@@ -24,7 +24,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - uses: ./.github/workflows/actions/build
         with:
           build: true
@@ -44,3 +43,22 @@ jobs:
       - uses: ./.github/workflows/actions/setup
       - uses: ./.github/workflows/actions/e2e-setup
       - uses: ./.github/workflows/actions/e2e-components
+
+  e2e-visual:
+    name: 🧪 E2E Visual Tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      HUSKY: 0
+    needs: [build]
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/setup
+      - uses: ./.github/workflows/actions/e2e-setup
+      - uses: ./.github/workflows/actions/e2e-visual

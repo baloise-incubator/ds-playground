@@ -3,17 +3,23 @@ description: 'Cypress Components'
 runs:
   using: 'composite'
   steps:
-    - name: Run Cypress components tests 🧪
+    - name: Run Cypress
       uses: cypress-io/github-action@v6
       with:
+        start: node ./web-server.js
+        wait-on: 'http://localhost:3333'
         working-directory: e2e
         install: false
-        component: true
         browser: chrome
+        spec: e2e/cypress/e2e/visual/**/*.cy.ts
+        env: type=regression
+      env:
+        SPLIT: ${{ strategy.job-total }}
+        SPLIT_INDEX: ${{ strategy.job-index }}
 
     - name: Upload snapshots
       uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: e2e-components-snapshots
+        name: e2e-visual-snapshots-${{ strategy.job-index }}
         path: e2e/cypress/snapshots
