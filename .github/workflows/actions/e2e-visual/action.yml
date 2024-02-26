@@ -16,6 +16,12 @@ runs:
         SPLIT: ${{ strategy.job-total }}
         SPLIT_INDEX: ${{ strategy.job-index }}
 
+    - name: Report Visual Failures
+      if: failure()
+      working-directory: ./e2e
+      run: npx reg-cli cypress/snapshots/actual cypress/snapshots/base/visual cypress/snapshots/diff -R cypress/snapshots/report.html --ignoreChange --matchingThreshold 0.15
+      shell: bash
+
     - name: Upload snapshots
       uses: actions/upload-artifact@v3
       if: failure()
