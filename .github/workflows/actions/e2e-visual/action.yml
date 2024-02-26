@@ -19,7 +19,7 @@ runs:
     - name: Report Visual Failures
       if: failure()
       working-directory: ./e2e
-      run: npx reg-cli cypress/snapshots/actual cypress/snapshots/base/visual cypress/snapshots/diff -R cypress/snapshots/report.html --ignoreChange --matchingThreshold 0.15
+      run: npm run visual-report
       shell: bash
 
     - name: Upload snapshots

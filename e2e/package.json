@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "cypress install"
+    "postinstall": "cypress install",
+    "visual-report": "reg-cli cypress/snapshots/actual cypress/snapshots/base/visual cypress/snapshots/diff -R cypress/snapshots/report.html --ignoreChange --matchingThreshold 0.15"
   },
   "dependencies": {
     "@baloise/ds-core": "0.0.0",
