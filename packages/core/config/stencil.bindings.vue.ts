@@ -1,4 +1,4 @@
-import { vueOutputTarget } from '@baloise/output-target-vue/dist/src/index'
+import { vueOutputTarget } from '@baloise/output-target-vue'
 
 export const vueComponentModels: any[] = [
   {

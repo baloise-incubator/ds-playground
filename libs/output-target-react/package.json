@@ -11,6 +11,6 @@
     "react-dom": "~18.2.0"
   },
   "type": "commonjs",
-  "main": "./src/index.js",
-  "typings": "./src/index.d.ts"
+  "main": "./dist/src/index.js",
+  "typings": "./dist/src/index.d.ts"
 }

@@ -1,4 +1,4 @@
-import { reactOutputTarget } from '@baloise/output-target-react/dist/src/index'
+import { reactOutputTarget } from '@baloise/output-target-react'
 import { docComponents } from './doc.components'
 
 export const ReactGenerator = () =>

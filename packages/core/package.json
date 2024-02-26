@@ -50,5 +50,10 @@
     "luxon": "~3.4.3",
     "tslib": "2.1.0"
   },
+  "devDependencies": {
+    "@baloise/output-target-angular": "0.0.0",
+    "@baloise/output-target-react": "0.0.0",
+    "@baloise/output-target-vue": "0.0.0"
+  },
   "sideEffects": false
 }
