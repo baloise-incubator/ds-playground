@@ -53,7 +53,10 @@
   "devDependencies": {
     "@baloise/output-target-angular": "0.0.0",
     "@baloise/output-target-react": "0.0.0",
-    "@baloise/output-target-vue": "0.0.0"
+    "@baloise/output-target-vue": "0.0.0",
+    "@baloise/ds-maps": "0.0.0",
+    "@baloise/ds-brand-icons": "0.0.0",
+    "@baloise/ds-favicons": "0.0.0"
   },
   "sideEffects": false
 }
