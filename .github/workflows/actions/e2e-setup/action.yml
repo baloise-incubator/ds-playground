@@ -8,10 +8,11 @@ runs:
       working-directory: ./e2e
       shell: bash
 
-    # - name: Install Cypress
-    #   run: npm run cy:install
-    #   working-directory: ./e2e
-    #   shell: bash
+    - uses: ./.github/workflows/actions/download-archive
+      with:
+        name: core-artifacts
+        path: ./packages/core
+        filename: CoreDistArtifacts.zip
 
     - uses: ./.github/workflows/actions/download-archive
       with:

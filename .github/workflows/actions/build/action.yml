@@ -41,6 +41,14 @@ runs:
       shell: bash
       run: npx nx release publish -d
 
+    - name: Upload core artifacts
+      if: inputs.build == 'true'
+      uses: ./.github/workflows/actions/upload-archive
+      with:
+        name: core-artifacts
+        output: packages/core/CoreDistArtifacts.zip
+        paths: packages/core/dist
+
     - name: Upload E2E artifacts
       if: inputs.build == 'true'
       uses: ./.github/workflows/actions/upload-archive
