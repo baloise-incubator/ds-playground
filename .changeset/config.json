@@ -3,7 +3,7 @@
   "changelog": ["./my-changelog-config.js", { "repo": "baloise-incubator/ds-playground" }],
   "commit": false,
   "fixed": [["@baloise/ds-*"]],
-  "ignore ": [["@baloise/ds-output-target-*"]],
+  "ignore ": [["@baloise/ds-output-target-*", "@baloise/ds-nx", "e2e", "docs"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
