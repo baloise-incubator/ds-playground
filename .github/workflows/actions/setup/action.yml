@@ -17,9 +17,9 @@ runs:
         GITHUB_TOKEN: ${{ inputs.token }}
 
     - name: Stetup Node.JS
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 20
+        node-version: 18
         cache: 'npm'
 
     - name: Update NPM registry path
