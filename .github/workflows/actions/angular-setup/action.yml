@@ -44,7 +44,7 @@ runs:
       with:
         name: core-components
         path: ./packages/core
-        filename: coreComponents.zip
+        filename: CoreComponents.zip
 
     - uses: ./.github/workflows/actions/download-archive
       with:
