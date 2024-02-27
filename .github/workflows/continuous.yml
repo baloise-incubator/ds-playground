@@ -82,6 +82,9 @@ jobs:
       - uses: ./.github/workflows/actions/angular-setup
         with:
           app: ${{ matrix.apps }}
-      - uses: ./.github/workflows/actions/angular
+      - uses: ./.github/workflows/actions/angular-build
+        with:
+          app: ${{ matrix.apps }}
+      - uses: ./.github/workflows/actions/angular-test
         with:
           app: ${{ matrix.apps }}

@@ -3,7 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/angular-module/src",
   "prefix": "bal",
-  "tags": [],
   "projectType": "library",
   "targets": {
     "build": {
@@ -23,5 +22,6 @@
       },
       "defaultConfiguration": "production"
     }
-  }
+  },
+  "tags": ["scope:release", "type:package"]
 }

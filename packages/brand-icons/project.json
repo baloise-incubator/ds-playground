@@ -76,5 +76,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:release", "scope:docs", "scope:visual", "type:package"]
 }

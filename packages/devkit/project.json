@@ -15,5 +15,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:release", "type:package"]
 }

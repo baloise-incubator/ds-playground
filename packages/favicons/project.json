@@ -6,5 +6,6 @@
       "command": "eslint --no-eslintrc",
       "outputs": ["{options.outputFile}"]
     }
-  }
+  },
+  "tags": ["scope:release", "scope:docs", "scope:visual", "type:package"]
 }

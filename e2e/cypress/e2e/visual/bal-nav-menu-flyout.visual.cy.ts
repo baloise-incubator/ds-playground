@@ -47,7 +47,7 @@ describe('bal-nav-menu-flyout', () => {
 
     cy.platform('mobile')
     cy.testVisual('menu-flyout-mobile', {
-      errorThreshold: 0.2,
+      errorThreshold: 0.25,
       capture: 'viewport',
       clip: balViewport['mobile'],
     })

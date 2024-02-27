@@ -50,5 +50,6 @@
         "figmaTokensAssetPath": "packages/tokens/dist/figma"
       }
     }
-  }
+  },
+  "tags": ["scope:docs", "type:docs"]
 }
