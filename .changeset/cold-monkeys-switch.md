@@ -1,5 +1,5 @@
 ---
-'@baloise/ds-tokens': patch
+'@baloise/ds-core': patch
 ---
 
 **cli**: 3rd change
