@@ -10,9 +10,9 @@ runs:
 
     - uses: ./.github/workflows/actions/download-archive
       with:
-        name: core-artifacts
+        name: core-dist
         path: ./packages/core
-        filename: CoreDistArtifacts.zip
+        filename: CoreDist.zip
 
     - uses: ./.github/workflows/actions/download-archive
       with:
