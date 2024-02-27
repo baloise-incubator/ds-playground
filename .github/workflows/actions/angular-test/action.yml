@@ -16,7 +16,7 @@ runs:
         browser: chrome
 
     - name: Upload snapshots
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
         name: snapshots-angular-${{ inputs.app }}
