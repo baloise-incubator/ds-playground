@@ -19,7 +19,7 @@ runs:
     - uses: actions/upload-artifact@v3
       with:
         name: angular-${{ inputs.app }}
-        path: test/angular/${{ inputs.app }}
+        path: test/angular/${{ inputs.app }}/src
 
     - name: Build Angular App
       run: npm run build

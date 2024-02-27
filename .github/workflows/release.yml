@@ -50,42 +50,27 @@ jobs:
         run: npm install
         shell: bash
 
-      - name: Commit lock file
-        if: steps.changesets.outputs.published == 'true'
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'package-lock.json'
-          message: 'update lock file'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Tag release
-        if: steps.changesets.outputs.published == 'true'
-        uses: thejeff77/action-push-tag@v1.0.0
-        with:
-          tag: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-          message: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-
       - name: Update changelog file
         if: steps.changesets.outputs.published == 'true'
         run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
         shell: bash
 
-      - name: Commit changelog
+      - name: Commit release
         if: steps.changesets.outputs.published == 'true'
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'CHANGELOG.md'
-          message: 'update changelog'
+          add: "['package-lock.json', 'CHANGELOG.md']"
+          message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
+          tag: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge main -> production
+      - name: Merge main -> latest
         if: steps.changesets.outputs.published == 'true'
         uses: devmasx/merge-branch@master
         with:
           type: now
           from_branch: main
-          target_branch: production
+          target_branch: latest
           message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
