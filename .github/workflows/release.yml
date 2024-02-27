@@ -41,6 +41,10 @@ jobs:
           echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
           echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"
 
+      - name: Build
+        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
+        run: npx nx run-many -t build --projects=tag:scope:release
+
       - name: Releae dry-run
         if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
         run: npx nx release publish -d

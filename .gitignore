@@ -92,7 +92,7 @@ docs/public/assets/images/icons
 docs/stories/assets/data
 docs/dist
 
-test/angular
+test/angular/*
 !test/angular/base
 !test/angular/build.sh
 !test/angular/start.sh
