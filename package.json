@@ -17,8 +17,10 @@
     "changeset": "node scripts/changeset.mjs",
     "ng:16": "cd test/angular && bash build.sh v16",
     "ng:16:start": "npm --prefix test/angular/v16 run start",
+    "ng:16:build": "npm --prefix test/angular/v16 run build",
     "ng:17": "cd test/angular && bash build.sh v17",
-    "ng:17:start": "npm --prefix test/angular/v17 run start"
+    "ng:17:start": "npm --prefix test/angular/v17 run start",
+    "ng:17:build": "npm --prefix test/angular/v17 run build"
   },
   "private": true,
   "workspaces": [

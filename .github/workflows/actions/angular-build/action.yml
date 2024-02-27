@@ -16,6 +16,11 @@ runs:
       working-directory: ./test/angular/${{ inputs.app }}
       shell: bash
 
+    - uses: actions/upload-artifact@v3
+      with:
+        name: angular-${{ inputs.app }}
+        path: test/angular/${{ inputs.app }}
+
     - name: Build Angular App
       run: npm run build
       working-directory: ./test/angular/${{ inputs.app }}

@@ -25,3 +25,10 @@ runs:
       shell: bash
       env:
         NPM_TOKEN: ${{ inputs.npm-token }}
+
+    - name: Clean install
+      shell: bash
+      run: npm ci
+
+    - name: Define Nx cache
+      uses: nrwl/nx-set-shas@v4
