@@ -1,5 +1,5 @@
 describe('theme-compact.visual', () => {
-  beforeEach(() => cy.visit('/test/theme-compact.visual.html').platform('desktop').waitForDesignSystem())
+  beforeEach(() => cy.visit('/test/theme-compact.visual.html').waitForDesignSystem().platform('desktop'))
 
   it('basic', () => {
     cy.getByTestId('navbar').testVisual('theme-compact-navbar')
