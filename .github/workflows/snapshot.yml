@@ -16,10 +16,6 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/workflows/actions/setup
-      - uses: ./.github/workflows/actions/release-setup
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       - name: get-npm-version
         id: package-version
@@ -39,24 +35,36 @@ jobs:
         id: set-version
         run: echo "version=${{ steps.package-version.outputs.current-version}}-snapshot.${{ github.event.issue.number }}-${{steps.timestamp.outputs.timestamp}}" >> $GITHUB_OUTPUT
 
+      - name: Get Action URL
+        id: action-url
+        run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
       - name: Echo version
         run: echo "${{steps.set-version.outputs.version}}"
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+            🚚 Snapshot `${{ steps.set-version.outputs.version }}` in progress... [Action](${{ steps.action-url.outputs.url }})
+
+      - uses: ./.github/workflows/actions/release-setup
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       - name: Define version
         run: npx nx release --git-commit=false --git-tag=false --preid=snapshot --specifier=${{steps.set-version.outputs.version}} --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get Action URL
-        id: action-url
-        run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
-
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ github.event.comment.id }}
           body: |
-            [🚚 Snapshot ${{ steps.set-version.outputs.version }}](${{ steps.action-url.outputs.url }}) created!
+            🚀 Snapshot `${{ steps.set-version.outputs.version }}` is published! [Action](${{ steps.action-url.outputs.url }})
       # - name: Build
       #   run: npx nx run-many -t build --projects=tag:scope:release
 
