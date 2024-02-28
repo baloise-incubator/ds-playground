@@ -7,6 +7,10 @@ on:
       - changeset-release/main
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: [📦️ Pre-Release]
+    types: [completed]
+    branches: [changeset-release/main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
