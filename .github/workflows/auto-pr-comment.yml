@@ -143,7 +143,7 @@ jobs:
 
             Specs: ${{ steps.command.outputs.result }}
 
-            [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
+            [Check out the action on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
       - uses: actions/checkout@v4
         with:
@@ -207,7 +207,7 @@ jobs:
 
             Specs: ${{ steps.command.outputs.result }}
 
-            [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
+            [Check out the action on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
       - name: Create comment
         if: failure()
@@ -220,4 +220,4 @@ jobs:
 
             Specs: ${{ steps.command.outputs.result }}
 
-            [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
+            [Check out the action on GitHub ↗︎](${{ steps.action-url.outputs.url }})
