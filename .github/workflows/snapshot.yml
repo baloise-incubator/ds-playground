@@ -36,7 +36,7 @@ jobs:
         run: echo "${{ steps.timestamp.outputs.timestamp}}"
 
       - name: Echo version
-        run: echo "${{ steps.package-version.outputs.current-version}}-${{ github.event.pull_request.number }}-${{steps.truncated_timestamp.outputs.truncated_timestamp}}"
+        run: echo "${{ steps.package-version.outputs.current-version}}-snapshot.${{ github.event.issue.number }}-${{steps.timestamp.outputs.timestamp}}"
 
       # - name: Define version
       #   run: npx nx release --git-commit=false --git-tag=false --preid=snapshot --specifier=${{ steps.package-version.outputs.current-version}}-${{ github.event.pull_request.number }}-${{steps.truncated_timestamp.outputs.truncated_timestamp}}
