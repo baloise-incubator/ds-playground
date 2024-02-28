@@ -21,20 +21,25 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Read version from package.json
-        id: get-version
-        run: echo "{version}={$(jq -r '.version' packages/core/package.json)}" >> $GITHUB_OUTPUT"
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: packages/core
 
       - name: Get current timestamp
         id: timestamp
-        run: echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
+        run: echo "timestamp=timestamp::$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
 
       - name: Truncate timestamp to 8 characters
         id: truncated_timestamp
         run: echo "${{ steps.timestamp.outputs.timestamp}}"
 
+      - name: Echo version
+        run: echo "${{ steps.package-version.outputs.current-version}}-${{ github.event.pull_request.number }}-${{steps.truncated_timestamp.outputs.truncated_timestamp}}"
+
       # - name: Define version
-      #   run: npx nx release --git-commit=false --git-tag=false --preid=snapshot --specifier=${{ steps.get-version.outputs.version }}-${{ github.event.pull_request.number }}-${{steps.truncated_timestamp.outputs.truncated_timestamp}}
+      #   run: npx nx release --git-commit=false --git-tag=false --preid=snapshot --specifier=${{ steps.package-version.outputs.current-version}}-${{ github.event.pull_request.number }}-${{steps.truncated_timestamp.outputs.truncated_timestamp}}
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
