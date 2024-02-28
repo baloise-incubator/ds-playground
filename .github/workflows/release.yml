@@ -45,10 +45,6 @@ jobs:
         if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
         run: npx nx run-many -t build --projects=tag:scope:release
 
-      - name: Releae dry-run
-        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
-        run: npx nx release publish -d
-
       - name: Update lock file
         if: steps.changesets.outputs.published == 'true'
         run: npm install
@@ -57,6 +53,11 @@ jobs:
       - name: Update changelog file
         if: steps.changesets.outputs.published == 'true'
         run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
+        shell: bash
+
+      - name: Pre-Publish
+        if: steps.changesets.outputs.published == 'true'
+        run: npx nx run pre-publish
         shell: bash
 
       - name: Commit release
@@ -78,3 +79,11 @@ jobs:
           target_branch: latest
           message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release dry-run
+        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
+        run: npx nx release publish -d
+
+      - name: Release
+        if: steps.changesets.outputs.published == 'true'
+        run: npx nx release publish
