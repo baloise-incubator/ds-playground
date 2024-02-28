@@ -47,7 +47,6 @@ jobs:
           path: e2e/cypress/snapshots
 
       - name: Commit base images
-        if: failure()
         uses: EndBug/add-and-commit@v9
         with:
           message: 'update base images'
