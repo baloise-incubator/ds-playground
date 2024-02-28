@@ -1,10 +1,16 @@
 name: 📦️ Continuous
 
+# on:
+#   workflow_run:
+#     workflows: [📦️ Pre-Release]
+#     types: [completed]
+#     branches: [main]
+
 on:
-  workflow_run:
-    workflows: [📦️ Pre-Release]
-    types: [completed]
-    branches: [main]
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -13,6 +19,7 @@ concurrency:
 jobs:
   build:
     name: 👷 Lint, Test & Build
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/build')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
