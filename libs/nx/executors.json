@@ -29,6 +29,16 @@
       "implementation": "./src/executors/build-e2e/executor",
       "schema": "./src/executors/build-e2e/schema.json",
       "description": "build-e2e executor"
+    },
+    "create-changeset": {
+      "implementation": "./src/executors/create-changeset/executor",
+      "schema": "./src/executors/create-changeset/schema.json",
+      "description": "create-changeset executor"
+    },
+    "pre-publish": {
+      "implementation": "./src/executors/pre-publish/executor",
+      "schema": "./src/executors/pre-publish/schema.json",
+      "description": "pre-publish executor"
     }
   }
 }

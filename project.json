@@ -9,6 +9,20 @@
         "config": ".verdaccio/config.yml",
         "storage": "tmp/local-registry/storage"
       }
+    },
+    "changeset": {
+      "executor": "@baloise/ds-nx:create-changeset",
+      "options": {
+        "workspaceRoot": "{workspaceRoot}",
+        "projectRoot": "{projectRoot}"
+      }
+    },
+    "pre-publish": {
+      "executor": "@baloise/ds-nx:pre-publish",
+      "options": {
+        "workspaceRoot": "{workspaceRoot}",
+        "projectRoot": "{projectRoot}"
+      }
     }
   }
 }
