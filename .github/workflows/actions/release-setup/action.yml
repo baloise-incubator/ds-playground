@@ -28,7 +28,4 @@ runs:
 
     - name: Clean install
       shell: bash
-      run: npm ci
-
-    - name: Define Nx cache
-      uses: nrwl/nx-set-shas@v4
+      run: npm i
