@@ -24,3 +24,5 @@ e2e/cypress/videos
 
 package-lock.json
 *.svg
+
+CHANGELOG.md

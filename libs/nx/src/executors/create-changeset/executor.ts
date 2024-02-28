@@ -86,24 +86,26 @@ export default async function runExecutor(options: CreateChangesetExecutorSchema
     }
 
     const content = `---
-    '@baloise/ds-core': ${response.bumpLevel}
-    ---
+'@baloise/ds-core': ${response.bumpLevel}
+---
 
-    **${response.scope}**: ${response.summary}
-    `
+**${response.scope}**: ${response.summary}
+`
 
     // create new changeset file
     const { stdout } = await promisify(exec)(`npx changeset add --empty`)
     const start = stdout.lastIndexOf('.changeset/') + '.changeset/'.length
     const end = stdout.lastIndexOf('.md') + '.md'.length
-    const filename = stdout.substring(start, end + 1)
+    const filename = stdout.substring(start, end).trim()
     const filepath = join(options.workspaceRoot, '.changeset', filename)
 
-    cleanUp = async () => rm(filepath, { force: true })
+    cleanUp = async () => rm(filepath, { force: true, recursive: true })
+    await cleanUp()
+    await writeFile(filepath.trim(), content, { encoding: 'utf-8' })
 
-    await writeFile(filepath, content)
     console.log(``)
-    console.log(`> ${filepath} created`)
+    console.log(`> ${filepath}`)
+    console.log(``)
   } catch (error) {
     console.error(error)
     await cleanUp()

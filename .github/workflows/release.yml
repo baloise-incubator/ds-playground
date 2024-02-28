@@ -7,6 +7,9 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  BAL_PUBLISH_DS: false
+
 jobs:
   Release:
     name: 🚀 Release
@@ -26,12 +29,15 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npx nx run-many -t build --projects=tag:scope:release
+          publish: echo "BAL_PUBLISH_DS=true" >> $GITHUB_ENV && npx nx run-many -t build --projects=tag:scope:release
         env:
           HUSKY_DISABLED: 1
           BAL_DS_RELEASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Echp the environment variable
+        run: echo "Value of BAL_PUBLISH_DS is $BAL_PUBLISH_DS"
 
       - name: Echo Changeset output
         shell: bash
@@ -41,27 +47,23 @@ jobs:
           echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
           echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"
 
-      - name: Build
-        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
-        run: npx nx run-many -t build --projects=tag:scope:release
-
       - name: Update lock file
-        if: steps.changesets.outputs.published == 'true'
+        if: env.BAL_PUBLISH_DS == 'true'
         run: npm install
         shell: bash
 
       - name: Update changelog file
-        if: steps.changesets.outputs.published == 'true'
+        if: env.BAL_PUBLISH_DS == 'true'
         run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
         shell: bash
 
       - name: Pre-Publish
-        if: steps.changesets.outputs.hasChangesets == 'true'
+        if: env.BAL_PUBLISH_DS == 'true'
         run: npx nx run pre-publish
         shell: bash
 
       - name: Commit release
-        if: steps.changesets.outputs.published == 'true'
+        if: env.BAL_PUBLISH_DS == 'true'
         uses: EndBug/add-and-commit@v9
         with:
           add: "['package-lock.json', 'CHANGELOG.md']"
@@ -71,7 +73,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge main -> latest
-        if: steps.changesets.outputs.published == 'true'
+        if: env.BAL_PUBLISH_DS == 'true'
         uses: devmasx/merge-branch@master
         with:
           type: now
@@ -80,10 +82,6 @@ jobs:
           message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release dry-run
-        if: github.ref == 'refs/heads/main' && steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.published == 'false'
-        run: npx nx release publish -d
-
       - name: Release
-        if: steps.changesets.outputs.published == 'true'
+        if: env.BAL_PUBLISH_DS == 'true'
         run: npx nx release publish
