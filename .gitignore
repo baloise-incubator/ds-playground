@@ -123,6 +123,7 @@ libs/output-targets-vue/CHANGELOG.md
 docs/CHANGELOG.md
 e2e/CHANGELOG.md
 
+packages/core/README.md
 packages/brand-icons/README.md
 packages/devkit/README.md
 packages/angular-common/README.md
@@ -147,6 +148,7 @@ libs/output-targets-vue/README.md
 docs/README.md
 e2e/README.md
 
+packages/core/LICENSE
 packages/brand-icons/LICENSE
 packages/devkit/LICENSE
 packages/angular-common/LICENSE

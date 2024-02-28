@@ -12,6 +12,7 @@ import {
   filterVariableStatement,
   parseFunctionComment,
   parseSelectorComment,
+  runCommand,
   scan,
 } from '../utils'
 
@@ -23,7 +24,7 @@ export default async function runExecutor(options: BuildCoreExecutorSchema) {
     await createContributorList(options)
 
     // stencil build task
-    await compile(options)
+    await runCommand('npx stencil build', join(process.cwd(), options.projectRoot))
 
     // post build tasks
     await addPackageJsonAndTypesToCustomElements(options)
@@ -39,26 +40,6 @@ export default async function runExecutor(options: BuildCoreExecutorSchema) {
   }
 
   return { success: true }
-}
-
-/********************************************************************************
- * stencil build task
- ********************************************************************************/
-
-async function compile(options: BuildCoreExecutorSchema): Promise<void> {
-  return new Promise((resolve, reject) => {
-    try {
-      const cwd = join(process.cwd(), options.projectRoot)
-      execSync('npx stencil build', {
-        cwd,
-        encoding: 'utf-8',
-        stdio: 'inherit',
-      })
-      return resolve()
-    } catch (error) {
-      return reject(error)
-    }
-  })
 }
 
 /********************************************************************************

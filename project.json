@@ -23,6 +23,24 @@
         "workspaceRoot": "{workspaceRoot}",
         "projectRoot": "{projectRoot}"
       }
+    },
+    "create-angular": {
+      "executor": "@baloise/ds-nx:create-angular",
+      "options": {
+        "workspaceRoot": "{workspaceRoot}",
+        "projectRoot": "{projectRoot}",
+        "build": true,
+        "start": false
+      }
+    },
+    "start-angular": {
+      "executor": "@baloise/ds-nx:create-angular",
+      "options": {
+        "workspaceRoot": "{workspaceRoot}",
+        "projectRoot": "{projectRoot}",
+        "build": false,
+        "start": true
+      }
     }
   }
 }

@@ -39,6 +39,11 @@
       "implementation": "./src/executors/pre-publish/executor",
       "schema": "./src/executors/pre-publish/schema.json",
       "description": "pre-publish executor"
+    },
+    "create-angular": {
+      "implementation": "./src/executors/create-angular/executor",
+      "schema": "./src/executors/create-angular/schema.json",
+      "description": "create-angular executor"
     }
   }
 }

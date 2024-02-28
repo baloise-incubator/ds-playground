@@ -1,10 +1,9 @@
 import prompts from 'prompts'
-
-import { CreateChangesetExecutorSchema } from './schema'
 import { readFile, rm, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { promisify } from 'util'
 import { exec } from 'child_process'
+import { CreateChangesetExecutorSchema } from './schema'
 
 export default async function runExecutor(options: CreateChangesetExecutorSchema) {
   let cleanUp = () => undefined
@@ -94,10 +93,10 @@ export default async function runExecutor(options: CreateChangesetExecutorSchema
     `
 
     // create new changeset file
-    const { stdout } = await promisify(exec)(`npx changeset add --empty`);
+    const { stdout } = await promisify(exec)(`npx changeset add --empty`)
     const start = stdout.lastIndexOf('.changeset/') + '.changeset/'.length
     const end = stdout.lastIndexOf('.md') + '.md'.length
-    const filename = stdout.substring(start, end + 1);
+    const filename = stdout.substring(start, end + 1)
     const filepath = join(options.workspaceRoot, '.changeset', filename)
 
     cleanUp = async () => rm(filepath, { force: true })
@@ -105,7 +104,6 @@ export default async function runExecutor(options: CreateChangesetExecutorSchema
     await writeFile(filepath, content)
     console.log(``)
     console.log(`> ${filepath} created`)
-
   } catch (error) {
     console.error(error)
     await cleanUp()
@@ -113,5 +111,4 @@ export default async function runExecutor(options: CreateChangesetExecutorSchema
   }
 
   return { success: true }
-
 }

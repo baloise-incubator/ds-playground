@@ -6,6 +6,7 @@ import postcss from 'postcss'
 import { compileAsync } from 'sass'
 import CleanCSS from 'clean-css'
 import ts from 'typescript'
+import { execSync } from 'child_process'
 
 export const NEWLINE = '\n'
 
@@ -77,4 +78,19 @@ export const parseSelectorComment = (node, sourceFile) => {
     .filter(l => pattern.test(l))
     .map(l => (l.startsWith('*') ? l.substring(2) : l))
     .map(l => l.split(':')[0])
+}
+
+export async function runCommand(command: string, cwd: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    try {
+      execSync(command, {
+        cwd,
+        encoding: 'utf-8',
+        stdio: 'inherit',
+      })
+      return resolve()
+    } catch (error) {
+      return reject(error)
+    }
+  })
 }
