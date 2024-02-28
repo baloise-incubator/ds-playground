@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - changeset-release/main
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -14,7 +13,7 @@ concurrency:
 
 jobs:
   build:
-    name: 👷 Lint, Test & Build
+    name: 🏗️ Lint, Test & Build
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:

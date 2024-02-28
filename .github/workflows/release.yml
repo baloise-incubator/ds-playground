@@ -6,82 +6,55 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  BAL_DS_RELEASE: true
+
 jobs:
   Release:
     name: 🚀 Release
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check if PR is merged
-        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
-        run: echo "PR was merged from specific-branch"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/setup
+      - uses: ./.github/workflows/actions/release-setup
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      # - uses: actions/checkout@v4
-      #   with:
-      #     fetch-depth: 0
-      # - uses: ./.github/workflows/actions/setup
-      # - uses: ./.github/workflows/actions/release-setup
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Build
+        run: npx nx run-many -t build --projects=tag:scope:release
 
-      # - name: Create Release Pull Request or Publish to npm
-      #   id: changesets
-      #   uses: changesets/action@v1
-      #   with:
-      #     publish: echo "BAL_PUBLISH_DS=true" >> $GITHUB_ENV && npx nx run-many -t build --projects=tag:scope:release
-      #   env:
-      #     HUSKY_DISABLED: 1
-      #     BAL_DS_RELEASE: true
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Update changelog file
+        run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
 
-      # - name: Echp the environment variable
-      #   run: echo "Value of BAL_PUBLISH_DS is $BAL_PUBLISH_DS"
+      - name: Pre-Publish
+        run: npx nx run pre-publish
 
-      # - name: Echo Changeset output
-      #   shell: bash
-      #   run: |
-      #     echo "Changeset published - ${{ steps.changesets.outputs.published }}"
-      #     echo "Changeset publishedPackages - ${{ steps.changesets.outputs.publishedPackages }}"
-      #     echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
-      #     echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"
+      - name: Read version from package.json
+        id: get_version
+        run: echo "::set-output name=version::$(jq -r '.version' packages/core/package.json)"
 
-      # - name: Update lock file
-      #   if: env.BAL_PUBLISH_DS == 'true'
-      #   run: npm install
-      #   shell: bash
+      - name: Commit release
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "['package-lock.json', 'CHANGELOG.md']"
+          message: ':bookmark: release: ${{ steps.get_version.outputs.version }}'
+          tag: 'v${{ steps.get_version.outputs.version }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Update changelog file
-      #   if: env.BAL_PUBLISH_DS == 'true'
-      #   run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
-      #   shell: bash
+      - name: Merge main -> latest
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: main
+          target_branch: latest
+          message: ':bookmark: release: ${{ steps.get_version.outputs.version }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Pre-Publish
-      #   if: env.BAL_PUBLISH_DS == 'true'
-      #   run: npx nx run pre-publish
-      #   shell: bash
-
-      # - name: Commit release
-      #   if: env.BAL_PUBLISH_DS == 'true'
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     add: "['package-lock.json', 'CHANGELOG.md']"
-      #     message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-      #     tag: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Merge main -> latest
-      #   if: env.BAL_PUBLISH_DS == 'true'
-      #   uses: devmasx/merge-branch@master
-      #   with:
-      #     type: now
-      #     from_branch: main
-      #     target_branch: latest
-      #     message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Release
-      #   if: env.BAL_PUBLISH_DS == 'true'
-      #   run: npx nx release publish
+      - name: Release
+        run: npx nx release publish
