@@ -1,5 +1,11 @@
 # @baloise/ds-core
 
+## 0.0.4
+
+### Patch Changes
+
+- **angular**: new fix ( [`df7d208`](https://github.com/baloise-incubator/ds-playground/commit/df7d208b6596225edeb413add51755a1b6247357))
+
 ## 0.0.3
 
 ### Patch Changes
