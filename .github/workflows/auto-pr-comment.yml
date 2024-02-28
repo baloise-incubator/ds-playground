@@ -113,7 +113,7 @@ jobs:
         run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
 
       - name: Check for /create-base-image command
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         id: command
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -152,8 +152,6 @@ jobs:
         with:
           build: true
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: ./.github/workflows/actions/e2e-setup
 
       - name: Run All Cypress
         if: steps.command.outputs.result == 'all'

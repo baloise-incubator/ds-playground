@@ -18,8 +18,6 @@ jobs:
           build: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/actions/e2e-setup
-
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:

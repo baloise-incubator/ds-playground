@@ -16,7 +16,7 @@
     },
     "prepare": {
       "executor": "@baloise/ds-nx:build-svg",
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/src/lib/markers.ts", "{projectRoot}/src/markers.json"],
+      "outputs": ["{projectRoot}/src/assets", "{projectRoot}/src/lib/markers.ts", "{projectRoot}/src/markers.json"],
       "options": {
         "projectName": "{projectName}",
         "projectRoot": "{projectRoot}",

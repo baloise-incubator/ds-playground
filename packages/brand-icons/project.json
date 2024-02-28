@@ -12,7 +12,7 @@
     },
     "prepare": {
       "executor": "@baloise/ds-nx:build-svg",
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/src/index.ts", "{projectRoot}/src/icons.json"],
+      "outputs": ["{projectRoot}/src/assets", "{projectRoot}/src/index.ts", "{projectRoot}/src/icons.json"],
       "options": {
         "projectName": "{projectName}",
         "projectRoot": "{projectRoot}",
