@@ -16,6 +16,10 @@ export default async function runExecutor(options: PrePublishExecutorSchema) {
       'devkit',
       'maps',
       'testing',
+      'angular',
+      'angular-common',
+      'angular-module',
+      'angular-legacy',
     ]
 
     for (let index = 0; index < packages.length; index++) {
