@@ -1,4 +1,4 @@
-name: Auto Issue Branch
+name: 🤖 Issue Branch
 
 on:
   issue_comment:

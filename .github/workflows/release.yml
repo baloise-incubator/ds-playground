@@ -1,4 +1,4 @@
-name: Release
+name: 🚀 Release
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Check if PR is merged
-        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == '🚀 Pre-Release 🚀'
+        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
         run: echo "PR was merged from specific-branch"
 
       # - uses: actions/checkout@v4

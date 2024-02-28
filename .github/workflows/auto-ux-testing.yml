@@ -1,4 +1,4 @@
-name: Auto UX Checklist
+name: 🤖 UX Checklist
 
 on:
   pull_request:
