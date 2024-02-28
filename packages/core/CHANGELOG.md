@@ -1,4 +1,4 @@
-# @baloise/design-system-components
+# @baloise/ds-core
 
 ## 15.2.3
 

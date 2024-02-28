@@ -44,7 +44,7 @@ const run = async () => {
         name: 'scope',
         message: 'Pick the scope for this change.',
         choices: [
-          { title: 'cli', value: 'cli' },
+          { title: 'devkit', value: 'devkit' },
           { title: 'brand-icons', value: 'brand-icons' },
           { title: 'components', value: 'components' },
           { title: 'angular', value: 'angular' },
