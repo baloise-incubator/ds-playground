@@ -1,14 +1,10 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [closed]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
-
-env:
-  BAL_PUBLISH_DS: false
 
 jobs:
   Release:
@@ -16,72 +12,76 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/actions/setup
-      - uses: ./.github/workflows/actions/release-setup
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Check if PR is merged
+        if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == '🚀 Pre-Release 🚀'
+        run: echo "PR was merged from specific-branch"
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: echo "BAL_PUBLISH_DS=true" >> $GITHUB_ENV && npx nx run-many -t build --projects=tag:scope:release
-        env:
-          HUSKY_DISABLED: 1
-          BAL_DS_RELEASE: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      # - uses: actions/checkout@v4
+      #   with:
+      #     fetch-depth: 0
+      # - uses: ./.github/workflows/actions/setup
+      # - uses: ./.github/workflows/actions/release-setup
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Echp the environment variable
-        run: echo "Value of BAL_PUBLISH_DS is $BAL_PUBLISH_DS"
+      # - name: Create Release Pull Request or Publish to npm
+      #   id: changesets
+      #   uses: changesets/action@v1
+      #   with:
+      #     publish: echo "BAL_PUBLISH_DS=true" >> $GITHUB_ENV && npx nx run-many -t build --projects=tag:scope:release
+      #   env:
+      #     HUSKY_DISABLED: 1
+      #     BAL_DS_RELEASE: true
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Echo Changeset output
-        shell: bash
-        run: |
-          echo "Changeset published - ${{ steps.changesets.outputs.published }}"
-          echo "Changeset publishedPackages - ${{ steps.changesets.outputs.publishedPackages }}"
-          echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
-          echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"
+      # - name: Echp the environment variable
+      #   run: echo "Value of BAL_PUBLISH_DS is $BAL_PUBLISH_DS"
 
-      - name: Update lock file
-        if: env.BAL_PUBLISH_DS == 'true'
-        run: npm install
-        shell: bash
+      # - name: Echo Changeset output
+      #   shell: bash
+      #   run: |
+      #     echo "Changeset published - ${{ steps.changesets.outputs.published }}"
+      #     echo "Changeset publishedPackages - ${{ steps.changesets.outputs.publishedPackages }}"
+      #     echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
+      #     echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"
 
-      - name: Update changelog file
-        if: env.BAL_PUBLISH_DS == 'true'
-        run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
-        shell: bash
+      # - name: Update lock file
+      #   if: env.BAL_PUBLISH_DS == 'true'
+      #   run: npm install
+      #   shell: bash
 
-      - name: Pre-Publish
-        if: env.BAL_PUBLISH_DS == 'true'
-        run: npx nx run pre-publish
-        shell: bash
+      # - name: Update changelog file
+      #   if: env.BAL_PUBLISH_DS == 'true'
+      #   run: awk 'NR==1 {print "# Changelog"} NR!=1' packages/core/CHANGELOG.md > CHANGELOG.md
+      #   shell: bash
 
-      - name: Commit release
-        if: env.BAL_PUBLISH_DS == 'true'
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: "['package-lock.json', 'CHANGELOG.md']"
-          message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-          tag: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Pre-Publish
+      #   if: env.BAL_PUBLISH_DS == 'true'
+      #   run: npx nx run pre-publish
+      #   shell: bash
 
-      - name: Merge main -> latest
-        if: env.BAL_PUBLISH_DS == 'true'
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: main
-          target_branch: latest
-          message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Commit release
+      #   if: env.BAL_PUBLISH_DS == 'true'
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     add: "['package-lock.json', 'CHANGELOG.md']"
+      #     message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
+      #     tag: 'v${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release
-        if: env.BAL_PUBLISH_DS == 'true'
-        run: npx nx release publish
+      # - name: Merge main -> latest
+      #   if: env.BAL_PUBLISH_DS == 'true'
+      #   uses: devmasx/merge-branch@master
+      #   with:
+      #     type: now
+      #     from_branch: main
+      #     target_branch: latest
+      #     message: ':bookmark: release: ${{ fromJson(steps.changesets.outputs.publishedPackages)[0].version }}'
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Release
+      #   if: env.BAL_PUBLISH_DS == 'true'
+      #   run: npx nx release publish

@@ -1,4 +1,4 @@
-name: Visual All Regression Test
+name: Create All Visual Base Image
 
 on:
   workflow_dispatch:

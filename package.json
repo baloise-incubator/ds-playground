@@ -14,9 +14,9 @@
     "format": "npx nx format:write --all",
     "spell": "cspell --no-progress",
     "registry": "bash registry",
-    "changeset": "npx run changeset",
-    "angular": "npx run create-angular",
-    "angular:start": "npx run start-angular"
+    "changeset": "npx nx run changeset",
+    "angular": "npx nx run create-angular",
+    "angular:start": "npx nx run start-angular"
   },
   "private": true,
   "workspaces": [

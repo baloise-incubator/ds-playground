@@ -1,4 +1,4 @@
-name: Visual File Regression Test
+name: Create Visual Base Image
 
 on:
   workflow_dispatch:
