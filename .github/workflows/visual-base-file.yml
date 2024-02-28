@@ -31,7 +31,7 @@ jobs:
           working-directory: e2e
           install: false
           browser: chrome
-          env: type=base
+          env: visualRegressionType=base
           spec: |
             cypress/e2e/visual/${{ inputs.specFile }}
         env:
