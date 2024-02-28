@@ -35,7 +35,7 @@ jobs:
         id: last-commit
         run: |
           COMMITS_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}/commits"
-          LAST_COMMIT_SHA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.[-1].sha')
+          LAST_COMMIT_SHA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.[-1].sha_short')
           echo "sha=$LAST_COMMIT_SHA" >> $GITHUB_OUTPUT
 
       - name: Truncate timestamp to 8 characters
@@ -58,7 +58,7 @@ jobs:
           comment-id: ${{ github.event.comment.id }}
           edit-mode: replace
           body: |
-            🚚 Snapshot Version in Progress..
+            **🚚 Snapshot Version in Progress..**
 
             Version: `${{ steps.set-version.outputs.version }}`
 
