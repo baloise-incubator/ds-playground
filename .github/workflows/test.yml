@@ -1,0 +1,21 @@
+name: 👷 TEST
+
+on:
+  workflow_run:
+    workflows: [📦️ Pre-Release]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: 👷 Lint, Test & Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      HUSKY: 0
+    steps:
+      - run: echo "PR was merged from specific-branch"
