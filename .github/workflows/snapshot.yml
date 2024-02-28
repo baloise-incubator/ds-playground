@@ -1,0 +1,51 @@
+name: 🚚 Snapshot
+
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  CreateSnapshot:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/snapshot')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/setup
+      - uses: ./.github/workflows/actions/release-setup
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Read version from package.json
+        id: get_version
+        run: echo "::set-output name=version::$(jq -r '.version' packages/core/package.json)"
+
+      - name: Get current timestamp
+        id: timestamp
+        run: echo "::set-output name=timestamp::$(date +%Y%m%d%H%M%S)"
+
+      - name: Truncate timestamp to 8 characters
+        id: truncated_timestamp
+        run: echo "::set-output name=truncated_timestamp::${{ steps.timestamp.outputs.timestamp:0:8 }}"
+
+      # - name: Define version
+      #   run: npx nx release --git-commit=false --git-tag=false --preid=snapshot --specifier=${{ steps.get_version.outputs.version }}-${{ github.event.pull_request.number }}-${{steps.truncated_timestamp.outputs.truncated_timestamp}}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Build
+      #   run: npx nx run-many -t build --projects=tag:scope:release
+
+      # - name: Pre-Publish
+      #   run: npx nx run pre-publish
+
+      # - name: Publish
+      #   run: npx nx release publish --tag=snapshot
+
+      # - name: Git Reset
+      #   run: git reset --hard

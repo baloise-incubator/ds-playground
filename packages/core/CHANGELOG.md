@@ -1,5 +1,11 @@
 # @baloise/ds-core
 
+## 0.0.5
+
+### Patch Changes
+
+- **core**: bubu ( [`9b17049`](https://github.com/baloise-incubator/ds-playground/commit/9b170496c2bd80dd20d2115ea398287fd2154472))
+
 ## 0.0.4
 
 ### Patch Changes
