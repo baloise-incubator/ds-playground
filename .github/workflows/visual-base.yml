@@ -1,4 +1,4 @@
-name: 📸 Create All Visual Base Image
+name: 📸 Create All Base Images
 
 on:
   workflow_dispatch:

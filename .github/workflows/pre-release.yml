@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Pre-Release Pull Request
         id: changesets
         uses: changesets/action@v1
         with:
@@ -35,3 +35,11 @@ jobs:
           publish: echo "Publish"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Echo Changeset output
+        shell: bash
+        run: |
+          echo "Changeset published - ${{ steps.changesets.outputs.published }}"
+          echo "Changeset publishedPackages - ${{ steps.changesets.outputs.publishedPackages }}"
+          echo "Changeset hasChangesets - ${{ steps.changesets.outputs.hasChangesets }}"
+          echo "Changeset pullRequestNumber - ${{ steps.changesets.outputs.pullRequestNumber }}"

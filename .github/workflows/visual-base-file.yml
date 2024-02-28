@@ -1,4 +1,4 @@
-name: 📸 Create Visual Base Image
+name: 📸 Create Base Image by File
 
 on:
   workflow_dispatch:
