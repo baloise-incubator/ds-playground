@@ -47,6 +47,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get Action URL
+        id: action-url
+        run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            [🚚 Snapshot ${{ steps.set-version.outputs.version }}](${{ steps.action-url.outputs.url }}) created!
       # - name: Build
       #   run: npx nx run-many -t build --projects=tag:scope:release
 
