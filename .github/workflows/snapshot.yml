@@ -43,11 +43,15 @@ jobs:
         run: echo "${{steps.set-version.outputs.version}}"
 
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
           body: |
-            🚚 Snapshot `${{ steps.set-version.outputs.version }}` in progress... [Action](${{ steps.action-url.outputs.url }})
+            ## 🚚 Snapshot
+
+            `${{ steps.set-version.outputs.version }}` in progress...
+            [Action](${{ steps.action-url.outputs.url }})
 
       - uses: ./.github/workflows/actions/release-setup
         with:
@@ -55,24 +59,28 @@ jobs:
           npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       - name: Define version
-        run: npx nx release --git-commit=false --git-tag=false --preid=snapshot --specifier=${{steps.set-version.outputs.version}} --dry-run
+        run: npx nx release version --git-commit=false --git-tag=false --preid=snapshot --specifier=${{steps.set-version.outputs.version}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build
+        run: npx nx run-many -t build --projects=tag:scope:release
+
+      - name: Pre-Publish
+        run: npx nx run pre-publish
+
+      - name: Publish
+        run: npx nx release publish --tag=snapshot
+
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ github.event.comment.id }}
           body: |
-            🚀 Snapshot `${{ steps.set-version.outputs.version }}` is published! [Action](${{ steps.action-url.outputs.url }})
-      # - name: Build
-      #   run: npx nx run-many -t build --projects=tag:scope:release
+            ## 🚀 Snapshot
 
-      # - name: Pre-Publish
-      #   run: npx nx run pre-publish
+            `${{ steps.set-version.outputs.version }}` is published!
+            [Action](${{ steps.action-url.outputs.url }})
 
-      # - name: Publish
-      #   run: npx nx release publish --tag=snapshot
-
-      # - name: Git Reset
-      #   run: git reset --hard
+      - name: Git Reset
+        run: git reset --hard
