@@ -1,5 +1,15 @@
 # @baloise/ds-core
 
+## 0.0.1
+
+### Patch Changes
+
+- **cli**: 3rd change ( [`f5c8d70`](https://github.com/baloise-incubator/ds-playground/commit/f5c8d70b26b6c263a2141e87533d842dc2072f70))
+
+- **cli**: second change ( [`66cd140`](https://github.com/baloise-incubator/ds-playground/commit/66cd140f09e4ef4354fb544e8713ebe87cd56775))
+
+- **cli**: first release test ( [`94f44d0`](https://github.com/baloise-incubator/ds-playground/commit/94f44d048af92dabc31f0c256a84dbc7ba5f0afe))
+
 ## 15.2.3
 
 ### Patch Changes
@@ -110,13 +120,13 @@
   **app.config.ts**
 
   ```ts
-  import { ApplicationConfig, importProvidersFrom } from '@angular/core'
+  import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 
-  import { provideBaloiseDesignSystem } from '@baloise/design-system-components-angular/standalone'
+  import { provideBaloiseDesignSystem } from "@baloise/design-system-components-angular/standalone";
 
   export const appConfig: ApplicationConfig = {
     providers: [provideBaloiseDesignSystem()],
-  }
+  };
   ```
 
   In each app component, import the necessary Baloise Design System components or a bundled set.
@@ -124,17 +134,20 @@
   **app.component.ts**
 
   ```ts
-  import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core'
-  import { CommonModule } from '@angular/common'
-  import { BalApp, BalButton } from '@baloise/design-system-components-angular/standalone'
+  import { CUSTOM_ELEMENTS_SCHEMA, Component } from "@angular/core";
+  import { CommonModule } from "@angular/common";
+  import {
+    BalApp,
+    BalButton,
+  } from "@baloise/design-system-components-angular/standalone";
 
   export interface UpdateControl {
-    name: string
-    value: any
+    name: string;
+    value: any;
   }
 
   @Component({
-    selector: 'app-root',
+    selector: "app-root",
     standalone: true,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [CommonModule, BalApp, BalButton],
