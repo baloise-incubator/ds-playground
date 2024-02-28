@@ -31,9 +31,12 @@ jobs:
         id: truncated_timestamp
         run: echo "${{ steps.timestamp.outputs.timestamp}}"
 
+      - name: Sha commit
+        run: echo "${{ github.event.pull_request.head.sha }}"
+
       - name: set version
         id: set-version
-        run: echo "version=${{ steps.package-version.outputs.current-version}}-snapshot.${{ github.event.issue.number }}-${{steps.timestamp.outputs.timestamp}}" >> $GITHUB_OUTPUT
+        run: echo "version=${{ steps.package-version.outputs.current-version}}-snapshot.${{ github.event.issue.number }}-${{github.event.pull_request.head.sha}}" >> $GITHUB_OUTPUT
 
       - name: Get Action URL
         id: action-url
@@ -73,13 +76,27 @@ jobs:
         run: npx nx release publish --tag=snapshot
 
       - name: Create comment
+        if: success()
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
           body: |
             ## 🚀 Snapshot
 
             `${{ steps.set-version.outputs.version }}` is published!
+            [Action](${{ steps.action-url.outputs.url }})
+
+      - name: Create comment
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
+          body: |
+            ## 💩 Snapshot
+
+            `${{ steps.set-version.outputs.version }}` has failed!
             [Action](${{ steps.action-url.outputs.url }})
 
       - name: Git Reset
