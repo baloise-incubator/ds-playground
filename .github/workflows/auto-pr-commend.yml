@@ -3,8 +3,18 @@ name: 🤖 PR Commands
 on:
   issue_comment:
     types: [created]
+  pull_request:
+    types: [opened, closed]
 
 jobs:
+  createIssueBranch:
+    name: 📝 Create Issue Branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   snapshot:
     name: 🚚 Snapshot
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/snapshot')
@@ -167,7 +177,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Cypress by files
-        if: steps.command.outputs.result == 'all'
+        if: steps.command.outputs.result != 'all'
         uses: cypress-io/github-action@v6
         with:
           start: node ./web-server.js
