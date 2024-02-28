@@ -20,10 +20,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/workflows/actions/setup
-      - uses: ./.github/workflows/actions/release-setup
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Clean install
+        run: npm ci
 
       - name: Create Pre-Release Pull Request
         id: changesets
@@ -34,7 +33,7 @@ jobs:
           createGithubReleases: false
           publish: echo "Publish"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PRE_RELEASE_TOKEN }}
 
       - name: Echo Changeset output
         shell: bash
