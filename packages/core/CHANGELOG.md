@@ -1,5 +1,11 @@
 # @baloise/ds-core
 
+## 0.0.2
+
+### Patch Changes
+
+- **core**: little change ( [`dd71551`](https://github.com/baloise-incubator/ds-playground/commit/dd71551bf06b632af147ae938146b36a4c6dd672))
+
 ## 0.0.1
 
 ### Patch Changes
