@@ -37,9 +37,3 @@ Check out the [documentation](https://design.baloise.dev)
 | [Maps](https://design.baloise.dev)               | ![npm](https://img.shields.io/npm/v/@baloise/design-system-maps)               | Google Maps styles and icons.                                           |
 | [Fonts](https://design.baloise.dev)              | ![npm](https://img.shields.io/npm/v/@baloise/design-system-fonts)              | Web-Font of the design system.                                          |
 | [Testing](https://design.baloise.dev)            | ![npm](https://img.shields.io/npm/v/@baloise/design-system-testing)            | Testing package with custom and overridden commands for each component. |
-
-CI PR
-Release
-Snapshot
-Nightly
-Visual Base
