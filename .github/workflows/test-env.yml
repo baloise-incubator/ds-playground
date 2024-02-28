@@ -1,0 +1,22 @@
+name: Test Env
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  BAL_PUBLISH_DS: false
+
+jobs:
+  Release:
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - run: echo "BAL_PUBLISH_DS=true" >> $GITHUB_ENV
+      - run: echo "Value of BAL_PUBLISH_DS is $BAL_PUBLISH_DS"
+      - if: env.BAL_PUBLISH_DS == 'true'
+        run: echo if works
