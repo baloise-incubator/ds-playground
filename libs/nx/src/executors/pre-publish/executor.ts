@@ -10,15 +10,26 @@ export default async function runExecutor(options: PrePublishExecutorSchema) {
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name)
 
+    const distDeploymentPackages = [
+      'brand-icons',
+      'icons',
+      'devkit',
+      'maps',
+      'testing',
+    ]
+
     for (let index = 0; index < packages.length; index++) {
       const packageName = packages[index]
+
+      const deploymentFolder = distDeploymentPackages.includes(packageName) ? 'dist' : ''
+
       await copy(
         join(options.workspaceRoot, 'LICENSE'),
-        join(options.workspaceRoot, 'packages', packageName, 'LICENSE'),
+        join(options.workspaceRoot, 'packages', packageName, deploymentFolder, 'LICENSE'),
       )
       await copy(
         join(options.workspaceRoot, 'README.md'),
-        join(options.workspaceRoot, 'packages', packageName, 'README.md'),
+        join(options.workspaceRoot, 'packages', packageName, deploymentFolder, 'README.md'),
       )
     }
   } catch (error) {

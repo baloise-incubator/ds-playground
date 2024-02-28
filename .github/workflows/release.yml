@@ -56,7 +56,7 @@ jobs:
         shell: bash
 
       - name: Pre-Publish
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.changesets.outputs.hasChangesets == 'true'
         run: npx nx run pre-publish
         shell: bash
 
