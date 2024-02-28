@@ -22,7 +22,7 @@ jobs:
           comment-id: ${{ github.event.comment.id }}
           edit-mode: replace
           body: |
-            **🚚 Snapshot Version in Progress..**
+            **🚚 Snapshot Version in Progress...**
 
             [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
