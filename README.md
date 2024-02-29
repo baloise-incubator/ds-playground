@@ -6,9 +6,9 @@
 
 [![Continuous](https://github.com/baloise/design-system/actions/workflows/continuous.yml/badge.svg?branch=main)](https://github.com/baloise/design-system/actions/workflows/continuous.yml)
 
-![npm](https://img.shields.io/npm/v/@baloise/design-system-components)
-![npm bundle size](https://img.shields.io/bundlephobia/min/@baloise/design-system-components)
-![npm](https://img.shields.io/npm/dt/@baloise/design-system-components)
+![npm](https://img.shields.io/npm/v/@baloise/ds-core)
+![npm bundle size](https://img.shields.io/bundlephobia/min/@baloise/ds-core)
+![npm](https://img.shields.io/npm/dt/@baloise/ds-core)
 ![GitHub](https://img.shields.io/github/license/baloise/design-system)
 ![GitHub issues](https://img.shields.io/github/issues/baloise/design-system)
 [![Registred on webnamespaces.org](https://img.shields.io/static/v1?label=webnamespaces.org&color=blue&message=bal)](https://webnamespaces.org)
@@ -22,24 +22,19 @@ Check out the [documentation](https://design.baloise.dev)
 
 ## Packages
 
-| Package                                          | Status                                                                         | Description                                                             |
-| ------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| [Components](https://design.baloise.dev)         | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components)         | Core package build with web components and global styling.              |
-| [Components Angular](https://design.baloise.dev) | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-angular) | Angular component proxies based on the the core package.                |
-| [Components Vue](https://design.baloise.dev)     | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-vue)     | Vue component proxies based on the the core package.                    |
-| [Components React](https://design.baloise.dev)   | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-react)   | React component proxies based on the the core package.                  |
-| [Components Table](https://design.baloise.dev)   | ![npm](https://img.shields.io/npm/v/@baloise/design-system-components-table)   | Integration library for AG-Grid with styles and renderer functions      |
-| [CLI](https://design.baloise.dev)                | ![npm](https://img.shields.io/npm/v/@baloise/design-system-cli)                | CLI to scaffold an angular project or migration helpers.                |
-| [Tokens](https://design.baloise.dev)             | ![npm](https://img.shields.io/npm/v/@baloise/design-system-tokens)             | Design Tokens like color and spacing.                                   |
-| [Styles](https://design.baloise.dev)             | ![npm](https://img.shields.io/npm/v/@baloise/design-system-styles)             | Basic CSS styles with utility classes.                                  |
-| [Icons](https://design.baloise.dev)              | ![npm](https://img.shields.io/npm/v/@baloise/design-system-icons)              | SVG icons of the design system.                                         |
-| [Favicons](https://design.baloise.dev)           | ![npm](https://img.shields.io/npm/v/@baloise/design-system-favicons)           | Favicons of the design system.                                          |
-| [Maps](https://design.baloise.dev)               | ![npm](https://img.shields.io/npm/v/@baloise/design-system-maps)               | Google Maps styles and icons.                                           |
-| [Fonts](https://design.baloise.dev)              | ![npm](https://img.shields.io/npm/v/@baloise/design-system-fonts)              | Web-Font of the design system.                                          |
-| [Testing](https://design.baloise.dev)            | ![npm](https://img.shields.io/npm/v/@baloise/design-system-testing)            | Testing package with custom and overridden commands for each component. |
-
-CI PR
-Release
-Snapshot
-Nightly
-Visual Base
+| Package                                   | Status                                                    | Description                                                             |
+| ----------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [Core](https://design.baloise.dev)        | ![npm](https://img.shields.io/npm/v/@baloise/ds-core)     | Core package build with web components.                                 |
+| [Angular](https://design.baloise.dev)     | ![npm](https://img.shields.io/npm/v/@baloise/ds-angular)  | Angular component proxies based on the the core package.                |
+| [Vue](https://design.baloise.dev)         | ![npm](https://img.shields.io/npm/v/@baloise/ds-vue)      | Vue component proxies based on the the core package.                    |
+| [React](https://design.baloise.dev)       | ![npm](https://img.shields.io/npm/v/@baloise/ds-react)    | React component proxies based on the the core package.                  |
+| [Table](https://design.baloise.dev)       | ![npm](https://img.shields.io/npm/v/@baloise/ds-table)    | Integration library for AG-Grid with styles and renderer functions      |
+| [DevKit](https://design.baloise.dev)      | ![npm](https://img.shields.io/npm/v/@baloise/ds-devkit)   | DevKit to scaffold an angular project or migration helpers.             |
+| [Tokens](https://design.baloise.dev)      | ![npm](https://img.shields.io/npm/v/@baloise/ds-tokens)   | Design Tokens like color and spacing.                                   |
+| [Styles](https://design.baloise.dev)      | ![npm](https://img.shields.io/npm/v/@baloise/ds-styles)   | Basic CSS styles with utility classes.                                  |
+| [Icons](https://design.baloise.dev)       | ![npm](https://img.shields.io/npm/v/@baloise/ds-icons)    | SVG icons of the design system.                                         |
+| [Brand-Icons](https://design.baloise.dev) | ![npm](https://img.shields.io/npm/v/@baloise/ds-icons)    | SVG icons of the design system.                                         |
+| [Favicons](https://design.baloise.dev)    | ![npm](https://img.shields.io/npm/v/@baloise/ds-favicons) | Favicons of the design system.                                          |
+| [Maps](https://design.baloise.dev)        | ![npm](https://img.shields.io/npm/v/@baloise/ds-maps)     | Google Maps styles and icons.                                           |
+| [Fonts](https://design.baloise.dev)       | ![npm](https://img.shields.io/npm/v/@baloise/ds-fonts)    | Web-Font of the design system.                                          |
+| [Testing](https://design.baloise.dev)     | ![npm](https://img.shields.io/npm/v/@baloise/ds-testing)  | Testing package with custom and overridden commands for each component. |

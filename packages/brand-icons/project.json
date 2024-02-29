@@ -10,7 +10,7 @@
         "packageRoot": "{projectRoot}/dist"
       }
     },
-    "prepare": {
+    "optimize": {
       "executor": "@baloise/ds-nx:build-svg",
       "outputs": ["{projectRoot}/src/assets", "{projectRoot}/src/index.ts", "{projectRoot}/src/icons.json"],
       "options": {
@@ -64,7 +64,6 @@
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["prepare"],
       "options": {
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/index.ts",

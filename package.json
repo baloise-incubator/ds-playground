@@ -15,6 +15,7 @@
     "spell": "cspell --no-progress",
     "registry": "bash registry",
     "changeset": "npx nx run changeset",
+    "optimize": "npx nx run-many -t optimize",
     "angular": "npx nx run create-angular",
     "angular:start": "npx nx run start-angular"
   },
