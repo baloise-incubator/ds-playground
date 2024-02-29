@@ -42,4 +42,3 @@ CI PR
 Release
 Snapshot
 Nightly
-Visual Base
