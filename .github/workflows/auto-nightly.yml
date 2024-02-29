@@ -1,4 +1,4 @@
-name: 🤖 Nightly
+name: 🌙 Nightly
 
 on:
   workflow_dispatch:
