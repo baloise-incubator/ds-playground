@@ -11,8 +11,8 @@ runs:
         working-directory: e2e
         install: false
         browser: chrome
-        env: visualRegressionType=regression
       env:
+        CYPRESS_visualRegressionType: regression
         SPLIT: ${{ strategy.job-total }}
         SPLIT_INDEX: ${{ strategy.job-index }}
 

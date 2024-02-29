@@ -31,10 +31,10 @@ jobs:
           working-directory: e2e
           install: false
           browser: chrome
-          env: visualRegressionType=base
           spec: |
             cypress/e2e/visual/${{ inputs.specFile }}
         env:
+          CYPRESS_visualRegressionType: base
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload snapshots

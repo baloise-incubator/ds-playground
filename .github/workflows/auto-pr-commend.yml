@@ -194,8 +194,8 @@ jobs:
           working-directory: e2e
           install: false
           browser: chrome
-          env: visualRegressionType=base
         env:
+          CYPRESS_visualRegressionType: base
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run Cypress by files
@@ -207,9 +207,9 @@ jobs:
           working-directory: e2e
           install: false
           browser: chrome
-          env: visualRegressionType=base
           spec: ${{ steps.specs.outputs.result }}
         env:
+          CYPRESS_visualRegressionType: base
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload snapshots
