@@ -26,7 +26,7 @@ jobs:
 
       - name: Generate Timestamp
         id: timestamp
-        run: echo "timestamp=date::$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        run: echo "timestamp=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
 
       - name: Create version
         id: set-version
