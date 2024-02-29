@@ -21,107 +21,104 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - run: echo "${{ github.event.issue.pull_request }}"
-      - run: echo "${{ github.event.issue.pull_request.url }}"
+      - name: Get Action URL
+        id: action-url
+        run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
+          body: |
+            **🚚 Snapshot Version in Progress...**
+
+            [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
       - name: Get Branch Name
         id: get-branch
         run: |
-          COMMITS_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}"
+          COMMITS_URL="${{ github.event.issue.pull_request.url }}"
           BRANCH=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.head.ref')
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
 
-      - run: echo "${{ steps.get-branch.outputs.branch }}"
-      # - name: Get Action URL
-      #   id: action-url
-      #   run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.get-branch.outputs.branch }}
+          fetch-depth: 0
+      - uses: ./.github/workflows/actions/setup
 
-      # - name: Create comment
-      #   uses: peter-evans/create-or-update-comment@v4
-      #   with:
-      #     comment-id: ${{ github.event.comment.id }}
-      #     edit-mode: replace
-      #     body: |
-      #       **🚚 Snapshot Version in Progress...**
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: packages/core
 
-      #       [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
+      - name: Get Last Commit SHA
+        id: last-commit
+        run: |
+          COMMITS_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}/commits"
+          LAST_COMMIT_SHA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.[-1].sha')
+          echo "sha=$LAST_COMMIT_SHA" >> $GITHUB_OUTPUT
 
-      # - uses: actions/checkout@v4
-      #   with:
-      #     fetch-depth: 0
-      # - uses: ./.github/workflows/actions/setup
+      - name: Shorten Commit Sha
+        id: short-sha
+        run: echo "value=$(git rev-parse --short ${{ steps.last-commit.outputs.sha }})" >> $GITHUB_OUTPUT
 
-      # - name: get-npm-version
-      #   id: package-version
-      #   uses: martinbeentjes/npm-get-version-action@v1.3.1
-      #   with:
-      #     path: packages/core
+      - name: Create version
+        id: set-version
+        run: echo "version=${{ steps.package-version.outputs.current-version}}-snapshot.${{ github.event.issue.number }}-${{ steps.short-sha.outputs.value }}" >> $GITHUB_OUTPUT
 
-      # - name: Get Last Commit SHA
-      #   id: last-commit
-      #   run: |
-      #     COMMITS_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}/commits"
-      #     LAST_COMMIT_SHA=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.[-1].sha')
-      #     echo "sha=$LAST_COMMIT_SHA" >> $GITHUB_OUTPUT
+      - name: Print version
+        run: echo "${{steps.set-version.outputs.version}}"
 
-      # - name: Shorten Commit Sha
-      #   id: short-sha
-      #   run: echo "value=$(git rev-parse --short ${{ steps.last-commit.outputs.sha }})" >> $GITHUB_OUTPUT
+      - uses: ./.github/workflows/actions/release-setup
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      # - name: Create version
-      #   id: set-version
-      #   run: echo "version=${{ steps.package-version.outputs.current-version}}-snapshot.${{ github.event.issue.number }}-${{ steps.short-sha.outputs.value }}" >> $GITHUB_OUTPUT
+      - name: Define version
+        run: npx nx release version --git-commit=false --git-tag=false --preid=snapshot --specifier=${{steps.set-version.outputs.version}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Print version
-      #   run: echo "${{steps.set-version.outputs.version}}"
+      - name: Build
+        run: npx nx run-many -t build --projects=tag:scope:release
 
-      # - uses: ./.github/workflows/actions/release-setup
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Pre-Publish
+        run: npx nx run pre-publish
 
-      # - name: Define version
-      #   run: npx nx release version --git-commit=false --git-tag=false --preid=snapshot --specifier=${{steps.set-version.outputs.version}}
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish
+        run: npx nx release publish --tag=snapshot
 
-      # - name: Build
-      #   run: npx nx run-many -t build --projects=tag:scope:release
+      - name: Create comment
+        if: success()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
+          body: |
+            **🚀 Snapshot Version Released!**
 
-      # - name: Pre-Publish
-      #   run: npx nx run pre-publish
+            Version: `${{ steps.set-version.outputs.version }}`
 
-      # - name: Publish
-      #   run: npx nx release publish --tag=snapshot
+            [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
-      # - name: Create comment
-      #   if: success()
-      #   uses: peter-evans/create-or-update-comment@v4
-      #   with:
-      #     comment-id: ${{ github.event.comment.id }}
-      #     edit-mode: replace
-      #     body: |
-      #       **🚀 Snapshot Version Released!**
+      - name: Create comment
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
+          body: |
+            **🚨 Snapshot Version Failed!**
 
-      #       Version: `${{ steps.set-version.outputs.version }}`
+            Version: `${{ steps.set-version.outputs.version }}`
 
-      #       [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
+            [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
-      # - name: Create comment
-      #   if: failure()
-      #   uses: peter-evans/create-or-update-comment@v4
-      #   with:
-      #     comment-id: ${{ github.event.comment.id }}
-      #     edit-mode: replace
-      #     body: |
-      #       **🚨 Snapshot Version Failed!**
-
-      #       Version: `${{ steps.set-version.outputs.version }}`
-
-      #       [Check out the release on GitHub ↗︎](${{ steps.action-url.outputs.url }})
-
-      # - name: Git Reset
-      #   run: git reset --hard
+      - name: Git Reset
+        run: git reset --hard
 
   visual:
     name: 📸 Create Base Image
@@ -188,9 +185,18 @@ jobs:
 
             [Check out the action on GitHub ↗︎](${{ steps.action-url.outputs.url }})
 
+      - name: Get Branch Name
+        id: get-branch
+        run: |
+          COMMITS_URL="${{ github.event.issue.pull_request.url }}"
+          BRANCH=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.head.ref')
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
       - uses: actions/checkout@v4
         with:
+          ref: ${{ steps.get-branch.outputs.branch }}
           fetch-depth: 0
+
       - uses: ./.github/workflows/actions/e2e-build
         with:
           build: true
