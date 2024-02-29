@@ -21,7 +21,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - run: echo "${{ github.event.pull_request.head.ref }}"
+      - run: echo "${{ github.event.issue.pull_request }}"
+      - run: echo "${{ github.event.issue.pull_request.url }}"
+
+      - name: Get Branch Name
+        id: get-branch
+        run: |
+          COMMITS_URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}"
+          BRANCH=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $COMMITS_URL | jq -r '.head.ref')
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+      - run: echo "${{ steps.get-branch.outputs.branch }}"
       # - name: Get Action URL
       #   id: action-url
       #   run: echo "url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
