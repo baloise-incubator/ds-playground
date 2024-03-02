@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import { BuildCoreExecutorSchema } from './schema'
-import { dirname, join } from 'path'
+import { dirname, join, sep } from 'path'
 import replace from 'replace-in-file'
 import { mkdir, readFile, rm, writeFile } from 'fs/promises'
 import { copy } from 'fs-extra'
@@ -126,7 +126,7 @@ function parseTestingType(fileContent, filePath) {
       description: parseFunctionComment(commandNode, sourceFile),
       signature: commandNode.getText(sourceFile).replace(commandNode.name.escapedText, ''),
       path: filePath,
-      component: filePath.split('/').pop().replace('.types.ts', ''),
+      component: filePath.split(sep).pop().replace('.types.ts', ''),
     })
   })
   return commands

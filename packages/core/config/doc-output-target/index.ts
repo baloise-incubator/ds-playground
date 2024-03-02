@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import path from 'path'
+import path, { sep } from 'path'
 import { globSync } from 'glob'
 import { JsonDocs, JsonDocsStyle, OutputTargetDocsCustom } from '@stencil/core/internal'
 import { writeFileSync, mkdirSync, readFileSync } from 'fs'
@@ -30,7 +30,7 @@ export const CustomDocumentationGenerator: OutputTargetDocsCustom = {
         const componentName = component.tag
         const storyPath = component.dirPath?.replace('packages/components/src', 'docs/stories') || ''
 
-        const componentFolderDepth = component.filePath?.split('/').length
+        const componentFolderDepth = component.filePath?.split(sep).length
         const isRoot = componentFolderDepth === 4
 
         try {
@@ -90,7 +90,7 @@ export const CustomDocumentationGenerator: OutputTargetDocsCustom = {
     const capitalized = s => s.charAt(0).toUpperCase() + s.slice(1)
 
     const getFileName = (filePath: string) =>
-      (filePath.split('/').pop() || 'global.vars.sass').replace('.vars.sass', '')
+      (filePath.split(path.sep).pop() || 'global.vars.sass').replace('.vars.sass', '')
 
     for (let index = 0; index < cssVarsFiles.length; index++) {
       const cssVarsFile = cssVarsFiles[index]
