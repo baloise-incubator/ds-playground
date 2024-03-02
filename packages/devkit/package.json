@@ -15,7 +15,17 @@
     "@angular-devkit/core": "~15.0.5",
     "@angular-devkit/schematics": "~15.0.5",
     "@schematics/angular": "~15.0.5",
-    "tslib": "~2.3.0"
+    "glob": "~10.3.10"
   },
-  "schematics": "./src/collection.json"
+  "peerDependencies": {
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
+  },
+  "schematics": "./src/collection.json",
+  "ng-add": {
+    "save": "devDependencies"
+  },
+  "devDependencies": {
+    "copyfiles": "~2.4.1"
+  }
 }
