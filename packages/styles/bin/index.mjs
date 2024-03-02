@@ -176,10 +176,10 @@ const main = async () => {
 async function migrateComponentStylesSheet({ log, isDirectory, directoryPath, filePath }) {
   const files = []
   if (isDirectory) {
-    files.push(path.join(directoryPath, '**', '*.sass'))
-    files.push(path.join(directoryPath, '**', '*.scss'))
+    files.push(path.join(directoryPath, '**', '*.sass').replace(/\\/g, '/'))
+    files.push(path.join(directoryPath, '**', '*.scss').replace(/\\/g, '/'))
   } else {
-    files.push(filePath)
+    files.push(filePath.replace(/\\/g, '/'))
   }
 
   try {
@@ -201,10 +201,10 @@ async function migrateComponentStylesSheet({ log, isDirectory, directoryPath, fi
 async function migrateCSSVariables({ log, isDirectory, directoryPath, filePath }) {
   const files = []
   if (isDirectory) {
-    files.push(path.join(directoryPath, '**', '*.sass'))
-    files.push(path.join(directoryPath, '**', '*.scss'))
+    files.push(path.join(directoryPath, '**', '*.sass').replace(/\\/g, '/'))
+    files.push(path.join(directoryPath, '**', '*.scss').replace(/\\/g, '/'))
   } else {
-    files.push(filePath)
+    files.push(filePath.replace(/\\/g, '/'))
   }
 
   try {
@@ -234,7 +234,7 @@ async function migrateCSSVariables({ log, isDirectory, directoryPath, filePath }
 }
 
 async function migrateGlobalStyleSheet({ globalStyleSheetPath, log }) {
-  const files = globalStyleSheetPath
+  const files = globalStyleSheetPath.replace(/\\/g, '/')
   try {
     const result = await replace({
       files,
@@ -359,9 +359,9 @@ async function migrateInlineTemplates({ filePath, log, utilReplacers }) {
 async function migrateHtmlFiles({ filePath, log, utilReplacers }) {
   // check if path is directly one file
   const isFile = filePath.trim().endsWith('.html')
-  let files = filePath
+  let files = filePath.replace(/\\/g, '/')
   if (!isFile) {
-    files = path.join(`${files}`, '**', '*.html')
+    files = path.join(`${files}`, '**', '*.html'.replace(/\\/g, '/'))
   }
 
   try {

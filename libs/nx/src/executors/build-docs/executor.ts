@@ -40,7 +40,7 @@ async function archive(fromPath: string, targetPath: string, fileName: string, f
     const archive = archiver('zip', { zlib: { level: 9 } })
     archive.on('error', err => reject(err.message))
     archive.pipe(output)
-    archive.glob(fileScan, { cwd: fromPath })
+    archive.glob(fileScan, { cwd: fromPath.replace(/\\/g, '/') })
     archive.finalize()
   })
 }

@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core'
 import { sass } from '@stencil/sass'
 import fg from 'fast-glob'
-import { resolve } from 'path'
+import { join, parse, resolve } from 'path'
 
 import { AngularGenerator, AngularLegacyGenerator, AngularModuleGenerator } from './config/stencil.bindings.angular'
 import { VueGenerator, VueTestGenerator } from './config/stencil.bindings.vue'
@@ -30,6 +30,11 @@ if (IS_BAL_DEVELOPMENT) {
   console.log('')
 }
 
+const workspaceDir = join(parse(__dirname).dir, '..')
+const packagesDir = join(workspaceDir, 'packages')
+const nodeModulesProject = join(__dirname, 'node_modules')
+const nodeModulesWorkspace = join(workspaceDir, 'node_modules')
+
 export const config: Config = {
   autoprefixCss: true,
   sourceMap: false,
@@ -42,7 +47,7 @@ export const config: Config = {
   plugins: [
     sass({
       outputStyle: 'compressed',
-      includePaths: [`${__dirname.split('/packages/')[0]}/node_modules/`, 'node_modules/'],
+      includePaths: [nodeModulesWorkspace, nodeModulesProject, 'node_modules'],
     }),
   ],
   extras: {
@@ -51,7 +56,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'docs-json',
-      file: '../../resources/data/components.json',
+      file: join(workspaceDir, 'resources', 'data', 'components.json'),
     },
     {
       type: 'dist',
@@ -80,16 +85,30 @@ export const config: Config = {
           src: 'components.d.ts',
         },
         {
-          src: '../../styles/css/themes/compact.css',
+          src: join(packagesDir, 'styles', 'css', 'themes', 'compact.css'),
           dest: 'assets/theme-compact.css',
+          warn: true,
         },
-        { src: '../../css/css/baloise-design-system.css', dest: 'assets/baloise-design-system-old.css', warn: true },
-        { src: '../../styles/css/baloise-design-system.css', dest: 'assets/baloise-design-system.css', warn: true },
         {
-          src: '../../maps/dist/index.esm.js',
-          dest: 'assets/maps.js',
+          src: join(packagesDir, 'css', 'css', 'baloise-design-system.css'),
+          dest: 'assets/baloise-design-system-old.css',
+          warn: true,
         },
-        { src: '../../fonts/assets', dest: 'assets/fonts', warn: true },
+        {
+          src: join(packagesDir, 'styles', 'css', 'all.css'),
+          dest: 'assets/baloise-design-system.css',
+          warn: true,
+        },
+        {
+          src: join(packagesDir, 'maps', 'dist', 'index.esm.js'),
+          dest: 'assets/maps.js',
+          warn: true,
+        },
+        {
+          src: join(packagesDir, 'fonts', 'assets'),
+          dest: 'assets/fonts',
+          warn: true,
+        },
       ],
     },
     /**

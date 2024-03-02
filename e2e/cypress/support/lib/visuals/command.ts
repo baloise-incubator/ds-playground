@@ -95,7 +95,7 @@ function prepareOptions(
     )
   }
   const options: VisualRegressionOptions = {
-    type: Cypress.env('visualRegressionType') as TypeOption || 'regression',
+    type: (Cypress.env('visualRegressionType') as TypeOption) || 'regression',
     screenshotName: name,
     specName: Cypress.spec.name,
     screenshotAbsolutePath: 'null', // will be set after takeScreenshot
