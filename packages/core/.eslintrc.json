@@ -10,6 +10,7 @@
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-namespace": "off",
+        "@nx/enforce-module-boundaries": "off",
         "no-extra-boolean-cast": "off",
         "no-self-assign": "off"
       }
