@@ -56,7 +56,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'docs-json',
-      file: join(workspaceDir, 'resources', 'data', 'components.json'),
+      file: '../../resources/data/components.json',
     },
     {
       type: 'dist',
