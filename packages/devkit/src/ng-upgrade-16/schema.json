@@ -3,12 +3,6 @@
   "$id": "bds-ng-upgrade-16",
   "title": "Upgrade an angular application the v16 of Baloise Design System",
   "type": "object",
-  "properties": {
-    "styles": {
-      "x-prompt": "Do you want to migrate to new styles package?",
-      "type": "boolean",
-      "default": true
-    }
-  },
+  "properties": {},
   "required": []
 }

@@ -77,6 +77,7 @@ export function changePackageName(_options: any): Rule {
     changePackage('design-system-components', 'ds-core')
 
     changePackage('design-system-css', 'ds-css')
+
     changePackage('design-system-styles', 'ds-styles')
     changePackage('design-system-tokens', 'ds-tokens')
 
@@ -89,6 +90,10 @@ export function changePackageName(_options: any): Rule {
     changePackage('design-system-grid', 'ds-table')
     changePackage('design-system-testing', 'ds-testing')
     changePackage('design-system-cli', 'ds-devkit')
+
+    if (!packageJson.dependencies[`@baloise/ds-css`] && !packageJson.dependencies[`@baloise/ds-styles`]) {
+      packageJson.dependencies[`@baloise/ds-css`] = upgradeVersion
+    }
 
     tree.overwrite(packageJsonPath, JSON.stringify(packageJson, null, 2))
 
