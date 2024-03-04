@@ -2,4 +2,4 @@
 '@baloise/ds-core': patch
 ---
 
-**button**: make it clickable
+**badge**: add new color prop `pink`
