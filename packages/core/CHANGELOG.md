@@ -1,5 +1,13 @@
 # @baloise/ds-core
 
+## 0.0.6
+
+### Patch Changes
+
+- **button**: make it clickable ( [`b807211`](https://github.com/baloise-incubator/ds-playground/commit/b807211b86b1275b84aa22b77cf4f528f12ff280))
+
+- **button**: make it clickable ( [`b807211`](https://github.com/baloise-incubator/ds-playground/commit/b807211b86b1275b84aa22b77cf4f528f12ff280))
+
 ## 0.0.5
 
 ### Patch Changes
