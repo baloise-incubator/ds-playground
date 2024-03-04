@@ -87,7 +87,7 @@ export function changePackageName(_options: any): Rule {
     changePackage('design-system-fonts', 'ds-fonts')
     changePackage('design-system-maps', 'ds-maps')
 
-    changePackage('design-system-grid', 'ds-table')
+    changePackage('design-system-components-table', 'ds-table')
     changePackage('design-system-testing', 'ds-testing')
     changePackage('design-system-cli', 'ds-devkit')
 
