@@ -1,5 +1,11 @@
 # @baloise/ds-core
 
+## 0.0.6
+
+### Patch Changes
+
+- **badge**: add new color prop `pink` ( [`b807211`](https://github.com/baloise-incubator/ds-playground/commit/b807211b86b1275b84aa22b77cf4f528f12ff280))
+
 ## 0.0.5
 
 ### Patch Changes
