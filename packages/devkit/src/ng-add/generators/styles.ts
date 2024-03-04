@@ -8,33 +8,33 @@ export const addStyles = (host: Tree) => {
   }
   const content = configBuffer.toString()
 
-  if (!content.includes('@baloise/design-system-styles/css/core')) {
+  if (!content.includes('@baloise/ds-styles/css/core')) {
     const newContent =
       content +
       `
 // SASS mixins and SASS variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 // Resets CSS for all browser
-@import '@baloise/design-system-styles/css/normalize';
-@import '@baloise/design-system-styles/css/structure';
+@import '@baloise/ds-styles/css/normalize';
+@import '@baloise/ds-styles/css/structure';
 
 // Custom font faces
-@import '@baloise/design-system-styles/css/font';
+@import '@baloise/ds-styles/css/font';
 
 // Core CSS with CSS variables, always required
-@import '@baloise/design-system-styles/css/core';
+@import '@baloise/ds-styles/css/core';
 
 // CSS utilities classes (optional)
-@import '@baloise/design-system-styles/css/utilities/background';
-@import '@baloise/design-system-styles/css/utilities/border';
-@import '@baloise/design-system-styles/css/utilities/elevation';
-@import '@baloise/design-system-styles/css/utilities/flex';
-@import '@baloise/design-system-styles/css/utilities/interaction';
-@import '@baloise/design-system-styles/css/utilities/layout';
-@import '@baloise/design-system-styles/css/utilities/sizing';
-@import '@baloise/design-system-styles/css/utilities/spacing';
-@import '@baloise/design-system-styles/css/utilities/typography';
+@import '@baloise/ds-styles/css/utilities/background';
+@import '@baloise/ds-styles/css/utilities/border';
+@import '@baloise/ds-styles/css/utilities/elevation';
+@import '@baloise/ds-styles/css/utilities/flex';
+@import '@baloise/ds-styles/css/utilities/interaction';
+@import '@baloise/ds-styles/css/utilities/layout';
+@import '@baloise/ds-styles/css/utilities/sizing';
+@import '@baloise/ds-styles/css/utilities/spacing';
+@import '@baloise/ds-styles/css/utilities/typography';
 `
     host.overwrite(filePath, newContent)
   }

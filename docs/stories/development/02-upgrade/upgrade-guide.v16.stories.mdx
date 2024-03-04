@@ -29,9 +29,112 @@ Updating from v15 to v16
 
 </Lead>
 
+## Overview
+
+Here is an overview of the breaking changes of the newly introduced version 16:
+
+- [Simplifying Our Package Names](#simplifying-our-package-name)
+- [Standardizing Design Tokens](#standardizing-design-tokens)
+- [Components](#components)
+
+## Simplifying Our Package Names
+
+### Why the Change?
+
+In our continuous effort to enhance your development experience, we've made some important changes to our package names.
+This update addresses four main issues that many of you have voiced:
+
+1. **Lengthy Names:** The previous package names were cumbersome, leading to a less than ideal experience in your IDEs. Long names not only clutter your workspace but also make auto-completion less efficient, slowing down your coding process.
+2. **Relevance:** Over time, as our libraries evolved, the original package names no longer accurately reflected the content and functionality they enclose. This mismatch could cause confusion and make it harder for new users to find what they need.
+3. **Sub-Packages Refinement:** The Angular sub-packages have been reorganized for direct, independent installation, addressing issues of incorrect imports and side-effects.
+
+### What's Changing?
+
+We've undertaken a comprehensive review of our package naming convention to address these concerns. The result is a set of shorter, more intuitive names that better describe the package contents.
+Here's a summary of the key changes:
+
+<Markdown>
+  {`
+| Old Package Name                                     | New Package Name           | Description                                                                             |
+| :--------------------------------------------------- | :------------------------- | :-------------------------------------------------------------------------------------- |
+| @baloise/design-system-components                    | @baloise/ds-core           | Core features of the Design System like Web-Components, Components-Styles and Utilities |
+| @baloise/design-system-components-angular            | @baloise/ds-angular-module | Angular component and provider library based on Angular Module and ESBuild              |
+| @baloise/design-system-components-angular/standalone | @baloise/ds-angular        | Angular component and provider library based on Angular Standalone and ESBuild          |
+| @baloise/design-system-components-angular/legacy     | @baloise/ds-angular-legacy | Angular component and provider library based on Angular Module and Webpack              |
+| @baloise/design-system-components-react              | @baloise/ds-react          | React component library                                                                 |
+| @baloise/design-system-components-vue                | @baloise/ds-vue            | Vue component library                                                                   |
+| @baloise/design-system-components-table              | @baloise/ds-table          | AG-Grid components and styles                                                           |
+| @baloise/design-system-cli                           | @baloise/ds-devkit         | Angular and NX schematics                                                               |
+| @baloise/design-system-\\\*                          | @baloise/ds-\\\*           |                                                                                         |
+`}
+</Markdown>
+
+### How to Upgrade
+
+Upgrading to the new package names is now more streamlined, thanks to our newly introduced Angular Schematics script
+for Angular projects. For projects not using Angular, the upgrade will need to be carried out manually.
+Here's how to proceed in both scenarios:
+
+#### For Angular Projects
+
+1. **Install Devkit:** First install the devkit package with the angular schematics script:
+
+```bash
+npm add -D -E @baloise/ds-devkit
+```
+
+2. **Angular Schematics Script:** Rename the packages by simply run the following command in your project's root directory:
+
+```bash
+ng generate @baloise/ds-devkit:up16
+```
+
+3. **Verify the Changes:** Once the script has run, review the changes to ensure everything has been updated correctly. It's a good practice to check the git diff if your project is version-controlled.
+
+4. **Test Your Application:** Run your application and execute your test suite to ensure that everything works as expected. The schematic should handle the renaming seamlessly, but it's important to verify that no issues have arisen from the change.
+
+#### For Non-Angular Projects:
+
+1. **Check the Full List:** Refer to the detailed mapping table above. This table lists all old and new package names, ensuring you're aware of all the changes.
+
+2. **Update Your Dependencies:** Manually modify the dependencies in your package.json.
+
+3. **Refactor Your Imports:** Manually update import statements in your codebase to reflect the new package names.
+
+4. **Test Thoroughly:** After making these updates, thoroughly test your application to ensure that all functionalities work as expected. The manual process might be more prone to human error, so a comprehensive testing phase is crucial.
+
+## Standardizing Design Tokens
+
+### Why the Change?
+
 The objective of this breaking change is to standardize the design tokens, facilitating their export to platforms such as
 Figma and others. With the introduction of these new design tokens, we can automatically generate CSS utility classes.
 This enhancement extends functionality, particularly in responsive design and pseudo-states.
+
+> **Non-Breaking Nature of the Update**
+>
+> Importantly, this token changes has been designed to be non-breaking.
+>
+> Our goal is to ensure that you can benefit from these new features without disrupting your existing workflows.
+>
+> Therefore keep the `@baloise/ds-css` package instead of the new `@baloise/ds-styles` package. However, then you will not benefit from the new improved CSS-Utility Classes.
+>
+> The previous documentation of version `15.x.x` with the old CSS-Utility Classes can be found [here](https://baloise-design-system-v15.vercel.app).
+>
+> <br />
+> Here is how you do it.
+>
+> 1. **Install Package:** First lets install the deprecated `@baloise/ds-css`.
+>
+> ```bash
+> npm add @baloise/ds-css
+> ```
+>
+> 2. **Update Imports:** Adjust the import paths of your source files.
+
+### What's Changing?
+
+Here are some examples of the changes to see there benefit:
 
 1. The **RENAMING** (or removing of prefixes like `is-*` or `has-*`) of the classes should **improve the readability** too.
 
@@ -90,152 +193,80 @@ This will be generated into:
 }
 ```
 
----
-
 For this specific migration a new CLI was created to help upgrading to the new `styles` package.
 
 The previous documentation of version `15.x.x` can be found [here](https://baloise-design-system-v15.vercel.app).
 
-As part of this change, we are introducing a new package called `@baloise/design-system-styles`.
+As part of this change, we are introducing a new package called `@baloise/ds-styles`.
 
-<InfoQuote>
+### How to Upgrade
 
-The following workflow walks you through the upgrade steps.
-Note that the actual steps required for your project may vary, and these steps should be treated as general guidance
-rather than strict instructions.
+Upgrading to the new styles package is streamlined, thanks to our newly introduced `@baloise/ds-styles`
+package CLI. Here's how to proceed:
 
-</InfoQuote>
+#### Migrate with CLI
 
-<AngularFramework>
-
-<br />
-
-**Lets start:**
+1. **Install Styles:** First we need to install the new styles package if yet not there.
 
 ```bash
-npm add -E @baloise/design-system-components-angular@16
+npm add -D -E @baloise/ds-styles@16
 ```
 
-If there are more `@baloise/design-system` dependencies in the projects `package.json` file upgrade them as well.
-
-</AngularFramework>
-
-## CSS Utilities
-
-### Non Breaking Upgrade
-
-First update the `@baloise` packages to v16.
-
-The deprecated package `@baloise/design-system-css` needs to be installed.
-
-```bash
-npm add -E @baloise/design-system-components-css@16
-```
-
-Replace the required stylesheets from the `css` package with the new ones from the `styles` package and keep the deprecated CSS utilities classes.
-
-<DiffSource
-  code={`- @import '@baloise/design-system-css/sass/mixins';
-- @import '@baloise/design-system-css/css/normalize';
-- @import '@baloise/design-system-css/css/structure';
-- @import '@baloise/design-system-css/css/font';
-- @import '@baloise/design-system-css/css/core';
-
-\+ @import '@baloise/design-system-styles/sass/mixins';
-\+ @import '@baloise/design-system-styles/css/normalize';
-\+ @import '@baloise/design-system-styles/css/structure';
-\+ @import '@baloise/design-system-styles/css/font';
-\+ @import '@baloise/design-system-styles/css/core';
-
-// Deprecated styles will be removed with the next breaking version (optional)
-@import '@baloise/design-system-css/sass/legacy';
-
-// CSS utilities classes (optional)
-@import '@baloise/design-system-css/css/border';
-@import '@baloise/design-system-css/css/color';
-@import '@baloise/design-system-css/css/display';
-@import '@baloise/design-system-css/css/flex';
-@import '@baloise/design-system-css/css/grid';
-@import '@baloise/design-system-css/css/opacity';
-@import '@baloise/design-system-css/css/radius';
-@import '@baloise/design-system-css/css/shadow';
-@import '@baloise/design-system-css/css/spacing';
-@import '@baloise/design-system-css/css/typography';
-
-- @import '@baloise/design-system-css/css/utilities/sizing';
-- @import '@baloise/design-system-css/css/utilities/interaction';`}
-  />
-
-<InfoQuote>
-
-- If the stylesheet `baloise-design-system` was used the please split into the following files.
-- It is recommended to migrate `legacy` sass file.
-
-</InfoQuote>
-
-### Migrate with CLI
-
-Before running the CLI to migrate to new styles package make sure the git stage is empty, because
-then it is easier to see all the changes of the CLI.
-
-1. Install the CLI to help with the migration.
-
-```bash
-npm add -D -E @baloise/design-system-cli@16
-```
-
-2. Run the migration cli to rename the changed CSS utility classes.
+2. **Start CLI:**: Run the migration CLI to rename the changed CSS utility classes. The CLI updates the global stylesheet, component stylesheets, HTML files and Angular inline templates.
 
 ```bash
 npx bds-migrate-to-styles
 ```
 
-The CLI updates the global stylesheet, component stylesheets, HTML files and Angular inline templates.
+3. **Verify the Changes:** Once the CLI has run, review the changes to ensure everything has been updated correctly. It's a good practice to check the git diff if your project is version-controlled.
 
-### Migrate Manual
+4. **Test Your Application:** Run your application and execute your test suite to ensure that everything works as expected.
+   The CLI should handle the renaming seamlessly, but it's important to verify that no issues have arisen from the change.
 
-1. Change the import from `@baloise/design-system-css` to `@baloise/design-system-styles`.
+#### Migrate Manually
+
+1. Change the import from `@baloise/design-system-css` to `@baloise/ds-styles`.
 
 <AngularFramework>
 - Check the `styles.scss` file and change the paths.
 
 <DiffSource
   code={`- @import '@baloise/design-system-css/sass/baloise-design-system';
-+ @import '@baloise/design-system-styles/sass/all';`}
++ @import '@baloise/ds-styles/sass/all';`}
 />
 
 or ...
 
 ```css
 // SASS mixins and SASS variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 // Resets CSS for all browser
-@import '@baloise/design-system-styles/css/normalize';
-@import '@baloise/design-system-styles/css/structure';
+@import '@baloise/ds-styles/css/normalize';
+@import '@baloise/ds-styles/css/structure';
 
 // Custom font faces
-@import '@baloise/design-system-styles/css/font';
+@import '@baloise/ds-styles/css/font';
 
 // Core CSS with CSS variables, always required
-@import '@baloise/design-system-styles/css/core';
+@import '@baloise/ds-styles/css/core';
 
 // CSS utilities classes (optional)
-@import '@baloise/design-system-styles/css/utilities/background';
-@import '@baloise/design-system-styles/css/utilities/border';
-@import '@baloise/design-system-styles/css/utilities/elevation';
-@import '@baloise/design-system-styles/css/utilities/flex';
-@import '@baloise/design-system-styles/css/utilities/interaction';
-@import '@baloise/design-system-styles/css/utilities/layout';
-@import '@baloise/design-system-styles/css/utilities/sizing';
-@import '@baloise/design-system-styles/css/utilities/spacing';
-@import '@baloise/design-system-styles/css/utilities/typography';
+@import '@baloise/ds-styles/css/utilities/background';
+@import '@baloise/ds-styles/css/utilities/border';
+@import '@baloise/ds-styles/css/utilities/elevation';
+@import '@baloise/ds-styles/css/utilities/flex';
+@import '@baloise/ds-styles/css/utilities/interaction';
+@import '@baloise/ds-styles/css/utilities/layout';
+@import '@baloise/ds-styles/css/utilities/sizing';
+@import '@baloise/ds-styles/css/utilities/spacing';
+@import '@baloise/ds-styles/css/utilities/typography';
 ```
 
 - Check the component style files if the `mixins` are used and change the path.
 
 ```css
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 ```
 
 2. Go through all the HTML files and replace the old CSS utility class with the new one.
@@ -519,6 +550,8 @@ The spacing helpers have not been renamed only the responsive markers.
 </AngularFramework>
 
 ## Components
+
+Moreover, there are two breaking changes in the components section:
 
 ### Button
 

@@ -14,9 +14,9 @@
       "command": "eslint --no-eslintrc",
       "outputs": ["{options.outputFile}"]
     },
-    "prepare": {
+    "optimize": {
       "executor": "@baloise/ds-nx:build-svg",
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/src/lib/markers.ts", "{projectRoot}/src/markers.json"],
+      "outputs": ["{projectRoot}/src/assets", "{projectRoot}/src/lib/markers.ts", "{projectRoot}/src/markers.json"],
       "options": {
         "projectName": "{projectName}",
         "projectRoot": "{projectRoot}",
@@ -31,7 +31,6 @@
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["prepare"],
       "options": {
         "outputPath": "{projectRoot}/dist",
         "main": "{projectRoot}/src/index.ts",

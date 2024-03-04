@@ -11,10 +11,12 @@
     "build:force": "npx nx reset && npx nx run-many -t build",
     "lint": "npx nx run-many -t lint",
     "test": "npx nx run-many -t test",
-    "format": "npx nx format:write --all",
+    "format": "npx nx format:write --all --end-of-line lf",
+    "format:check": "npx nx format:check --all --end-of-line lf",
     "spell": "cspell --no-progress",
     "registry": "bash registry",
     "changeset": "npx nx run changeset",
+    "optimize": "npx nx run-many -t optimize",
     "angular": "npx nx run create-angular",
     "angular:start": "npx nx run start-angular"
   },

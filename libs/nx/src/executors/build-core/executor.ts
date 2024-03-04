@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import { BuildCoreExecutorSchema } from './schema'
-import { dirname, join } from 'path'
+import { dirname, join, sep } from 'path'
 import replace from 'replace-in-file'
 import { mkdir, readFile, rm, writeFile } from 'fs/promises'
 import { copy } from 'fs-extra'
@@ -126,7 +126,7 @@ function parseTestingType(fileContent, filePath) {
       description: parseFunctionComment(commandNode, sourceFile),
       signature: commandNode.getText(sourceFile).replace(commandNode.name.escapedText, ''),
       path: filePath,
-      component: filePath.split('/').pop().replace('.types.ts', ''),
+      component: filePath.split(sep).pop().replace('.types.ts', ''),
     })
   })
   return commands
@@ -158,12 +158,12 @@ async function adjustInterfacesReference(options: BuildCoreExecutorSchema) {
 async function adjustGlobalVar(options: BuildCoreExecutorSchema) {
   const files = join(options.projectRoot, 'dist/cjs/app-globals*.js')
   await replace({
-    files: files,
+    files: files.replace(/\\/g, '/'),
     from: `const global =`,
     to: `const globalImport =`,
   })
   await replace({
-    files: files,
+    files: files.replace(/\\/g, '/'),
     from: `const globalScripts = global.globalScript;`,
     to: `const globalScripts = globalImport.globalScript;`,
   })
@@ -174,7 +174,7 @@ async function setVersion(options: BuildCoreExecutorSchema) {
   const content = await readFile(join(options.projectRoot, 'package.json'), 'utf8')
   const json = JSON.parse(content)
   await replace({
-    files: join(options.projectRoot, 'dist', '**/*.js'),
+    files: join(options.projectRoot, 'dist', '**/*.js').replace(/\\/g, '/'),
     from: /BAL_DEV_VERSION/g,
     to: json.version,
   })

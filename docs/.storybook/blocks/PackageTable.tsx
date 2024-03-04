@@ -6,161 +6,93 @@ export const PackageTable = ({ children }) => {
       <thead>
         <tr>
           <th>Package</th>
-          <th>Status</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/components/CHANGELOG.md">Components</a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/ds-core">
-              <img src="https://img.shields.io/npm/v/@baloise/ds-core" alt="npm" />
-            </a>
-          </td>
-          <td>Core package build with web components and global styling.</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/components-angular/CHANGELOG.md">
-              Components Angular
-            </a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/ds-angular">
-              <img src="https://img.shields.io/npm/v/@baloise/ds-angular" alt="npm" />
-            </a>
-          </td>
-          <td>Angular component proxies based on the the core package.</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/components-react/CHANGELOG.md">
-              Components React
-            </a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/ds-react">
-              <img src="https://img.shields.io/npm/v/@baloise/ds-react" alt="npm" />
-            </a>
-          </td>
-          <td>React component proxies based on the the core package.</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/components-table/CHANGELOG.md">
-              Components Table
-            </a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/ds-coretable">
-              <img src="https://img.shields.io/npm/v/@baloise/ds-coretable" alt="npm" />
-            </a>
-          </td>
-          <td>Integration library for AG-Grid with styles and renderer functions</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/components-vue/CHANGELOG.md">
-              Components Vue
-            </a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/ds-vue">
-              <img src="https://img.shields.io/npm/v/@baloise/ds-vue" alt="npm" />
-            </a>
-          </td>
-          <td>Vue component proxies based on the the core package.</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/cli/CHANGELOG.md">CLI</a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-cli">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-cli" alt="npm" />
-            </a>
-          </td>
-          <td>CLI to scaffold an angular project or migration helpers.</td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/fonts/CHANGELOG.md">Fonts</a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-fonts">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-fonts" alt="npm" />
-            </a>
+            <strong>Fonts</strong>
           </td>
           <td>Web-Font of the design system.</td>
         </tr>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/icons/CHANGELOG.md">Icons</a>
+            <strong>Tokens</strong>
           </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-icons">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-icons" alt="npm" />
-            </a>
-          </td>
-          <td>SVG icons of the design system.</td>
+          <td>Design Tokens like color and spacing.</td>
         </tr>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/favicons/CHANGELOG.md">Favicons</a>
+            <strong>Icons</strong>
           </td>
+          <td>SVG UI-Icons of the design system.</td>
+        </tr>
+        <tr>
           <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-favicons">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-favicons" alt="npm" />
-            </a>
+            <strong>Brand Icons</strong>
+          </td>
+          <td>SVG Brand-Icons of the design system.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Favicons</strong>
           </td>
           <td>Favicons of the design system.</td>
         </tr>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/maps/CHANGELOG.md">Maps</a>
-          </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-maps">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-maps" alt="npm" />
-            </a>
+            <strong>Maps</strong>
           </td>
           <td>Google Maps styles and icons.</td>
         </tr>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/styles/CHANGELOG.md">Styles</a>
+            <strong>Devkit</strong>
           </td>
+          <td>Angular Schematics for creating a new project and upgrade scripts</td>
+        </tr>
+        <tr>
           <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-styles">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-styles" alt="npm" />
-            </a>
+            <strong>Styles</strong>
           </td>
           <td>Basic CSS styles with utility classes.</td>
         </tr>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/testing/CHANGELOG.md">Testing</a>
+            <strong>Core</strong>
           </td>
-          <td>
-            <a href="https://www.npmjs.com/package/@baloise/design-system-testing">
-              <img src="https://img.shields.io/npm/v/@baloise/design-system-testing" alt="npm" />
-            </a>
-          </td>
-          <td>Testing package with custom and overridden commands for each component.</td>
+          <td>Core package build with web components and styling.</td>
         </tr>
         <tr>
           <td>
-            <a href="https://github.com/baloise/design-system/blob/main/packages/tokens/CHANGELOG.md">Tokens</a>
+            <strong>Angular</strong>
           </td>
+          <td>Angular component proxies based on the the core package.</td>
+        </tr>
+        <tr>
           <td>
-            <a href="https://www.npmjs.com/package/@baloise/ds-tokens">
-              <img src="https://img.shields.io/npm/v/@baloise/ds-tokens" alt="npm" />
-            </a>
+            <strong>React</strong>
           </td>
-          <td>Design Tokens like color and spacing.</td>
+          <td>React component proxies based on the the core package.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Vue</strong>
+          </td>
+          <td>Vue component proxies based on the the core package.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Table</strong>
+          </td>
+          <td>Integration library for AG-Grid with styles and renderer functions</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Testing</strong>
+          </td>
+          <td>Testing package with custom and overridden commands for each component.</td>
         </tr>
       </tbody>
     </table>

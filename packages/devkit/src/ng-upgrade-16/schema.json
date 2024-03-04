@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "bds-ng-upgrade-16",
+  "title": "Upgrade an angular application the v16 of Baloise Design System",
+  "type": "object",
+  "properties": {},
+  "required": []
+}

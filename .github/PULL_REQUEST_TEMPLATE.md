@@ -6,9 +6,10 @@ Closes #
 
 - Design & Technical Review
   - [Style Guide](https://stenciljs.com/docs/style-guide)
+- Document changes with a changeset
 - Testing
   - Visual
-  - Functional
+  - Functional (component test)
   - Browser
     - Desktop
       - Chrome

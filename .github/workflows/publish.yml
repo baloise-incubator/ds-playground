@@ -34,16 +34,18 @@ jobs:
       - name: Pre-Publish
         run: npx nx run pre-publish
 
-      - name: Read version from package.json
-        id: get_version
-        run: echo "::set-output name=version::$(jq -r '.version' packages/core/package.json)"
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: packages/core
 
       - name: Commit release
         uses: EndBug/add-and-commit@v9
         with:
           add: "['package-lock.json', 'CHANGELOG.md']"
-          message: ':bookmark: release: ${{ steps.get_version.outputs.version }}'
-          tag: 'v${{ steps.get_version.outputs.version }}'
+          message: ':bookmark: release: ${{ steps.package-version.outputs.current-version }}'
+          tag: 'v${{ steps.package-version.outputs.current-version }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -53,7 +55,7 @@ jobs:
           type: now
           from_branch: main
           target_branch: latest
-          message: ':bookmark: release: ${{ steps.get_version.outputs.version }}'
+          message: ':bookmark: release: ${{ steps.package-version.outputs.current-version }}'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish

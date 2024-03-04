@@ -23,8 +23,6 @@ jobs:
           build: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/actions/e2e-setup
-
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         with:
@@ -33,10 +31,10 @@ jobs:
           working-directory: e2e
           install: false
           browser: chrome
-          env: type=base
           spec: |
             cypress/e2e/visual/${{ inputs.specFile }}
         env:
+          CYPRESS_visualRegressionType: base
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload snapshots
@@ -47,7 +45,6 @@ jobs:
           path: e2e/cypress/snapshots
 
       - name: Commit base images
-        if: failure()
         uses: EndBug/add-and-commit@v9
         with:
           message: 'update base images'

@@ -11,6 +11,9 @@
       "cache": true,
       "dependsOn": ["^build"]
     },
+    "prepare": {
+      "cache": true
+    },
     "@nx/js:tsc": {
       "cache": true,
       "dependsOn": ["^build"],

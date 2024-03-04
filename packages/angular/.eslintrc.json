@@ -26,6 +26,7 @@
         "@angular-eslint/no-outputs-metadata-property": "off",
         "@typescript-eslint/no-unsafe-declaration-merging": "off",
         "@angular-eslint/component-class-suffix": "off",
+        "@nx/enforce-module-boundaries": "off",
         "@typescript-eslint/no-explicit-any": "off"
       }
     },

@@ -1,7 +1,7 @@
 import autoprefixer from 'autoprefixer'
 import { mkdir, writeFile } from 'fs/promises'
 import { glob } from 'glob'
-import { basename, dirname, join } from 'path'
+import { basename, dirname, join, relative } from 'path'
 import postcss from 'postcss'
 import { compileAsync } from 'sass'
 import CleanCSS from 'clean-css'
@@ -17,8 +17,7 @@ export const scan = async filePath => {
 
 export async function compileSass(file: string, options: { projectRoot: string }) {
   const fileName = basename(file).replace('.sass', '')
-  const folderPath = dirname(file)
-    .replace(options.projectRoot, '')
+  const folderPath = relative(options.projectRoot, dirname(file))
     .replace('sass', '')
     .replace(/^\/|\/$/g, '')
 
