@@ -6,7 +6,7 @@ import { findNodes } from '@schematics/angular/utility/ast-utils'
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript'
 import { glob } from 'glob'
 
-import { SchemaOptions } from './schema'
+import { AngularType, SchemaOptions } from './schema'
 import { getWorkspace } from '@schematics/angular/utility/workspace'
 import { join } from 'path'
 
@@ -47,7 +47,7 @@ export default function (options: SchemaOptions): Rule {
   }
 }
 
-export function changePackageName(_options: any): Rule {
+export function changePackageName(options: SchemaOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const packageJsonPath = '/package.json'
     const packageJsonContent = tree.read(packageJsonPath)
@@ -73,7 +73,14 @@ export function changePackageName(_options: any): Rule {
       }
     }
 
-    changePackage('design-system-components-angular', 'ds-angular')
+    if (options.angularType === AngularType.Standalone) {
+      changePackage('design-system-components-angular', 'ds-angular')
+    } else if (options.angularType === AngularType.Module) {
+      changePackage('design-system-components-angular', 'ds-angular-module')
+    } else if (options.angularType === AngularType.Legacy) {
+      changePackage('design-system-components-angular', 'ds-angular-legacy')
+    }
+
     changePackage('design-system-components', 'ds-core')
 
     changePackage('design-system-css', 'ds-css')
@@ -132,7 +139,7 @@ export function updateImports(config: RenameConfig): Rule {
           }, moduleSpecifier)
 
           // Extract imported items
-          const namedImports = node.importClause?.namedBindings?.getText(sourceFile) || ''
+          const namedImports = node.importClause?.getText(sourceFile) || ''
           const importClause = namedImports ? `${namedImports}` : ''
 
           const recorder = fileChanges[filePath] || []
