@@ -168,25 +168,25 @@ function updateImports(config: RenameConfig): Rule {
 function updateSassImports(): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     tree.getDir('src').visit((path, file) => {
-      if (!file) return;
+      if (!file) return
       if (path.endsWith('.scss') || path.endsWith('.sass')) {
-        const oldImportPath = '@baloise/design-system-css';
-        const newImportPath = '@baloise/ds-css';
-        const content = file.content.toString();
+        const oldImportPath = '@baloise/design-system-css'
+        const newImportPath = '@baloise/ds-css'
+        const content = file.content.toString()
 
         if (content.includes(oldImportPath)) {
-          const newContent = content.replace(new RegExp(oldImportPath, 'g'), newImportPath);
-          const recorder = tree.beginUpdate(path);
-          recorder.remove(0, content.length);
-          recorder.insertLeft(0, newContent);
-          tree.commitUpdate(recorder);
-          _context.logger.info(`Updated import in ${path}`);
+          const newContent = content.replace(new RegExp(oldImportPath, 'g'), newImportPath)
+          const recorder = tree.beginUpdate(path)
+          recorder.remove(0, content.length)
+          recorder.insertLeft(0, newContent)
+          tree.commitUpdate(recorder)
+          _context.logger.info(`Updated import in ${path}`)
         }
       }
-    });
+    })
 
-    return tree;
-  };
+    return tree
+  }
 }
 
 function getSourceFile(host: Tree, path: string): ts.SourceFile {

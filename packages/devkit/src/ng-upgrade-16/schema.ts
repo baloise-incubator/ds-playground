@@ -4,7 +4,6 @@ export enum AngularType {
   Legacy = 'Legacy Module-Based (Webpack)',
 }
 
-
 export interface SchemaOptions {
   /**
    * Defines how the angular lib is used
