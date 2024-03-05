@@ -38,6 +38,7 @@ export default function (options: SchemaOptions): Rule {
 
     actions.push(changePackageName(options))
     actions.push(updateImports(RENAME_CONFIG))
+    actions.push(updateSassImports())
     actions.push((tree: Tree, _context: SchematicContext) => {
       _context.addTask(new NodePackageInstallTask())
       return tree
@@ -47,7 +48,7 @@ export default function (options: SchemaOptions): Rule {
   }
 }
 
-export function changePackageName(options: SchemaOptions): Rule {
+function changePackageName(options: SchemaOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const packageJsonPath = '/package.json'
     const packageJsonContent = tree.read(packageJsonPath)
@@ -108,7 +109,7 @@ export function changePackageName(options: SchemaOptions): Rule {
   }
 }
 
-export function updateImports(config: RenameConfig): Rule {
+function updateImports(config: RenameConfig): Rule {
   return async (tree: Tree, _context: SchematicContext) => {
     const workspace = await getWorkspace(tree)
     if (!workspace) {
@@ -162,6 +163,30 @@ export function updateImports(config: RenameConfig): Rule {
       tree.commitUpdate(recorder)
     })
   }
+}
+
+function updateSassImports(): Rule {
+  return (tree: Tree, _context: SchematicContext) => {
+    tree.getDir('src').visit((path, file) => {
+      if (!file) return;
+      if (path.endsWith('.scss') || path.endsWith('.sass')) {
+        const oldImportPath = '@baloise/design-system-css';
+        const newImportPath = '@baloise/ds-css';
+        const content = file.content.toString();
+
+        if (content.includes(oldImportPath)) {
+          const newContent = content.replace(new RegExp(oldImportPath, 'g'), newImportPath);
+          const recorder = tree.beginUpdate(path);
+          recorder.remove(0, content.length);
+          recorder.insertLeft(0, newContent);
+          tree.commitUpdate(recorder);
+          _context.logger.info(`Updated import in ${path}`);
+        }
+      }
+    });
+
+    return tree;
+  };
 }
 
 function getSourceFile(host: Tree, path: string): ts.SourceFile {
