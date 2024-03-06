@@ -22,9 +22,9 @@ export const OverviewLink: FunctionalComponent<OverviewLinkProps> = ({ item, isM
         ...block.element('mobile-overview-link').class(),
         ...block.element('mobile-overview-link').modifier('menu').class(!!isMenu),
         ...block
-        .element('mobile-overview-link')
-        .modifier('invisible')
-        .class(isVisible === false),
+          .element('mobile-overview-link')
+          .modifier('invisible')
+          .class(isVisible === false),
       }}
       href={item.href}
       target={item.target}

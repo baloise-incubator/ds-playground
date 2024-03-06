@@ -1,10 +1,6 @@
 import { Inject, Injectable } from '@angular/core'
 
-import type {
-  BalSnackbarController,
-  BalSnackbarOptions,
-  Components,
-} from '@baloise/ds-core/components'
+import type { BalSnackbarController, BalSnackbarOptions, Components } from '@baloise/ds-core/components'
 
 import { defineCustomElement } from '@baloise/ds-core/components/bal-snackbar'
 import { BalTokenSnackbar } from '@baloise/ds-angular-common'
