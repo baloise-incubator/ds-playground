@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core'
 import type { BalToastController, BalToastOptions, Components } from '@baloise/ds-core/components'
 
 import { defineCustomElement } from '@baloise/ds-core/components/bal-toast'
-import { BalTokenToast } from '@baloise/design-system-components-angular/common'
+import { BalTokenToast } from '@baloise/ds-angular-common'
 
 @Injectable({
   providedIn: 'root',

@@ -3,7 +3,7 @@ import { ComponentFactoryResolver, Inject, Injectable, Injector } from '@angular
 import type { BalModalController, ModalOptions } from '@baloise/ds-core/components'
 import { defineCustomElement } from '@baloise/ds-core/components/bal-modal'
 
-import { AngularDelegate, OverlayBaseController, BalTokenModal } from '@baloise/design-system-components-angular/common'
+import { AngularDelegate, OverlayBaseController, BalTokenModal } from '@baloise/ds-angular-common'
 
 @Injectable({
   providedIn: 'root',

@@ -7,7 +7,7 @@ import type {
 } from '@baloise/ds-core/components'
 
 import { defineCustomElement } from '@baloise/ds-core/components/bal-snackbar'
-import { BalTokenSnackbar } from '@baloise/design-system-components-angular/common'
+import { BalTokenSnackbar } from '@baloise/ds-angular-common'
 
 @Injectable({
   providedIn: 'root',
