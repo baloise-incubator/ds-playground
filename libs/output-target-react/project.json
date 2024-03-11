@@ -20,6 +20,12 @@
       "options": {
         "reportsDirectory": "../../coverage/libs/output-target-react"
       }
+    },
+    "test-ui": {
+      "executor": "@baloise/ds-nx:test-ui",
+      "options": {
+        "projectRoot": "{projectRoot}"
+      }
     }
   },
   "tags": ["scope:release", "type:lib"]

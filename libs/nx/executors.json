@@ -44,6 +44,11 @@
       "implementation": "./src/executors/create-angular/executor",
       "schema": "./src/executors/create-angular/schema.json",
       "description": "create-angular executor"
+    },
+    "test-ui": {
+      "implementation": "./src/executors/test-ui/executor",
+      "schema": "./src/executors/test-ui/schema.json",
+      "description": "test-ui executor"
     }
   }
 }

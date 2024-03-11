@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "test-ui": {
+      "implementation": "./lib/nx/src/executors/test-ui/executor",
+      "schema": "./lib/nx/src/executors/test-ui/schema.json",
+      "description": "test-ui executor"
+    }
+  }
+}
