@@ -1,5 +1,11 @@
 # @baloise/ds-core
 
+## 0.0.7
+
+### Patch Changes
+
+- **devkit**: update ( [`fa635d1`](https://github.com/baloise-incubator/ds-playground/commit/fa635d1ef97f67d577141dde4e916214f8fbb933))
+
 ## 0.0.6
 
 ### Patch Changes
