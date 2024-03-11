@@ -312,50 +312,50 @@ import { ButtonCard, Banner, Lead, InfoQuote, ScssSource, GridCards, GridCard, F
 ## Installation
 
 Introducing CSS utility classes meticulously crafted around the [design tokens](?path=/docs/foundation-design-tokens--documentation),
-seamlessly integrated into the `@baloise/design-system-styles` package. These classes are accessible in
+seamlessly integrated into the `@baloise/ds-styles` package. These classes are accessible in
 both **CSS** and **SCSS** formats, ensuring versatile usage.
 
-The `@baloise/design-system-styles` is included in the component package, so if that is already installed skip the next step.
+The `@baloise/ds-styles` is included in the component package, so if that is already installed skip the next step.
 
 ```bash
-npm add @baloise/design-system-styles
+npm add @baloise/ds-styles
 ```
 
 The CSS utility package is designed in a modular fashion, allowing for selective imports based on the specific needs of the application.
 
 ```css
 // SASS mixins and variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 // Resets CSS for all browser
-@import '@baloise/design-system-styles/css/normalize';
-@import '@baloise/design-system-styles/css/structure';
+@import '@baloise/ds-styles/css/normalize';
+@import '@baloise/ds-styles/css/structure';
 
 // Custom font faces
-@import '@baloise/design-system-styles/sass/font';
+@import '@baloise/ds-styles/sass/font';
 
 // Core CSS, always required
-@import '@baloise/design-system-styles/css/core';
+@import '@baloise/ds-styles/css/core';
 
 // CSS utilities classes (optional)
-@import '@baloise/design-system-styles/css/utilities/background';
-@import '@baloise/design-system-styles/css/utilities/border';
-@import '@baloise/design-system-styles/css/utilities/elevation';
-@import '@baloise/design-system-styles/css/utilities/flex';
-@import '@baloise/design-system-styles/css/utilities/grid';
-@import '@baloise/design-system-styles/css/utilities/interaction';
-@import '@baloise/design-system-styles/css/utilities/layout';
-@import '@baloise/design-system-styles/css/utilities/sizing';
-@import '@baloise/design-system-styles/css/utilities/spacing';
-@import '@baloise/design-system-styles/css/utilities/typography';
+@import '@baloise/ds-styles/css/utilities/background';
+@import '@baloise/ds-styles/css/utilities/border';
+@import '@baloise/ds-styles/css/utilities/elevation';
+@import '@baloise/ds-styles/css/utilities/flex';
+@import '@baloise/ds-styles/css/utilities/grid';
+@import '@baloise/ds-styles/css/utilities/interaction';
+@import '@baloise/ds-styles/css/utilities/layout';
+@import '@baloise/ds-styles/css/utilities/sizing';
+@import '@baloise/ds-styles/css/utilities/spacing';
+@import '@baloise/ds-styles/css/utilities/typography';
 ```
 
 ## Component styling
 
-Import `@baloise/design-system-styles/sass/mixins` into your component's style imports to gain access to a comprehensive collection of design tokens and Sass mixins.
+Import `@baloise/ds-styles/sass/mixins` into your component's style imports to gain access to a comprehensive collection of design tokens and Sass mixins.
 
 <ScssSource code={`// SASS mixins and variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 .my-component {
 ${' '}${' '}background: var(--bal-color-green);

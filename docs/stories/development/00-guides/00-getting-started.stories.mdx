@@ -28,7 +28,7 @@ All the Baloise Design System packages are available on [NPM](https://www.npmjs.
 
 ## Prerequisite
 
-If you do not have an Angular app yet create one with the [Angular CLI](https://angular.io/guide/setup-local).
+If you do not have an Angular app yet create one with [Nx](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial) or [Angular CLI](https://angular.io/guide/setup-local).
 
 <InfoQuote>
   **Recommendations**
@@ -59,14 +59,14 @@ nx g @ngneat/transloco:ng-add
 
 Lets install the schematics to configure and add the design system to an Angular project.
 
-<Code language="bash" noPreview code={`npm add -D -E @baloise/design-system-cli`} />
+<Code language="bash" noPreview code={`npm add -D -E @baloise/ds-devkit`} />
 
 Install the library using Angular CLI:
 
 ```bash
-ng add @baloise/design-system-cli
+ng add @baloise/ds-devkit
 # On an nx workspace
-nx g @baloise/design-system-cli:ng-add
+nx g @baloise/ds-devkit:ng-add
 ```
 
 ## Manual Installation
@@ -139,36 +139,36 @@ Component styles are automatically loaded lazily in the browser. However, CSS Ut
 fundamentals need to be imported into the global stylesheet of the application. These stylesheets can be
 imported as either **SASS** or **CSS** files.
 
-Use `@baloise/design-system-styles/sass/mixins` to gain access to SASS mixins, such as breakpoints.
+Use `@baloise/ds-styles/sass/mixins` to gain access to SASS mixins, such as breakpoints.
 
 The following suggestion for importing files is recommended for greater flexibility, ensuring only necessary styles are included in the bundle.
-However, if the application requires all styles regardless of payload size, simply import the stylesheet `@baloise/design-system-styles/sass/baloise-design-system`
+However, if the application requires all styles regardless of payload size, simply import the stylesheet `@baloise/ds-styles/sass/all`
 , which has all style definitions.
 
 ```css
 // SASS mixins and variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 // Resets CSS for all browser
-@import '@baloise/design-system-styles/css/normalize';
-@import '@baloise/design-system-styles/css/structure';
+@import '@baloise/ds-styles/css/normalize';
+@import '@baloise/ds-styles/css/structure';
 
 // Custom font faces
-@import '@baloise/design-system-styles/css/font';
+@import '@baloise/ds-styles/css/font';
 
 // Core CSS, always required
-@import '@baloise/design-system-styles/css/core';
+@import '@baloise/ds-styles/css/core';
 
 // CSS utilities classes (optional)
-@import '@baloise/design-system-styles/css/utilities/background';
-@import '@baloise/design-system-styles/css/utilities/border';
-@import '@baloise/design-system-styles/css/utilities/elevation';
-@import '@baloise/design-system-styles/css/utilities/flex';
-@import '@baloise/design-system-styles/css/utilities/interaction';
-@import '@baloise/design-system-styles/css/utilities/layout';
-@import '@baloise/design-system-styles/css/utilities/sizing';
-@import '@baloise/design-system-styles/css/utilities/spacing';
-@import '@baloise/design-system-styles/css/utilities/typography';
+@import '@baloise/ds-styles/css/utilities/background';
+@import '@baloise/ds-styles/css/utilities/border';
+@import '@baloise/ds-styles/css/utilities/elevation';
+@import '@baloise/ds-styles/css/utilities/flex';
+@import '@baloise/ds-styles/css/utilities/interaction';
+@import '@baloise/ds-styles/css/utilities/layout';
+@import '@baloise/ds-styles/css/utilities/sizing';
+@import '@baloise/ds-styles/css/utilities/spacing';
+@import '@baloise/ds-styles/css/utilities/typography';
 ```
 
 ### Standalone
@@ -329,15 +329,12 @@ Add the `bal-app` to your root element.
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Baloise Design System</title>
-    <link rel="stylesheet" href="node_modules/@baloise/design-system-styles/css/baloise-design-system.css" />
+    <link rel="stylesheet" href="node_modules/@baloise/ds-styles/css/all.css" />
     <script
       type="module"
-      src="node_modules/@baloise/ds-core/dist/design-system-components/design-system-components.esm.js"
+      src="node_modules/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.esm.js"
     ></script>
-    <script
-      nomodule
-      src="node_modules/@baloise/ds-core/dist/design-system-components/design-system-components.js"
-    ></script>
+    <script nomodule src="node_modules/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.js"></script>
   </head>
   <body>
     <bal-app>
@@ -363,24 +360,21 @@ service to host and distribute the assets via the CDN.
 
 To avoid potential breaking changes, it is recommended to use a specific version directly rather than relying on the latest version.
 
-Like => `https://cdn.jsdelivr.net/npm/@baloise/design-system-styles@16/css/baloise-design-system.css`
+Like => `https://cdn.jsdelivr.net/npm/@baloise/ds-styles@16/css/all.css`
 
 </InfoQuote>
 
 Add the following 4 references to your `<head></head>`
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@baloise/design-system-styles/css/baloise-design-system.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@baloise/ds-styles/css/all.css" />
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/design-system-components/design-system-components.esm.js"
+  src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.esm.js"
 ></script>
 <script
   nomodule
-  src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/design-system-components/design-system-components.js"
+  src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.js"
 ></script>
 ```
 
@@ -394,17 +388,14 @@ Here is how you can integrate it into your project.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>CDN Template</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@baloise/design-system-styles/css/baloise-design-system.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@baloise/ds-styles/css/all.css" />
     <script
       type="module"
-      src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/design-system-components/design-system-components.esm.js"
+      src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.esm.js"
     ></script>
     <script
       nomodule
-      src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/design-system-components/design-system-components.js"
+      src="https://cdn.jsdelivr.net/npm/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.js"
     ></script>
   </head>
   <body>
@@ -463,10 +454,10 @@ Component styles are automatically loaded lazily in the browser. However, CSS Ut
 fundamentals need to be imported into the global stylesheet of the application. These stylesheets can be
 imported as either **SASS** or **CSS** files.
 
-Use `@baloise/design-system-styles/sass/mixins` to gain access to SASS mixins, such as breakpoints.
+Use `@baloise/ds-styles/sass/mixins` to gain access to SASS mixins, such as breakpoints.
 
 The following suggestion for importing files is recommended for greater flexibility, ensuring only necessary styles are included in the bundle.
-However, if the application requires all styles regardless of payload size, simply import the stylesheet `@baloise/design-system-styles/sass/baloise-design-system`
+However, if the application requires all styles regardless of payload size, simply import the stylesheet `@baloise/ds-styles/sass/all`
 , which has all style definitions.
 
 <Code
@@ -474,28 +465,28 @@ However, if the application requires all styles regardless of payload size, simp
   noPreview
   code={`
 // SASS mixins and variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 // Resets CSS for all browser
-@import '@baloise/design-system-styles/css/normalize';
-@import '@baloise/design-system-styles/css/structure';
+@import '@baloise/ds-styles/css/normalize';
+@import '@baloise/ds-styles/css/structure';
 
 // Custom font faces
-@import '@baloise/design-system-styles/sass/font';
+@import '@baloise/ds-styles/sass/font';
 
 // Core CSS, always required
-@import '@baloise/design-system-styles/css/core';
+@import '@baloise/ds-styles/css/core';
 
 // CSS utilities classes (optional)
-@import '@baloise/design-system-styles/css/utilities/background';
-@import '@baloise/design-system-styles/css/utilities/border';
-@import '@baloise/design-system-styles/css/utilities/elevation';
-@import '@baloise/design-system-styles/css/utilities/flex';
-@import '@baloise/design-system-styles/css/utilities/interaction';
-@import '@baloise/design-system-styles/css/utilities/layout';
-@import '@baloise/design-system-styles/css/utilities/sizing';
-@import '@baloise/design-system-styles/css/utilities/spacing';
-@import '@baloise/design-system-styles/css/utilities/typography';
+@import '@baloise/ds-styles/css/utilities/background';
+@import '@baloise/ds-styles/css/utilities/border';
+@import '@baloise/ds-styles/css/utilities/elevation';
+@import '@baloise/ds-styles/css/utilities/flex';
+@import '@baloise/ds-styles/css/utilities/interaction';
+@import '@baloise/ds-styles/css/utilities/layout';
+@import '@baloise/ds-styles/css/utilities/sizing';
+@import '@baloise/ds-styles/css/utilities/spacing';
+@import '@baloise/ds-styles/css/utilities/typography';
 `}
 />
 
@@ -562,10 +553,10 @@ Component styles are automatically loaded lazily in the browser. However, CSS Ut
 fundamentals need to be imported into the global stylesheet of the application. These stylesheets can be
 imported as either **SASS** or **CSS** files.
 
-Use `@baloise/design-system-styles/sass/mixins` to gain access to SASS mixins, such as breakpoints.
+Use `@baloise/ds-styles/sass/mixins` to gain access to SASS mixins, such as breakpoints.
 
 The following suggestion for importing files is recommended for greater flexibility, ensuring only necessary styles are included in the bundle.
-However, if the application requires all styles regardless of payload size, simply import the stylesheet `@baloise/design-system-styles/sass/baloise-design-system`
+However, if the application requires all styles regardless of payload size, simply import the stylesheet `@baloise/ds-styles/sass/all`
 , which has all style definitions.
 
 <Code
@@ -573,28 +564,28 @@ However, if the application requires all styles regardless of payload size, simp
   noPreview
   code={`
 // SASS mixins and variables
-@import '@baloise/design-system-styles/sass/mixins';
+@import '@baloise/ds-styles/sass/mixins';
 
 // Resets CSS for all browser
-@import '@baloise/design-system-styles/css/normalize';
-@import '@baloise/design-system-styles/css/structure';
+@import '@baloise/ds-styles/css/normalize';
+@import '@baloise/ds-styles/css/structure';
 
 // Custom font faces
-@import '@baloise/design-system-styles/sass/font';
+@import '@baloise/ds-styles/sass/font';
 
 // Core CSS, always required
-@import '@baloise/design-system-styles/css/core';
+@import '@baloise/ds-styles/css/core';
 
 // CSS utilities classes (optional)
-@import '@baloise/design-system-styles/css/utilities/background';
-@import '@baloise/design-system-styles/css/utilities/border';
-@import '@baloise/design-system-styles/css/utilities/elevation';
-@import '@baloise/design-system-styles/css/utilities/flex';
-@import '@baloise/design-system-styles/css/utilities/interaction';
-@import '@baloise/design-system-styles/css/utilities/layout';
-@import '@baloise/design-system-styles/css/utilities/sizing';
-@import '@baloise/design-system-styles/css/utilities/spacing';
-@import '@baloise/design-system-styles/css/utilities/typography';
+@import '@baloise/ds-styles/css/utilities/background';
+@import '@baloise/ds-styles/css/utilities/border';
+@import '@baloise/ds-styles/css/utilities/elevation';
+@import '@baloise/ds-styles/css/utilities/flex';
+@import '@baloise/ds-styles/css/utilities/interaction';
+@import '@baloise/ds-styles/css/utilities/layout';
+@import '@baloise/ds-styles/css/utilities/sizing';
+@import '@baloise/ds-styles/css/utilities/spacing';
+@import '@baloise/ds-styles/css/utilities/typography';
 `}
 />
 

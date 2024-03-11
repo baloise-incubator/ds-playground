@@ -37,6 +37,7 @@ Here is an overview of the breaking changes of the newly introduced version 16:
 - [Components](#components)
   - Button
   - Navigation
+- [Testing]()
 
 This change is recommended but can be done in a later stage:
 
@@ -130,6 +131,15 @@ ng generate @baloise/ds-devkit:up16
 
 Moreover, there are two breaking changes in the components section:
 
+### Distribution files
+
+<DiffSource
+  code={`-  import '@baloise/design-system-testing/dist/add-custom-commands'
+-  import '@baloise/design-system-testing/dist/add-override-commands'
++  import '@baloise/ds-testing/add-custom-commands'
++  import '@baloise/ds-testing/add-override-commands'`}
+/>
+
 ### Button
 
 Properties `topRounded` and `bottomRounded` has been removed, due to not match the design criteria.
@@ -138,7 +148,21 @@ Properties `topRounded` and `bottomRounded` has been removed, due to not match t
 
 Component `bal-navigation` has been removed and replaced with `bal-nav` to improve performance and SEO.
 
+## Testing
+
+The export paths for the testing packages have been improved.
+
+<DiffSource
+  code={`-  import '@baloise/design-system-testing/dist/add-custom-commands'
+-  import '@baloise/design-system-testing/dist/add-override-commands'
++  import '@baloise/ds-testing/add-custom-commands'
++  import '@baloise/ds-testing/add-override-commands'`}
+/>
+
 ## Standardizing Design Tokens
+
+This change is not mandatory for upgrading to the new version 16. Can be done in a later stage.
+However, the CSS package is marked as deprecated.
 
 ### Why the Change?
 
