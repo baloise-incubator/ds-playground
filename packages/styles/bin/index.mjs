@@ -414,8 +414,6 @@ async function migrateHtmlFiles({ filePath, log, utilReplacers }) {
 
     if (changedFiles.length > 0) {
       changedFiles.forEach(file => log.list(file))
-    } else {
-      log.info('No files found to migrate')
     }
     log.info()
   } catch (error) {
@@ -522,8 +520,6 @@ function printResult({ result, log }) {
 
   if (changedFiles.length > 0) {
     changedFiles.forEach(file => log.list(file))
-  } else {
-    log.info('No files found to migrate')
   }
 }
 
