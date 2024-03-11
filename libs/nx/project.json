@@ -11,6 +11,12 @@
         "reportsDirectory": "../../coverage/libs/nx"
       }
     },
+    "test-ui": {
+      "executor": "@baloise/ds-nx:test-ui",
+      "options": {
+        "projectRoot": "{projectRoot}"
+      }
+    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

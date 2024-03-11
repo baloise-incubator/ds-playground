@@ -25,7 +25,7 @@
     "loader/"
   ],
   "scripts": {
-    "dev": "BAL_DOCUMENTATION=true stencil build --watch"
+    "bubu": "vitest --ui"
   },
   "dependencies": {
     "@baloise/ds-styles": "0.0.6",

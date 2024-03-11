@@ -2,4 +2,4 @@
 '@baloise/ds-core': patch
 ---
 
-**devkit**: update 
+**devkit**: update
