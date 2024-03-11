@@ -34,8 +34,13 @@ Updating from v15 to v16
 Here is an overview of the breaking changes of the newly introduced version 16:
 
 - [Simplifying Our Package Names](#simplifying-our-package-name)
-- [Standardizing Design Tokens](#standardizing-design-tokens)
 - [Components](#components)
+  - Button
+  - Navigation
+
+This change is recommanded but can be done in a later stage:
+
+- [Standardizing Design Tokens](#standardizing-design-tokens)
 
 ## Simplifying Our Package Names
 
@@ -120,6 +125,18 @@ ng generate @baloise/ds-devkit:up16
 3. **Refactor Your Imports:** Manually update import statements in your codebase to reflect the new package names.
 
 4. **Test Thoroughly:** After making these updates, thoroughly test your application to ensure that all functionalities work as expected. The manual process might be more prone to human error, so a comprehensive testing phase is crucial.
+
+## Components
+
+Moreover, there are two breaking changes in the components section:
+
+### Button
+
+Properties `topRounded` and `bottomRounded` has been removed, due to not match the design criteria.
+
+### Navigation
+
+Component `bal-navigation` has been removed and replaced with `bal-nav` to improve performance and SEO.
 
 ## Standardizing Design Tokens
 
@@ -566,18 +583,6 @@ The spacing helpers have not been renamed only the responsive markers.
 </Markdown>
 
 </AngularFramework>
-
-## Components
-
-Moreover, there are two breaking changes in the components section:
-
-### Button
-
-Properties `topRounded` and `bottomRounded` has been removed, due to not match the design criteria.
-
-### Navigation
-
-Component `bal-navigation` has been removed and replaced with `bal-nav` to improve performance and SEO.
 
 ## Need Help Upgrading?​
 
