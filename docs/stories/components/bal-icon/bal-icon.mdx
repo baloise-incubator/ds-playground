@@ -102,12 +102,12 @@ export class AppComponent {
 
 ### Import during initialization
 
-Import the icons form the `@baloise/design-system-icons` package and pass them with the BalConfig during the initialization.
+Import the icons form the `@baloise/ds-icons` package and pass them with the BalConfig during the initialization.
 
 ```ts
 import React from 'react'
 import { useBaloiseDesignSystem, BalApp } from '@baloise/ds-react'
-import { balIconStarFull } from '@baloise/design-system-icons'
+import { balIconStarFull } from '@baloise/ds-icons'
 
 export default function App() {
   useBaloiseDesignSystem({
@@ -127,7 +127,7 @@ When importing an SVG into your component you decrease the initial page load. So
 ```ts
 import React from 'react'
 import { BalIcon } from '@baloise/ds-react'
-import { balIconStarFull } from '@baloise/design-system-icons'
+import { balIconStarFull } from '@baloise/ds-icons'
 
 export default function Example() {
   return <BalIcon svg={balIconStarFull}></BalIcon>
@@ -140,10 +140,10 @@ export default function Example() {
 
 ### Import during initialization
 
-Import the icons form the `@baloise/design-system-icons` package and pass them with the BalConfig during the initialization.
+Import the icons form the `@baloise/ds-icons` package and pass them with the BalConfig during the initialization.
 
 ```ts
-import { balIconStarFull } from '@baloise/design-system-icons'
+import { balIconStarFull } from '@baloise/ds-icons'
 
 createApp(App)
   .use(
@@ -163,7 +163,7 @@ When importing an SVG into your component you decrease the initial page load. So
 ```html
 <script lang="ts" setup>
   import { BalIcon } from '@baloise/ds-vue'
-  import { balIconStarFull } from '@baloise/design-system-icons'
+  import { balIconStarFull } from '@baloise/ds-icons'
 </script>
 
 <template>
@@ -177,11 +177,11 @@ When importing an SVG into your component you decrease the initial page load. So
 
 ### Import during initialization
 
-Import the icons form the `@baloise/design-system-icons` package and pass them with the BalConfig during the initialization.
+Import the icons form the `@baloise/ds-icons` package and pass them with the BalConfig during the initialization.
 
 ```ts
 import { initialize } from '@baloise/ds-core'
-import { balIconStarFull } from '@baloise/design-system-icons'
+import { balIconStarFull } from '@baloise/ds-icons'
 
 initialize({
   icons: { balIconStarFull },
@@ -193,7 +193,7 @@ initialize({
 When importing an SVG into your component you decrease the initial page load. So you use the SVG only where you needed and at the time you wanted.
 
 ```js
-import { balIconStarFull } from '@baloise/design-system-icons'
+import { balIconStarFull } from '@baloise/ds-icons'
 
 document.getElementById('my-icon').svg = balIconStarFull
 ```

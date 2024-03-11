@@ -15,5 +15,5 @@ Cypress.Commands.add<any>('platform', platform => {
     .viewport(viewport.width, viewport.height, { log: false })
     .then(() => waitAfterFramePaint())
     .then(() => waitAfterIdleCallback())
-    .wait(32)
+    .wait(32, { log: false })
 })

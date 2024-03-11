@@ -34,8 +34,15 @@ Updating from v15 to v16
 Here is an overview of the breaking changes of the newly introduced version 16:
 
 - [Simplifying Our Package Names](#simplifying-our-package-name)
-- [Standardizing Design Tokens](#standardizing-design-tokens)
 - [Components](#components)
+  - Distribution files
+  - Button
+  - Navigation
+- [Testing](#testing)
+
+This change is recommended but can be done in a later stage:
+
+- [Standardizing Design Tokens](#standardizing-design-tokens)
 
 ## Simplifying Our Package Names
 
@@ -55,17 +62,35 @@ Here's a summary of the key changes:
 
 <Markdown>
   {`
-| Old Package Name                                     | New Package Name           | Description                                                                             |
-| :--------------------------------------------------- | :------------------------- | :-------------------------------------------------------------------------------------- |
-| @baloise/design-system-components                    | @baloise/ds-core           | Core features of the Design System like Web-Components, Components-Styles and Utilities |
-| @baloise/design-system-components-angular            | @baloise/ds-angular-module | Angular component and provider library based on Angular Module and ESBuild              |
-| @baloise/design-system-components-angular/standalone | @baloise/ds-angular        | Angular component and provider library based on Angular Standalone and ESBuild          |
-| @baloise/design-system-components-angular/legacy     | @baloise/ds-angular-legacy | Angular component and provider library based on Angular Module and Webpack              |
-| @baloise/design-system-components-react              | @baloise/ds-react          | React component library                                                                 |
-| @baloise/design-system-components-vue                | @baloise/ds-vue            | Vue component library                                                                   |
-| @baloise/design-system-components-table              | @baloise/ds-table          | AG-Grid components and styles                                                           |
-| @baloise/design-system-cli                           | @baloise/ds-devkit         | Angular and NX schematics                                                               |
-| @baloise/design-system-\\\*                          | @baloise/ds-\\\*           |                                                                                         |
+| Old Package Name                                         |       | New Package Name               |
+| :------------------------------------------------------- | :---: | :----------------------------- |
+| \`@baloise/design-system-components\`                    | **→** | \`@baloise/ds-core\`           |
+| \`@baloise/design-system-components-angular\`            | **→** | \`@baloise/ds-angular-module\` |
+| \`@baloise/design-system-components-angular/standalone\` | **→** | \`@baloise/ds-angular\`        |
+| \`@baloise/design-system-components-angular/legacy\`     | **→** | \`@baloise/ds-angular-legacy\` |
+| \`@baloise/design-system-components-react\`              | **→** | \`@baloise/ds-react\`          |
+| \`@baloise/design-system-components-vue\`                | **→** | \`@baloise/ds-vue\`            |
+| \`@baloise/design-system-components-table\`              | **→** | \`@baloise/ds-table\`          |
+| \`@baloise/design-system-cli\`                           | **→** | \`@baloise/ds-devkit\`         |
+| \`@baloise/design-system-*\`                          | **→** | \`@baloise/ds-\\\*\`           |
+`}
+</Markdown>
+
+#### New Packages
+
+<Markdown>
+  {`
+| Package Name                   | Description                                                                             |
+| :----------------------------- | :-------------------------------------------------------------------------------------- |
+| \`@baloise/ds-core\`           | Core features of the Design System like Web-Components, Components-Styles and Utilities |
+| \`@baloise/ds-angular-module\` | Angular component and provider library based on Angular Module and ESBuild              |
+| \`@baloise/ds-angular\`        | Angular component and provider library based on Angular Standalone and ESBuild          |
+| \`@baloise/ds-angular-legacy\` | Angular component and provider library based on Angular Module and Webpack              |
+| \`@baloise/ds-react\`          | React component library                                                                 |
+| \`@baloise/ds-vue\`            | Vue component library                                                                   |
+| \`@baloise/ds-table\`          | AG-Grid components and styles                                                           |
+| \`@baloise/ds-devkit\`         | Angular and NX schematics                                                               |
+| \`@baloise/ds-*\`           |                                                                                         |
 `}
 </Markdown>
 
@@ -103,7 +128,54 @@ ng generate @baloise/ds-devkit:up16
 
 4. **Test Thoroughly:** After making these updates, thoroughly test your application to ensure that all functionalities work as expected. The manual process might be more prone to human error, so a comprehensive testing phase is crucial.
 
+## Components
+
+Moreover, there are two breaking changes in the components section:
+
+### Distribution files
+
+For non Angular projects how use the HTML import approach, you need to update the imports a indicated below.
+
+<DiffSource
+  code={`
+-  <link rel="stylesheet" href="node_modules/@baloise/design-system-css/css/baloise-design-system.css" />
+-  <script
+-    type="module"
+-    src="node_modules/@baloise/design-system-components/dist/design-system-components/design-system-components.esm.js"
+-  ></script>
+-  <script nomodule src="node_modules/@baloise/design-system-components/dist/design-system-components/design-system-components.js"></script>
++  <link rel="stylesheet" href="node_modules/@baloise/ds-styles/css/baloise-design-system.css" />
++  <script
++    type="module"
++    src="node_modules/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.esm.js"
++  ></script>
++  <script nomodule src="node_modules/@baloise/ds-core/dist/baloise-design-system/baloise-design-system.js"></script>
+`}
+/>
+
+### Button
+
+Properties `topRounded` and `bottomRounded` has been removed, due to not match the design criteria.
+
+### Navigation
+
+Component `bal-navigation` has been removed and replaced with `bal-nav` to improve performance and SEO.
+
+## Testing
+
+The export paths for the testing packages have been improved.
+
+<DiffSource
+  code={`-  import '@baloise/design-system-testing/dist/add-custom-commands'
+-  import '@baloise/design-system-testing/dist/add-override-commands'
++  import '@baloise/ds-testing/add-custom-commands'
++  import '@baloise/ds-testing/add-override-commands'`}
+/>
+
 ## Standardizing Design Tokens
+
+This change is not mandatory for upgrading to the new version 16. Can be done in a later stage.
+However, the CSS package is marked as deprecated.
 
 ### Why the Change?
 
@@ -215,7 +287,7 @@ npm add -D -E @baloise/ds-styles@16
 2. **Start CLI:**: Run the migration CLI to rename the changed CSS utility classes. The CLI updates the global stylesheet, component stylesheets, HTML files and Angular inline templates.
 
 ```bash
-npx bds-migrate-to-styles
+ds-styles-migrate
 ```
 
 3. **Verify the Changes:** Once the CLI has run, review the changes to ensure everything has been updated correctly. It's a good practice to check the git diff if your project is version-controlled.
@@ -548,18 +620,6 @@ The spacing helpers have not been renamed only the responsive markers.
 </Markdown>
 
 </AngularFramework>
-
-## Components
-
-Moreover, there are two breaking changes in the components section:
-
-### Button
-
-Properties `topRounded` and `bottomRounded` has been removed, due to not match the design criteria.
-
-### Navigation
-
-Component `bal-navigation` has been removed and replaced with `bal-nav` to improve performance and SEO.
 
 ## Need Help Upgrading?​
 

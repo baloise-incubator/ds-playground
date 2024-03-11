@@ -38,7 +38,7 @@ const nodeModulesWorkspace = join(workspaceDir, 'node_modules')
 export const config: Config = {
   autoprefixCss: true,
   sourceMap: false,
-  namespace: 'design-system-components',
+  namespace: 'baloise-design-system',
   hashedFileNameLength: 10,
   enableCache: true,
   buildEs5: 'prod',

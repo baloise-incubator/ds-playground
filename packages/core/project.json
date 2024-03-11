@@ -19,6 +19,12 @@
         "command": "set BAL_DEVELOPMENT=true & stencil build --serve --watch --port=3333"
       }
     },
+    "test-ui": {
+      "executor": "@baloise/ds-nx:test-ui",
+      "options": {
+        "projectRoot": "{projectRoot}"
+      }
+    },
     "build": {
       "executor": "@baloise/ds-nx:build-core",
       "outputs": [

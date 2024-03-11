@@ -176,17 +176,20 @@ const main = async () => {
 async function migrateComponentStylesSheet({ log, isDirectory, directoryPath, filePath }) {
   const files = []
   if (isDirectory) {
-    files.push(path.join(directoryPath, '**', '*.sass').replace(/\\/g, '/'))
-    files.push(path.join(directoryPath, '**', '*.scss').replace(/\\/g, '/'))
+    const relativePath = path.relative(process.cwd(), directoryPath)
+    files.push(path.join(relativePath, '**', '*.scss').replace(/\\/g, '/'))
+    files.push(path.join(relativePath, '**', '*.sass').replace(/\\/g, '/'))
   } else {
-    files.push(filePath.replace(/\\/g, '/'))
+    const relativePath = path.relative(process.cwd(), filePath)
+    files.push(relativePath.replace(/\\/g, '/'))
   }
 
   try {
     const result = await replace({
       files,
-      from: [new RegExp(`@baloise/design-system-css/sass/mixins`, 'g')],
-      to: ['@baloise/design-system-styles/sass/mixins'],
+      from: [new RegExp(`@baloise/(ds-css|design-system-css)/sass/mixins`, 'g')],
+      to: ['@baloise/ds-styles/sass/mixins'],
+      allowEmptyPaths: true,
     })
     printResult({ result, log })
   } catch (error) {
@@ -201,10 +204,12 @@ async function migrateComponentStylesSheet({ log, isDirectory, directoryPath, fi
 async function migrateCSSVariables({ log, isDirectory, directoryPath, filePath }) {
   const files = []
   if (isDirectory) {
-    files.push(path.join(directoryPath, '**', '*.sass').replace(/\\/g, '/'))
-    files.push(path.join(directoryPath, '**', '*.scss').replace(/\\/g, '/'))
+    const relativePath = path.relative(process.cwd(), directoryPath)
+    files.push(path.join(relativePath, '**', '*.sass').replace(/\\/g, '/'))
+    files.push(path.join(relativePath, '**', '*.scss').replace(/\\/g, '/'))
   } else {
-    files.push(filePath.replace(/\\/g, '/'))
+    const relativePath = path.relative(process.cwd(), filePath)
+    files.push(relativePath.replace(/\\/g, '/'))
   }
 
   try {
@@ -215,13 +220,18 @@ async function migrateCSSVariables({ log, isDirectory, directoryPath, filePath }
         ...replacementsCSSVariablesVarious.from,
         ...replacementsCSSVariablesSpace.from,
         ...replacementsCSSVariablesTextSize.from,
+        ...replacementsCSSVariablesInvertedWhite.from,
+        ...replacementsCSSVariablesInvertedPrimary.from,
       ],
       to: [
         ...replacementsCSSVariablesColors.to,
         ...replacementsCSSVariablesVarious.to,
         ...replacementsCSSVariablesSpace.to,
         ...replacementsCSSVariablesTextSize.to,
+        ...replacementsCSSVariablesInvertedWhite.to,
+        ...replacementsCSSVariablesInvertedPrimary.to,
       ],
+      allowEmptyPaths: true,
     })
     printResult({ result, log })
   } catch (error) {
@@ -239,56 +249,57 @@ async function migrateGlobalStyleSheet({ globalStyleSheetPath, log }) {
     const result = await replace({
       files,
       from: [
-        new RegExp(`@baloise/design-system-css/(sass|css)/baloise-design-system.sass`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/baloise-design-system`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/baloise-design-system.sass`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/baloise-design-system`, 'g'),
 
-        new RegExp(`@baloise/design-system-css/sass/mixins`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/normalize`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/structure`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/font`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/core`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/sass/mixins`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/normalize`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/structure`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/font`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/core`, 'g'),
 
         `// Deprecated styles will be removed with the next breaking version (optional)`,
-        new RegExp(`@import '@baloise/design-system-css/(sass|css)/legacy';`, 'g'), // deprecated
-        new RegExp(`@import '@baloise/design-system-css/(sass|css)/grid';`, 'g'), // included in core
+        new RegExp(`@import '@baloise/(ds-css|design-system-css)/(sass|css)/legacy';`, 'g'), // deprecated
+        new RegExp(`@import '@baloise/(ds-css|design-system-css)/(sass|css)/grid';`, 'g'), // included in core
 
-        new RegExp(`@baloise/design-system-css/(sass|css)/display`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/flex`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/spacing`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/typography`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/color`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/border`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/radius`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/opacity`, 'g'),
-        new RegExp(`@baloise/design-system-css/(sass|css)/shadow`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/display`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/flex`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/spacing`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/typography`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/color`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/border`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/radius`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/opacity`, 'g'),
+        new RegExp(`@baloise/(ds-css|design-system-css)/(sass|css)/shadow`, 'g'),
       ],
       to: [
-        '@baloise/design-system-styles/sass/all',
-        '@baloise/design-system-styles/sass/all',
+        '@baloise/ds-styles/sass/all',
+        '@baloise/ds-styles/sass/all',
 
-        '@baloise/design-system-styles/sass/mixins',
-        '@baloise/design-system-styles/css/normalize',
-        '@baloise/design-system-styles/css/structure',
-        '@baloise/design-system-styles/css/font',
-        '@baloise/design-system-styles/css/core',
+        '@baloise/ds-styles/sass/mixins',
+        '@baloise/ds-styles/css/normalize',
+        '@baloise/ds-styles/css/structure',
+        '@baloise/ds-styles/css/font',
+        '@baloise/ds-styles/css/core',
         '',
         '',
         '',
-        '@baloise/design-system-styles/css/utilities/layout',
-        '@baloise/design-system-styles/css/utilities/flex',
-        '@baloise/design-system-styles/css/utilities/spacing',
-        '@baloise/design-system-styles/css/utilities/typography',
-        '@baloise/design-system-styles/css/utilities/background',
-        '@baloise/design-system-styles/css/utilities/border',
-        '@baloise/design-system-styles/css/utilities/border',
-        '@baloise/design-system-styles/css/utilities/elevation',
-        '@baloise/design-system-styles/css/utilities/elevation',
+        '@baloise/ds-styles/css/utilities/layout',
+        '@baloise/ds-styles/css/utilities/flex',
+        '@baloise/ds-styles/css/utilities/spacing',
+        '@baloise/ds-styles/css/utilities/typography',
+        '@baloise/ds-styles/css/utilities/background',
+        '@baloise/ds-styles/css/utilities/border',
+        '@baloise/ds-styles/css/utilities/border',
+        '@baloise/ds-styles/css/utilities/elevation',
+        '@baloise/ds-styles/css/utilities/elevation',
       ],
+      allowEmptyPaths: true,
     })
     printResult({ result, log })
     let lines = (await fsp.readFile(files, 'utf-8')).split(/\r?\n/)
-    lines.push(`@import '@baloise/design-system-styles/css/utilities/interaction';`)
-    lines.push(`@import '@baloise/design-system-styles/css/utilities/sizing';`)
+    lines.push(`@import '@baloise/ds-styles/css/utilities/interaction';`)
+    lines.push(`@import '@baloise/ds-styles/css/utilities/sizing';`)
     lines = lines.reduce((acc, line) => {
       if (line.length === 0) {
         if (acc[acc.length - 1].length === 0) {
@@ -390,6 +401,7 @@ async function migrateHtmlFiles({ filePath, log, utilReplacers }) {
 
           return content
         },
+        allowEmptyPaths: true,
       }),
     ]
 
@@ -837,6 +849,47 @@ const textSizeLegacy = {
   ],
 }
 
+const textColor = {
+  from: [
+    /has-text-primary/g,
+    /has-text-white/g,
+    /has-text-black/g,
+    /has-text-grey-dark/g,
+    /has-text-grey/g,
+    /has-text-grey-light/g,
+    /has-text-light-blue/g,
+    /has-text-light-blue-light/g,
+    /has-text-info-light/g,
+    /has-text-primary-dark/g,
+    /has-text-primary-light/g,
+    /has-text-success/g,
+    /has-text-info/g,
+    /has-text-warning/g,
+    /has-text-danger/g,
+    /has-text-danger-dark/g,
+    /has-text-danger-darker/g,
+  ],
+  to: [
+    'text-primary',
+    'text-white',
+    'text-black',
+    'text-grey-dark',
+    'text-grey',
+    'text-grey-light',
+    'text-primary-hovered',
+    'text-inverted-hovered',
+    'text-inverted-pressed',
+    'text-primary-pressed',
+    'text-primary-light',
+    'text-success',
+    'text-info',
+    'text-warning',
+    'text-danger',
+    'text-danger-hovered',
+    'text-danger-pressed',
+  ],
+}
+
 const textAlignment = {
   from: [
     /has-text-centered-desktop/g,
@@ -1108,6 +1161,7 @@ const replacementsTypography = {
     /is-family-title/g,
     ...textAlignment.from,
     ...textSizeLegacy.from,
+    ...textColor.from,
     /has-text/g,
     /is-size/g,
   ],
@@ -1123,6 +1177,7 @@ const replacementsTypography = {
     'font-family-title',
     ...textAlignment.to,
     ...textSizeLegacy.to,
+    ...textColor.to,
     'text',
     'text',
   ],
@@ -1327,6 +1382,194 @@ const replacementsCSSVariablesTextSize = {
     'var(--bal-text-size-xx-large-desktop)',
     'var(--bal-text-size-x-large-desktop)',
     'var(--bal-text-size-large-desktop)',
+  ],
+}
+
+const replacementsCSSVariablesInvertedWhite = {
+  from: [
+    /var\(--bal-color-black-inverted\)/g,
+    /var\(--bal-color-grey-5-inverted\)/g,
+    /var\(--bal-color-grey-6-inverted\)/g,
+    /var\(--bal-color-blue-4-inverted\)/g,
+    /var\(--bal-color-blue-5-inverted\)/g,
+    /var\(--bal-color-blue-6-inverted\)/g,
+    /var\(--bal-color-light-blue-4-inverted\)/g,
+    /var\(--bal-color-light-blue-5-inverted\)/g,
+    /var\(--bal-color-light-blue-6-inverted\)/g,
+    /var\(--bal-color-purple-4-inverted\)/g,
+    /var\(--bal-color-purple-5-inverted\)/g,
+    /var\(--bal-color-purple-6-inverted\)/g,
+    /var\(--bal-color-green-6-inverted\)/g,
+    /var\(--bal-color-yellow-6-inverted\)/g,
+    /var\(--bal-color-red-4-inverted\)/g,
+    /var\(--bal-color-red-5-inverted\)/g,
+    /var\(--bal-color-red-6-inverted\)/g,
+    /var\(--bal-color-info-3-inverted\)/g,
+    /var\(--bal-color-info-4-inverted\)/g,
+    /var\(--bal-color-info-5-inverted\)/g,
+    /var\(--bal-color-info-6-inverted\)/g,
+    /var\(--bal-color-success-3-inverted\)/g,
+    /var\(--bal-color-success-4-inverted\)/g,
+    /var\(--bal-color-success-5-inverted\)/g,
+    /var\(--bal-color-success-6-inverted\)/g,
+    /var\(--bal-color-danger-3-inverted\)/g,
+    /var\(--bal-color-danger-4-inverted\)/g,
+    /var\(--bal-color-danger-5-inverted\)/g,
+    /var\(--bal-color-danger-6-inverted\)/g,
+    /var\(--bal-color-primary-4-inverted\)/g,
+    /var\(--bal-color-primary-5-inverted\)/g,
+    /var\(--bal-color-primary-6-inverted\)/g,
+    /var\(--bal-color-primary-inverted\)/g,
+    /var\(--bal-color-blue-inverted\)/g,
+    /var\(--bal-color-info-inverted\)/g,
+    /var\(--bal-color-success-inverted\)/g,
+    /var\(--bal-color-danger-inverted\)/g,
+  ],
+  to: [
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+    'var(--bal-color-white)',
+  ],
+}
+
+const replacementsCSSVariablesInvertedPrimary = {
+  from: [
+    /var\(--bal-color-transparent-inverted\)/g,
+    /var\(--bal-color-white-inverted\)/g,
+    /var\(--bal-color-grey-1-inverted\)/g,
+    /var\(--bal-color-grey-2-inverted\)/g,
+    /var\(--bal-color-grey-3-inverted\)/g,
+    /var\(--bal-color-grey-4-inverted\)/g,
+    /var\(--bal-color-blue-1-inverted\)/g,
+    /var\(--bal-color-blue-2-inverted\)/g,
+    /var\(--bal-color-blue-3-inverted\)/g,
+    /var\(--bal-color-light-blue-1-inverted\)/g,
+    /var\(--bal-color-light-blue-2-inverted\)/g,
+    /var\(--bal-color-light-blue-3-inverted\)/g,
+    /var\(--bal-color-purple-1-inverted\)/g,
+    /var\(--bal-color-purple-2-inverted\)/g,
+    /var\(--bal-color-purple-3-inverted\)/g,
+    /var\(--bal-color-green-1-inverted\)/g,
+    /var\(--bal-color-green-2-inverted\)/g,
+    /var\(--bal-color-green-3-inverted\)/g,
+    /var\(--bal-color-green-4-inverted\)/g,
+    /var\(--bal-color-green-5-inverted\)/g,
+    /var\(--bal-color-yellow-1-inverted\)/g,
+    /var\(--bal-color-yellow-2-inverted\)/g,
+    /var\(--bal-color-yellow-3-inverted\)/g,
+    /var\(--bal-color-yellow-4-inverted\)/g,
+    /var\(--bal-color-yellow-5-inverted\)/g,
+    /var\(--bal-color-red-1-inverted\)/g,
+    /var\(--bal-color-red-2-inverted\)/g,
+    /var\(--bal-color-red-3-inverted\)/g,
+    /var\(--bal-color-info-1-inverted\)/g,
+    /var\(--bal-color-info-2-inverted\)/g,
+    /var\(--bal-color-success-1-inverted\)/g,
+    /var\(--bal-color-success-2-inverted\)/g,
+    /var\(--bal-color-warning-1-inverted\)/g,
+    /var\(--bal-color-warning-2-inverted\)/g,
+    /var\(--bal-color-warning-3-inverted\)/g,
+    /var\(--bal-color-warning-4-inverted\)/g,
+    /var\(--bal-color-warning-5-inverted\)/g,
+    /var\(--bal-color-warning-6-inverted\)/g,
+    /var\(--bal-color-danger-1-inverted\)/g,
+    /var\(--bal-color-danger-2-inverted\)/g,
+    /var\(--bal-color-primary-1-inverted\)/g,
+    /var\(--bal-color-primary-2-inverted\)/g,
+    /var\(--bal-color-primary-3-inverted\)/g,
+    /var\(--bal-color-grey-inverted\)/g,
+    /var\(--bal-color-light-blue-inverted\)/g,
+    /var\(--bal-color-purple-inverted\)/g,
+    /var\(--bal-color-green-inverted\)/g,
+    /var\(--bal-color-yellow-inverted\)/g,
+    /var\(--bal-color-red-inverted\)/g,
+    /var\(--bal-color-warning-inverted\)/g,
+  ],
+  to: [
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
+    'var(--bal-color-primary)',
   ],
 }
 

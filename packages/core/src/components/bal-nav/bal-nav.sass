@@ -1,16 +1,6 @@
 @import '@baloise/ds-styles/sass/mixins'
 @import './bal-nav.vars'
 
-=visually-hidden
-  position: absolute !important
-  height: 0.01em !important
-  width: 0.01em !important
-  padding: 0 !important
-  overflow: hidden !important
-  clip: rect(1px, 1px, 1px, 1px) !important
-  border: none !important
-  white-space: nowrap !important
-
 // Navigation
 // --------------------------------------------------
 
@@ -58,7 +48,7 @@
       max-width: var(--bal-container-size-normal)
 
 .bal-nav__flyout:not(.bal-nav__flyout--visible)
-  +visually-hidden
+  +invisible
 
 .bal-nav .bal-nav-meta-bar,
 .bal-nav .bal-nav-menu-bar
@@ -93,8 +83,8 @@
   gap: var(--bal-space-normal)
   background: transparent
   font-family: var(--bal-font-family-title)
-  font-weight: var(--bal-font-weight-bold)
-  font-size: var(--bal-text-size-x-large)
+  font-weight: var(--bal-weight-bold)
+  font-size: var(--bal-size-x-large)
   line-height: var(--bal-line-heigh-x-large)
   cursor: pointer
 
@@ -111,8 +101,8 @@
   gap: var(--bal-space-normal)
   background: transparent
   font-family: var(--bal-font-family-title)
-  font-weight: var(--bal-font-weight-bold)
-  font-size: var(--bal-text-size-large)
+  font-weight: var(--bal-weight-bold)
+  font-size: var(--bal-size-large)
   line-height: var(--bal-line-heigh-large)
   cursor: pointer
 
@@ -130,8 +120,8 @@
   gap: var(--bal-space-normal)
   background: transparent
   font-family: var(--bal-font-family-title)
-  font-weight: var(--bal-font-weight-bold)
-  font-size: var(--bal-text-size-normal)
+  font-weight: var(--bal-weight-bold)
+  font-size: var(--bal-size-normal)
   line-height: var(--bal-line-heigh-normal)
 
 .bal-nav__mobile-links
@@ -147,7 +137,7 @@
   gap: var(--bal-space-normal)
   background: transparent
   font-family: var(--bal-font-family-text)
-  font-size: var(--bal-text-size-normal)
+  font-size: var(--bal-size-normal)
   line-height: var(--bal-line-heigh-normal)
 
 .bal-nav__mobile-meta-list,
@@ -191,17 +181,24 @@
   padding-top: 1rem
   padding-bottom: 1rem
 
+.bal-nav__mobile-section-list--invisible,
+.bal-nav__mobile-service-list--invisible
+  +invisible
+
 .bal-nav__mobile-overview-link
   font-family: var(--bal-font-family-text)
-  font-weight: var(--bal-font-weight-bold)
-  font-size: var(--bal-text-size-x-small)
+  font-weight: var(--bal-weight-bold)
+  font-size: var(--bal-size-x-small)
   line-height: var(--bal-line-height-x-small)
+
+.bal-nav__mobile-overview-link--invisible
+  +invisible
 
 .bal-nav__mobile-overview-link--menu
   padding: 0 0 0 1rem
 
 .bal-nav__line
-  background-color: var(--bal-color-border-divider)
+  background-color: var(--bal-color-border-grey-light)
   height: var(--bal-border-width-normal)
   border: none
   display: block
