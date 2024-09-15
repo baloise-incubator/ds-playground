@@ -41,13 +41,6 @@
     </span>
     <span className='block title text-medium text-align-center mb-none text-decoration-none'>madaluca</span>
   </a>
-<a href="https://github.com/Gagne87" target='_blank' style="flex: 1;" className="sb-unstyled text-decoration-none doc-button-card doc-shadow-hover flex flex-1 flex-direction-column bg-purple-1 p-normal radius-normal text-large text-primary"
-  >
-    <span className='block text-xx-large text-align-center'>
-      <img src="https://avatars.githubusercontent.com/u/29020214?v=4" alt="Gagne87" />
-    </span>
-    <span className='block title text-medium text-align-center mb-none text-decoration-none'>Gagne87</span>
-  </a>
 <a href="https://github.com/yannickholzenkamp" target='_blank' style="flex: 1;" className="sb-unstyled text-decoration-none doc-button-card doc-shadow-hover flex flex-1 flex-direction-column bg-purple-1 p-normal radius-normal text-large text-primary"
   >
     <span className='block text-xx-large text-align-center'>
@@ -96,6 +89,13 @@
       <img src="https://avatars.githubusercontent.com/u/43036938?v=4" alt="sebaotlacan" />
     </span>
     <span className='block title text-medium text-align-center mb-none text-decoration-none'>sebaotlacan</span>
+  </a>
+<a href="https://github.com/Gagne87" target='_blank' style="flex: 1;" className="sb-unstyled text-decoration-none doc-button-card doc-shadow-hover flex flex-1 flex-direction-column bg-purple-1 p-normal radius-normal text-large text-primary"
+  >
+    <span className='block text-xx-large text-align-center'>
+      <img src="https://avatars.githubusercontent.com/u/29020214?v=4" alt="Gagne87" />
+    </span>
+    <span className='block title text-medium text-align-center mb-none text-decoration-none'>Gagne87</span>
   </a>
 <a href="https://github.com/max-voss" target='_blank' style="flex: 1;" className="sb-unstyled text-decoration-none doc-button-card doc-shadow-hover flex flex-1 flex-direction-column bg-purple-1 p-normal radius-normal text-large text-primary"
   >
