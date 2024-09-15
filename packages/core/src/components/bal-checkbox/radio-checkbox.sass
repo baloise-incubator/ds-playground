@@ -345,6 +345,7 @@ bal-radio .bal-radio-checkbox__label
       position: absolute
       top: 0.25rem !important
       left: 0.25rem
+      z-index: 2
       width: 1rem
       height: 1rem
       margin-top: 0.25rem
@@ -409,3 +410,13 @@ bal-radio .bal-radio-checkbox__label
       background: var(--bal-radio-checkbox-switch-label-background-disabled-checked-hover-active-before)
     .bal-radio-checkbox__label::after
       background: var(--bal-radio-checkbox-switch-label-background-disabled-checked-hover-active-after)
+
+//
+// swicth check icon when selected
++block(radio-checkbox)  
+  +element(icon)
+    position: absolute !important
+    left: 5.5px
+    z-index: 1
+    +modifier(hidden)
+      display: none !important
